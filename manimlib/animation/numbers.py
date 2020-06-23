@@ -30,7 +30,7 @@ class ChangingDecimal(Animation):
             if attr in kwargs:
                 warnings.warn("""
                     Don't use {} for ChangingDecimal,
-                    that functionality has been depricated
+                    that functionality has been deprecated
                     and you should use a mobject updater
                     instead
                 """.format(attr)

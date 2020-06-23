@@ -55,12 +55,11 @@ class ShowSimpleMultivariableFunction(Scene):
         value_tracker = ValueTracker(0)
         always_shift(value_tracker, rate=0.5)
         self.add(value_tracker)
-        decimal_change = ContinualChangingDecimal(
+        decimal_change = ChangeDecimalToValue(
             decimal,
             lambda a: 1 + np.sin(value_tracker.get_value())
         )
-        self.add(decimal_change)
-
+        # self.add(decimal_change)
         output_brace = Brace(decimal, DOWN)
         output_brace_text = output_brace.get_text("Single output")
 
@@ -385,14 +384,14 @@ class ShowDerivativeAtExamplePoint(Scene):
         ], v_buff=1.2, element_alignment_corner=ORIGIN)
 
         x_terms = VGroup(
-            result_vector.get_mob_matrix()[0, 0][2],
-            result_vector.get_mob_matrix()[1, 0][2],
-            result_vector.get_mob_matrix()[0, 0][-2],
+            result_vector.get_mob_matrix()[0, 0][0],
+            result_vector.get_mob_matrix()[1, 0][0],
+            result_vector.get_mob_matrix()[0, 0][0],
         )
         y_terms = VGroup(
-            result_vector.get_mob_matrix()[0, 0][11],
-            result_vector.get_mob_matrix()[1, 0][11],
-            result_vector.get_mob_matrix()[1, 0][-5],
+            result_vector.get_mob_matrix()[0, 0][0],
+            result_vector.get_mob_matrix()[1, 0][0],
+            result_vector.get_mob_matrix()[1, 0][0],
         )
         x_terms.set_color(BLUE)
         y_terms.set_color(RED)
