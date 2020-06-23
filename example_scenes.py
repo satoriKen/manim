@@ -152,7 +152,7 @@ class PlotFunctions(GraphScene):
 
         self.setup_axes(animate=True)
 
-        func_graph = self.get_graph(self.func_to_graph, self.function_color)
+        func_graph = self.get_graph(self.func_to_graph, self.function_color)  # function_color specified in CONFIG
         graph_lab = self.get_graph_label(func_graph, label="\\cos(x)")
 
         func_graph2 = self.get_graph(self.func_to_graph2)
@@ -179,3 +179,64 @@ class PlotFunctions(GraphScene):
 
     def func_to_graph2(self, x):
         return np.sin(x)
+
+
+class ExampleApproximation(GraphScene):
+    CONFIG = {
+        "function" : lambda x : np.cos(x),
+        "function_color" : BLUE,
+        "taylor" : [lambda x: 1, lambda x: 1-x**2/2, lambda x: 1-x**2/math.factorial(2)+x**4/math.factorial(4), lambda x: 1-x**2/2+x**4/math.factorial(4)-x**6/math.factorial(6),
+        lambda x: 1-x**2/math.factorial(2)+x**4/math.factorial(4)-x**6/math.factorial(6)+x**8/math.factorial(8), lambda x: 1-x**2/math.factorial(2)+x**4/math.factorial(4)-x**6/math.factorial(6)+x**8/math.factorial(8) - x**10/math.factorial(10)],
+        "center_point" : 0,
+        "approximation_color" : GREEN,
+        "x_min" : -10,
+        "x_max" : 10,
+        "y_min" : -1,
+        "y_max" : 1,
+        "graph_origin" : ORIGIN ,
+        "x_labeled_nums" :range(-10,12,2),
+
+    }
+
+    def construct(self):
+
+        self.setup_axes(animate=True)
+
+        func_graph = self.get_graph(
+            self.function,
+            self.function_color,
+        )
+
+        approx_graphs = [
+            self.get_graph(
+                f,
+                self.approximation_color
+            )
+            for f in self.taylor
+        ]
+
+        term_num = [
+            TexMobject("n = " + str(n), aligned_edge=TOP)
+            for n in range(0, 8)]
+
+
+        # Since we are going to do successive transformations from a list, it helps to have a blank placeholder on the screen.
+        # term and approx_graph are VectorizedPoint instances, which are mobjects that don’t display anything on screen.
+        # This way we can put the placeholders on the screen without anything appearing,
+        # and then transform those mobjects into either the graph or the TexMobjects.
+        approx_graph = VectorizedPoint(
+            self.input_to_graph_point(self.center_point, func_graph)
+        )
+
+        term = VectorizedPoint(3*DOWN)
+
+        self.play(
+            ShowCreation(func_graph),
+        )
+
+        for n, graph in enumerate(approx_graphs):
+            self.play(
+                Transform(approx_graph, graph, run_time=2),
+                Transform(term, term_num[n])
+            )
+            self.wait()
