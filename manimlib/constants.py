@@ -6,6 +6,7 @@ VIDEO_DIR = ""
 VIDEO_OUTPUT_DIR = ""
 TEX_DIR = ""
 TEXT_DIR = ""
+FILE_DIR = "./manimlib/files"
 
 
 def initialize_directories(config):
@@ -14,6 +15,7 @@ def initialize_directories(config):
     global VIDEO_OUTPUT_DIR
     global TEX_DIR
     global TEXT_DIR
+    global FILE_DIR
 
     video_path_specified = config["video_dir"] or config["video_output_dir"]
 

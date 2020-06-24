@@ -99,7 +99,7 @@ class WriteStuff(Scene):
     def construct(self):
         example_text = TextMobject(
             "This is a some text",
-            tex_to_color_map={"text": YELLOW}
+            tex_to_color_map={r"text": YELLOW}
         )
         example_tex = TexMobject(
             "\\sum_{k=1}^\\infty {1 \\over k^2} = {\\pi^2 \\over 6}",
@@ -240,3 +240,321 @@ class ExampleApproximation(GraphScene):
                 Transform(term, term_num[n])
             )
             self.wait()
+
+
+class NumberPlane(VMobject):
+    CONFIG = {
+        "color": BLUE_D,
+        "secondary_color": BLUE_E,
+        "axes_color": WHITE,
+        "secondary_stroke_width": 1,
+        # TODO: Allow coordinate center of NumberPlane to not be at (0, 0)
+        "x_radius": None,
+        "y_radius": None,
+        "x_unit_size": 1,
+        "y_unit_size": 1,
+        "center_point": ORIGIN,
+        "x_line_frequency": 1,
+        "y_line_frequency": 1,
+        "secondary_line_ratio": 1,
+        "written_coordinate_height": 0.2,
+        "propagate_style_to_family": False,
+        "make_smooth_after_applying_functions": True,
+    }
+
+
+class DrawAnAxis(Scene):
+    CONFIG = {"plane_kwargs": {
+        "x_line_frequency": 2,
+        "y_line_frequency": 2
+    }
+    }
+
+    def construct(self):
+        my_plane = NumberPlane(**self.plane_kwargs)
+        # my_plane.add(my_plane.get_axis_labels())
+        self.add(my_plane)
+
+
+class SimpleField(Scene):
+    CONFIG = {
+    "plane_kwargs" : {
+        "color" : RED
+        },
+    }
+
+    def construct(self):
+
+        plane = NumberPlane(**self.plane_kwargs)
+        # plane.add(plane.get_axis_labels())
+        self.add(plane)
+
+        points = [x*RIGHT+y*UP
+            for x in np.arange(-5,5,1)
+            for y in np.arange(-5,5,1)
+            ]
+
+        vec_field = []
+        for point in points:
+            field = 0.5*RIGHT + 0.5*UP
+            result = Vector(field).shift(point)
+            vec_field.append(result)
+
+        draw_field = VGroup(*vec_field)
+
+        self.play(ShowCreation(draw_field))
+
+
+class MoveBraces(Scene):
+    def construct(self):
+        text=TexMobject(
+            "\\frac{d}{dx}f(x)g(x)=",       #0
+            "f(x)\\frac{d}{dx}g(x)",        #1
+            "+",                            #2
+            "g(x)\\frac{d}{dx}f(x)"         #3
+        )
+        self.play(Write(text))
+        brace1 = Brace(text[1], UP, buff = SMALL_BUFF)
+        brace2 = Brace(text[3], UP, buff = SMALL_BUFF)
+        t1 = brace1.get_text("$g'f$")
+        t2 = brace2.get_text("$f'g$")
+        self.play(
+            GrowFromCenter(brace1),
+            FadeIn(t1),
+            )
+        self.wait()
+        self.play(
+        	ReplacementTransform(brace1,brace2),
+        	ReplacementTransform(t1,t2)
+        	)
+        self.wait()
+
+
+class NumberPlane(Axes):
+    CONFIG = {
+        "axis_config": {
+            "stroke_color": WHITE,
+            "stroke_width": 2,
+            "include_ticks": False,
+            "include_tip": False,
+            "line_to_number_buff": SMALL_BUFF,
+            "label_direction": DR,
+            "number_scale_val": 0.5,
+        },
+        "y_axis_config": {
+            "label_direction": DR,
+        },
+        "background_line_style": {
+            "stroke_color": BLUE_D,
+            "stroke_width": 2,
+            "stroke_opacity": 1,
+        },
+        # Defaults to a faded version of line_config
+        "faded_line_style": None,
+        "x_line_frequency": 1,
+        "y_line_frequency": 1,
+        "faded_line_ratio": 1,
+        "make_smooth_after_applying_functions": True,
+    }
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.init_background_lines()
+
+    def init_background_lines(self):
+        if self.faded_line_style is None:
+            style = dict(self.background_line_style)
+            # For anything numerical, like stroke_width
+            # and stroke_opacity, chop it in half
+            for key in style:
+                if isinstance(style[key], numbers.Number):
+                    style[key] *= 0.5
+            self.faded_line_style = style
+
+        self.background_lines, self.faded_lines = self.get_lines()
+        self.background_lines.set_style(
+            **self.background_line_style,
+        )
+        self.faded_lines.set_style(
+            **self.faded_line_style,
+        )
+        self.add_to_back(
+            self.faded_lines,
+            self.background_lines,
+        )
+
+    def get_lines(self):
+        x_axis = self.get_x_axis()
+        y_axis = self.get_y_axis()
+        x_freq = self.x_line_frequency
+        y_freq = self.y_line_frequency
+
+        x_lines1, x_lines2 = self.get_lines_parallel_to_axis(
+            x_axis, y_axis, x_freq,
+            self.faded_line_ratio,
+        )
+        y_lines1, y_lines2 = self.get_lines_parallel_to_axis(
+            y_axis, x_axis, y_freq,
+            self.faded_line_ratio,
+        )
+        lines1 = VGroup(*x_lines1, *y_lines1)
+        lines2 = VGroup(*x_lines2, *y_lines2)
+        return lines1, lines2
+
+    def get_lines_parallel_to_axis(self, axis1, axis2, freq, ratio):
+        line = Line(axis1.get_start(), axis1.get_end())
+        dense_freq = (1 + ratio)
+        step = (1 / dense_freq) * freq
+
+        lines1 = VGroup()
+        lines2 = VGroup()
+        ranges = (
+            np.arange(0, axis2.x_max, step),
+            np.arange(0, axis2.x_min, -step),
+        )
+        for inputs in ranges:
+            for k, x in enumerate(inputs):
+                new_line = line.copy()
+                new_line.move_to(axis2.number_to_point(x))
+                if k % (1 + ratio) == 0:
+                    lines1.add(new_line)
+                else:
+                    lines2.add(new_line)
+        return lines1, lines2
+
+    def get_center_point(self):
+        return self.coords_to_point(0, 0)
+
+    def get_x_unit_size(self):
+        return self.get_x_axis().get_unit_size()
+
+    def get_y_unit_size(self):
+        return self.get_x_axis().get_unit_size()
+
+    def get_axes(self):
+        return self.axes
+
+    def get_vector(self, coords, **kwargs):
+        kwargs["buff"] = 0
+        return Arrow(
+            self.coords_to_point(0, 0),
+            self.coords_to_point(*coords),
+            **kwargs
+        )
+
+    def prepare_for_nonlinear_transform(self, num_inserted_curves=50):
+        for mob in self.family_members_with_points():
+            num_curves = mob.get_num_curves()
+            if num_inserted_curves > num_curves:
+                mob.insert_n_curves(
+                    num_inserted_curves - num_curves
+                )
+        return self
+
+
+class RefresherOnPolarCoordinates(MovingCameraScene):
+    CONFIG = {
+        "x_color": GREEN,
+        "y_color": RED,
+        "r_color": YELLOW,
+        "theta_color": LIGHT_PINK,
+    }
+
+    def construct(self):
+        self.show_xy_coordinates()
+
+    def show_xy_coordinates(self):
+        plane = NumberPlane()
+        plane.add_coordinates()
+
+        x = 3 * np.cos(PI / 6)
+        y = 3 * np.sin(PI / 6)
+
+        point = plane.c2p(x, y)
+        xp = plane.c2p(x, 0)
+        origin = plane.c2p(0, 0)
+
+        x_color = self.x_color
+        y_color = self.y_color
+
+        x_line = Line(origin, xp, color=x_color)
+        y_line = Line(xp, point, color=y_color)
+
+        dot = Dot(point)
+
+        coord_label = self.get_coord_label(0, 0, x_color, y_color)
+        x_coord = coord_label.x_coord
+        y_coord = coord_label.y_coord
+
+        coord_label.next_to(dot, UR, SMALL_BUFF)
+
+        x_brace = Brace(x_coord, UP)
+        y_brace = Brace(y_coord, UP)
+        x_brace.add(x_brace.get_tex("x").set_color(x_color))
+        y_brace.add(y_brace.get_tex("y").set_color(y_color))
+        x_brace.add_updater(lambda m: m.next_to(x_coord, UP, SMALL_BUFF))
+        y_brace.add_updater(lambda m: m.next_to(y_coord, UP, SMALL_BUFF))
+
+        self.add(plane)
+        self.add(dot, coord_label)
+        self.add(x_brace, y_brace)
+
+        coord_label.add_updater(
+            lambda m: m.next_to(dot, UR, SMALL_BUFF)
+        )
+
+        self.play(
+            ShowCreation(x_line),
+            ChangeDecimalToValue(x_coord, x),
+            UpdateFromFunc(
+                dot,
+                lambda d: d.move_to(x_line.get_end()),
+            ),
+            run_time=2,
+        )
+        self.play(
+            ShowCreation(y_line),
+            ChangeDecimalToValue(y_coord, y),
+            UpdateFromFunc(
+                dot,
+                lambda d: d.move_to(y_line.get_end()),
+            ),
+            run_time=2,
+        )
+        self.wait()
+
+    def get_coord_label(self,
+                        x=0,
+                        y=0,
+                        x_color=WHITE,
+                        y_color=WHITE,
+                        include_background_rectangle=True,
+                        **decimal_kwargs):
+        coords = VGroup()
+        for n in x, y:
+            if isinstance(n, numbers.Number):
+                coord = DecimalNumber(n, **decimal_kwargs)
+            elif isinstance(n, str):
+                coord = TexMobject(n)
+            else:
+                raise Exception("Invalid type")
+            coords.add(coord)
+
+        x_coord, y_coord = coords
+        x_coord.set_color(x_color)
+        y_coord.set_color(y_color)
+
+        coord_label = VGroup(
+            TexMobject("("), x_coord,
+            TexMobject(","), y_coord,
+            TexMobject(")")
+        )
+        coord_label.arrange(RIGHT, buff=SMALL_BUFF)
+        coord_label[2].align_to(coord_label[0], DOWN)
+
+        coord_label.x_coord = x_coord
+        coord_label.y_coord = y_coord
+        if include_background_rectangle:
+            coord_label.add_background_rectangle()
+        return coord_label
+
