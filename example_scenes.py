@@ -479,14 +479,17 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
 
         x_line = Line(origin, xp, color=x_color)
         y_line = Line(xp, point, color=y_color)
+        n_line = ArcBetweenPoints(point, origin, angle=-TAU/4)
 
         dot = Dot(point)
 
         coord_label = self.get_coord_label(0, 0, x_color, y_color)
         x_coord = coord_label.x_coord
         y_coord = coord_label.y_coord
-
         coord_label.next_to(dot, UR, SMALL_BUFF)
+        coord_label.add_updater(
+            lambda m: m.next_to(dot, UR, SMALL_BUFF)
+        )
 
         x_brace = Brace(x_coord, UP)
         y_brace = Brace(y_coord, UP)
@@ -498,10 +501,6 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
         self.add(plane)
         self.add(dot, coord_label)
         self.add(x_brace, y_brace)
-
-        coord_label.add_updater(
-            lambda m: m.next_to(dot, UR, SMALL_BUFF)
-        )
 
         self.play(
             ShowCreation(x_line),
@@ -520,6 +519,16 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
                 lambda d: d.move_to(y_line.get_end()),
             ),
             run_time=2,
+        )
+        self.play(
+            ShowCreation(n_line),
+            # ChangeDecimalToValue(x_coord, x),
+            # ChangeDecimalToValue(y_coord, y),
+            UpdateFromFunc(
+                dot,
+                lambda d: d.move_to(n_line.get_end()),
+            ),
+            run_time=3,
         )
         self.wait()
 
@@ -557,4 +566,54 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
         if include_background_rectangle:
             coord_label.add_background_rectangle()
         return coord_label
+
+
+INTERVAL_RADIUS = 5
+NUM_INTERVAL_TICKS = 16
+class ZoomInOnInterval(Scene):
+
+    def construct(self):
+        number_line = NumberLine(density = 10*DEFAULT_POINT_DENSITY_1D)
+        number_line.add_numbers()
+        interval = self.zero_to_one_interval().split()
+
+        new_line = deepcopy(number_line)
+        # new_line.set_color("black", lambda x_y_z1 : x_y_z1[0] < 0 or x_y_z1[0] > 1 or x_y_z1[1] < -0.2)
+        # height = new_line.get_height()
+        new_line.scale(2*INTERVAL_RADIUS)
+        new_line.shift(INTERVAL_RADIUS*LEFT)
+        # new_line.stretch_to_fit_height(height)
+
+        self.add(number_line)
+        self.wait()
+        self.play(Transform(number_line, new_line))
+        self.clear()
+        squish = lambda p : (p[0], 0, 0)
+        self.play(
+            ApplyMethod(new_line.apply_function, squish),
+            ApplyMethod(
+                interval[0].apply_function, squish,
+                rate_func = lambda t : 1-t
+            ),
+            *[FadeIn(interval[x]) for x in [1, 2]]
+        )
+        self.clear()
+        self.add(*interval)
+        self.wait()
+
+
+    def zero_to_one_interval(self):
+        interval = NumberLine(
+            radius = INTERVAL_RADIUS,
+            interval_size = 2.0*INTERVAL_RADIUS/NUM_INTERVAL_TICKS
+        )
+        # interval.elongate_tick_at(-INTERVAL_RADIUS, 4)
+        # interval.elongate_tick_at(INTERVAL_RADIUS, 4)
+        zero = TexMobject("0").shift(INTERVAL_RADIUS*LEFT+DOWN)
+        one = TexMobject("1").shift(INTERVAL_RADIUS*RIGHT+DOWN)
+        mob = Mobject()
+        mob.add(interval)
+        mob.add(zero)
+        mob.add(one)
+        return mob
 
