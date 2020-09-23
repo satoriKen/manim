@@ -2,6 +2,7 @@
 
 from manimlib.imports import *
 
+
 # To watch one of these scenes, run the following:
 # python -m manim example_scenes.py SquareToCircle -pl
 #
@@ -133,6 +134,7 @@ class UpdatersExample(Scene):
         )
         self.wait()
 
+
 # See old_projects folder for many, many more
 
 
@@ -145,24 +147,23 @@ class PlotFunctions(GraphScene):
         "graph_origin": ORIGIN,
         "function_color": RED,
         "axes_color": GREEN,
-        "x_labeled_nums": range(-10,12,2),
+        "x_labeled_nums": range(-10, 12, 2),
     }
 
     def construct(self):
-
         self.setup_axes(animate=True)
 
         func_graph = self.get_graph(self.func_to_graph, self.function_color)  # function_color specified in CONFIG
         graph_lab = self.get_graph_label(func_graph, label="\\cos(x)")
 
         func_graph2 = self.get_graph(self.func_to_graph2)
-        graph_lab2 = self.get_graph_label(func_graph2, label="\\sin(x)", x_val=-10, direction=UP/2)
+        graph_lab2 = self.get_graph_label(func_graph2, label="\\sin(x)", x_val=-10, direction=UP / 2)
 
         vert_line = self.get_vertical_line_to_graph(TAU, func_graph, color=YELLOW)
 
         two_pi = TexMobject("x = 2 \\pi")
         label_coord = self.input_to_graph_point(TAU, func_graph)
-        two_pi.next_to(label_coord, RIGHT+UP)
+        two_pi.next_to(label_coord, RIGHT + UP)
 
         self.play(
             ShowCreation(func_graph),
@@ -183,23 +184,27 @@ class PlotFunctions(GraphScene):
 
 class ExampleApproximation(GraphScene):
     CONFIG = {
-        "function" : lambda x : np.cos(x),
-        "function_color" : BLUE,
-        "taylor" : [lambda x: 1, lambda x: 1-x**2/2, lambda x: 1-x**2/math.factorial(2)+x**4/math.factorial(4), lambda x: 1-x**2/2+x**4/math.factorial(4)-x**6/math.factorial(6),
-        lambda x: 1-x**2/math.factorial(2)+x**4/math.factorial(4)-x**6/math.factorial(6)+x**8/math.factorial(8), lambda x: 1-x**2/math.factorial(2)+x**4/math.factorial(4)-x**6/math.factorial(6)+x**8/math.factorial(8) - x**10/math.factorial(10)],
-        "center_point" : 0,
-        "approximation_color" : GREEN,
-        "x_min" : -10,
-        "x_max" : 10,
-        "y_min" : -1,
-        "y_max" : 1,
-        "graph_origin" : ORIGIN ,
-        "x_labeled_nums" :range(-10,12,2),
+        "function": lambda x: np.cos(x),
+        "function_color": BLUE,
+        "taylor": [lambda x: 1, lambda x: 1 - x ** 2 / 2,
+                   lambda x: 1 - x ** 2 / math.factorial(2) + x ** 4 / math.factorial(4),
+                   lambda x: 1 - x ** 2 / 2 + x ** 4 / math.factorial(4) - x ** 6 / math.factorial(6),
+                   lambda x: 1 - x ** 2 / math.factorial(2) + x ** 4 / math.factorial(4) - x ** 6 / math.factorial(
+                       6) + x ** 8 / math.factorial(8),
+                   lambda x: 1 - x ** 2 / math.factorial(2) + x ** 4 / math.factorial(4) - x ** 6 / math.factorial(
+                       6) + x ** 8 / math.factorial(8) - x ** 10 / math.factorial(10)],
+        "center_point": 0,
+        "approximation_color": GREEN,
+        "x_min": -10,
+        "x_max": 10,
+        "y_min": -1,
+        "y_max": 1,
+        "graph_origin": ORIGIN,
+        "x_labeled_nums": range(-10, 12, 2),
 
     }
 
     def construct(self):
-
         self.setup_axes(animate=True)
 
         func_graph = self.get_graph(
@@ -219,7 +224,6 @@ class ExampleApproximation(GraphScene):
             TexMobject("n = " + str(n), aligned_edge=TOP)
             for n in range(0, 8)]
 
-
         # Since we are going to do successive transformations from a list, it helps to have a blank placeholder on the screen.
         # term and approx_graph are VectorizedPoint instances, which are mobjects that don’t display anything on screen.
         # This way we can put the placeholders on the screen without anything appearing,
@@ -228,7 +232,7 @@ class ExampleApproximation(GraphScene):
             self.input_to_graph_point(self.center_point, func_graph)
         )
 
-        term = VectorizedPoint(3*DOWN)
+        term = VectorizedPoint(3 * DOWN)
 
         self.play(
             ShowCreation(func_graph),
@@ -278,25 +282,24 @@ class DrawAnAxis(Scene):
 
 class SimpleField(Scene):
     CONFIG = {
-    "plane_kwargs" : {
-        "color" : RED
+        "plane_kwargs": {
+            "color": RED
         },
     }
 
     def construct(self):
-
         plane = NumberPlane(**self.plane_kwargs)
         # plane.add(plane.get_axis_labels())
         self.add(plane)
 
-        points = [x*RIGHT+y*UP
-            for x in np.arange(-5,5,1)
-            for y in np.arange(-5,5,1)
-            ]
+        points = [x * RIGHT + y * UP
+                  for x in np.arange(-5, 5, 1)
+                  for y in np.arange(-5, 5, 1)
+                  ]
 
         vec_field = []
         for point in points:
-            field = 0.5*RIGHT + 0.5*UP
+            field = 0.5 * RIGHT + 0.5 * UP
             result = Vector(field).shift(point)
             vec_field.append(result)
 
@@ -307,26 +310,26 @@ class SimpleField(Scene):
 
 class MoveBraces(Scene):
     def construct(self):
-        text=TexMobject(
-            "\\frac{d}{dx}f(x)g(x)=",       #0
-            "f(x)\\frac{d}{dx}g(x)",        #1
-            "+",                            #2
-            "g(x)\\frac{d}{dx}f(x)"         #3
+        text = TexMobject(
+            "\\frac{d}{dx}f(x)g(x)=",  # 0
+            "f(x)\\frac{d}{dx}g(x)",  # 1
+            "+",  # 2
+            "g(x)\\frac{d}{dx}f(x)"  # 3
         )
         self.play(Write(text))
-        brace1 = Brace(text[1], UP, buff = SMALL_BUFF)
-        brace2 = Brace(text[3], UP, buff = SMALL_BUFF)
+        brace1 = Brace(text[1], UP, buff=SMALL_BUFF)
+        brace2 = Brace(text[3], UP, buff=SMALL_BUFF)
         t1 = brace1.get_text("$g'f$")
         t2 = brace2.get_text("$f'g$")
         self.play(
             GrowFromCenter(brace1),
             FadeIn(t1),
-            )
+        )
         self.wait()
         self.play(
-        	ReplacementTransform(brace1,brace2),
-        	ReplacementTransform(t1,t2)
-        	)
+            ReplacementTransform(brace1, brace2),
+            ReplacementTransform(t1, t2)
+        )
         self.wait()
 
 
@@ -479,7 +482,7 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
 
         x_line = Line(origin, xp, color=x_color)
         y_line = Line(xp, point, color=y_color)
-        n_line = ArcBetweenPoints(point, origin, angle=-TAU/4)
+        n_line = ArcBetweenPoints(point, origin, angle=-TAU / 4)
 
         dot = Dot(point)
 
@@ -570,30 +573,32 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
 
 INTERVAL_RADIUS = 5
 NUM_INTERVAL_TICKS = 16
+
+
 class ZoomInOnInterval(Scene):
 
     def construct(self):
-        number_line = NumberLine(density = 10*DEFAULT_POINT_DENSITY_1D)
+        number_line = NumberLine(density=10 * DEFAULT_POINT_DENSITY_1D)
         number_line.add_numbers()
         interval = self.zero_to_one_interval().split()
 
         new_line = deepcopy(number_line)
         # new_line.set_color("black", lambda x_y_z1 : x_y_z1[0] < 0 or x_y_z1[0] > 1 or x_y_z1[1] < -0.2)
         # height = new_line.get_height()
-        new_line.scale(2*INTERVAL_RADIUS)
-        new_line.shift(INTERVAL_RADIUS*LEFT)
+        new_line.scale(2 * INTERVAL_RADIUS)
+        new_line.shift(INTERVAL_RADIUS * LEFT)
         # new_line.stretch_to_fit_height(height)
 
         self.add(number_line)
         self.wait()
         self.play(Transform(number_line, new_line))
         self.clear()
-        squish = lambda p : (p[0], 0, 0)
+        squish = lambda p: (p[0], 0, 0)
         self.play(
             ApplyMethod(new_line.apply_function, squish),
             ApplyMethod(
                 interval[0].apply_function, squish,
-                rate_func = lambda t : 1-t
+                rate_func=lambda t: 1 - t
             ),
             *[FadeIn(interval[x]) for x in [1, 2]]
         )
@@ -601,19 +606,17 @@ class ZoomInOnInterval(Scene):
         self.add(*interval)
         self.wait()
 
-
     def zero_to_one_interval(self):
         interval = NumberLine(
-            radius = INTERVAL_RADIUS,
-            interval_size = 2.0*INTERVAL_RADIUS/NUM_INTERVAL_TICKS
+            radius=INTERVAL_RADIUS,
+            interval_size=2.0 * INTERVAL_RADIUS / NUM_INTERVAL_TICKS
         )
         # interval.elongate_tick_at(-INTERVAL_RADIUS, 4)
         # interval.elongate_tick_at(INTERVAL_RADIUS, 4)
-        zero = TexMobject("0").shift(INTERVAL_RADIUS*LEFT+DOWN)
-        one = TexMobject("1").shift(INTERVAL_RADIUS*RIGHT+DOWN)
+        zero = TexMobject("0").shift(INTERVAL_RADIUS * LEFT + DOWN)
+        one = TexMobject("1").shift(INTERVAL_RADIUS * RIGHT + DOWN)
         mob = Mobject()
         mob.add(interval)
         mob.add(zero)
         mob.add(one)
         return mob
-
