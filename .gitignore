@@ -23,7 +23,6 @@ manim.sublime-workspace
 build/
 dist/
 manim.egg-info/
-*.text
 *.aux
 *.log
 *.dvi

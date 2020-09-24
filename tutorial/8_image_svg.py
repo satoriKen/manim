@@ -1,4 +1,7 @@
-from big_ol_pile_of_manim_imports import *
+#!/usr/bin/env python
+
+from manimlib.imports import *
+
 
 class CheckSVG(Scene):
     CONFIG={

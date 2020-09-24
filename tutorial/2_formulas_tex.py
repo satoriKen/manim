@@ -1,1 +1,10 @@
-from big_ol_pile_of_manim_imports import *
+#!/usr/bin/env python
+
+from manimlib.imports import *
+
+
+class Fraction(Scene):
+
+    def construct(self):
+        formula_tex = TextMobject("Fraction: $\\displaystyle\\frac{d}{dx}$")
+        self.add(formula_tex)
