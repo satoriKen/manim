@@ -1,4 +1,6 @@
-from big_ol_pile_of_manim_imports import *
+#!/usr/bin/env python
+
+from manimlib.imports import *
 from tutorial.svg_classes import CheckFormulaByTXT
 from io import *
 

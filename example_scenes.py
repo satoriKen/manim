@@ -571,11 +571,11 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
         return coord_label
 
 
-INTERVAL_RADIUS = 5
-NUM_INTERVAL_TICKS = 16
-
 
 class ZoomInOnInterval(Scene):
+
+    INTERVAL_RADIUS = 5
+    NUM_INTERVAL_TICKS = 16
 
     def construct(self):
         number_line = NumberLine(density=10 * DEFAULT_POINT_DENSITY_1D)
@@ -585,8 +585,8 @@ class ZoomInOnInterval(Scene):
         new_line = deepcopy(number_line)
         # new_line.set_color("black", lambda x_y_z1 : x_y_z1[0] < 0 or x_y_z1[0] > 1 or x_y_z1[1] < -0.2)
         # height = new_line.get_height()
-        new_line.scale(2 * INTERVAL_RADIUS)
-        new_line.shift(INTERVAL_RADIUS * LEFT)
+        new_line.scale(2 * self.INTERVAL_RADIUS)
+        new_line.shift(self.INTERVAL_RADIUS * LEFT)
         # new_line.stretch_to_fit_height(height)
 
         self.add(number_line)
@@ -608,13 +608,13 @@ class ZoomInOnInterval(Scene):
 
     def zero_to_one_interval(self):
         interval = NumberLine(
-            radius=INTERVAL_RADIUS,
-            interval_size=2.0 * INTERVAL_RADIUS / NUM_INTERVAL_TICKS
+            radius=self.INTERVAL_RADIUS,
+            interval_size=2.0 * self.INTERVAL_RADIUS / self.NUM_INTERVAL_TICKS
         )
         # interval.elongate_tick_at(-INTERVAL_RADIUS, 4)
         # interval.elongate_tick_at(INTERVAL_RADIUS, 4)
-        zero = TexMobject("0").shift(INTERVAL_RADIUS * LEFT + DOWN)
-        one = TexMobject("1").shift(INTERVAL_RADIUS * RIGHT + DOWN)
+        zero = TexMobject("0").shift(self.INTERVAL_RADIUS * LEFT + DOWN)
+        one = TexMobject("1").shift(self.INTERVAL_RADIUS * RIGHT + DOWN)
         mob = Mobject()
         mob.add(interval)
         mob.add(zero)
