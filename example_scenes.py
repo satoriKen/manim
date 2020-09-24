@@ -571,7 +571,6 @@ class RefresherOnPolarCoordinates(MovingCameraScene):
         return coord_label
 
 
-
 class ZoomInOnInterval(Scene):
 
     INTERVAL_RADIUS = 5
@@ -620,3 +619,10 @@ class ZoomInOnInterval(Scene):
         mob.add(zero)
         mob.add(one)
         return mob
+
+
+class ChineseScene(Scene):
+
+    def construct(self):
+        text = TextMobject(r"中文显示")
+        self.add(text)
