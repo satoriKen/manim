@@ -18,7 +18,7 @@ from manimlib.imports import *
 
 class OpeningManimExample(Scene):
     def construct(self):
-        title = TextMobject("This is some \\LaTeX")
+        title = TextMobject("This is some \\LaTeX 中文")
         basel = TexMobject(
             "\\sum_{n=1}^\\infty "
             "\\frac{1}{n^2} = \\frac{\\pi^2}{6}"
@@ -30,7 +30,7 @@ class OpeningManimExample(Scene):
         )
         self.wait()
 
-        transform_title = TextMobject("That was a transform")
+        transform_title = TextMobject("That was a transform 变化")
         transform_title.to_corner(UP + LEFT)
         self.play(
             Transform(title, transform_title),
@@ -39,7 +39,7 @@ class OpeningManimExample(Scene):
         self.wait()
 
         grid = NumberPlane()
-        grid_title = TextMobject("This is a grid")
+        grid_title = TextMobject("This is a grid 网格")
         grid_title.scale(1.5)
         grid_title.move_to(transform_title)
 
@@ -99,7 +99,7 @@ class WarpSquare(Scene):
 class WriteStuff(Scene):
     def construct(self):
         example_text = TextMobject(
-            "This is a some text",
+            "This is a formula 这是一个公式",
             tex_to_color_map={r"text": YELLOW}
         )
         example_tex = TexMobject(

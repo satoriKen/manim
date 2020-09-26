@@ -24,20 +24,37 @@ class TransformationText1V2(Scene):
 
 class TransformationText2(Scene):
 	def construct(self):
-		text1 = TextMobject("Function")
-		text2 = TextMobject("Derivative")
-		text3 = TextMobject("Integral")
-		text4 = TextMobject("Transformation")
+		text1 = TextMobject("收敛")
+		text2 = TextMobject("发散")
+		text3 = TextMobject("跳跃")
+		text4 = TextMobject("极限")
 		self.play(Write(text1))
 		self.wait()
 		#Trans text1 -> text2
 		self.play(ReplacementTransform(text1,text2))
+		self.play(
+			text2.shift, RIGHT*2,
+			text2.scale, 2,
+			text2.set_color, RED,
+			run_time=2,
+		)
 		self.wait()
 		#Trans text2 -> text3
 		self.play(ReplacementTransform(text2,text3))
+		self.play(
+			text3.shift, LEFT*2,
+			text3.scale, 2,
+			text3.set_color, YELLOW,
+			run_time=2,
+		)
 		self.wait()
 		#Trans text3 -> text4
 		self.play(ReplacementTransform(text3,text4))
+		self.play(
+			text4.scale, 3,
+			text4.set_color, GREEN,
+			run_time=2,
+		)
 		self.wait()
 
 class CopyTextV1(Scene):
