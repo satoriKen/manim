@@ -84,22 +84,22 @@ class VideoMobject(Mobject):
 
           
 # A video named zhang.mp4 is placed in assets/videos folder
-class VideoTest(Scene):
-    def construct(self):
-        video = VideoMobject("zhang", scene=self)
-        video.start()
-
-        self.add(video)
-        self.wait(video.duration/2)
-        video.stop()
-        
-        text = Text("现在停顿1秒",
-            font='Microsoft YaHei')
-        text.scale(0.8)
-        text.move_to(UP*2)
-
-        self.play(Write(text))
-        self.wait()
-        
-        video.start()
-        self.wait(video.duration/2)
+#class VideoTest(Scene):
+#    def construct(self):
+#        video = VideoMobject("zhang", scene=self)
+#        video.start()
+#
+#        self.add(video)
+#        self.wait(video.duration/2)
+#        video.stop()
+#        
+#        text = Text("现在停顿1秒",
+#            font='Microsoft YaHei')
+#        text.scale(0.8)
+#        text.move_to(UP*2)
+#
+#        self.play(Write(text))
+#        self.wait()
+#        
+#        video.start()
+#        self.wait(video.duration/2)

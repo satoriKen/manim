@@ -6,6 +6,7 @@ playground.py
 cairo_test.py
 mayavi_test.py
 random_scenes/
+assets/
 files/
 ben_playground.py
 ben_cairo_test.py
