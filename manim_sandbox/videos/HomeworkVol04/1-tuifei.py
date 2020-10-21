@@ -10,8 +10,9 @@ class ShiftAndMoveto(Scene):
 
     def mob_moveto(self, mob, pos, run_time=1, start_stroke=10, fade_width=0.05, fade_opacity=0.01):
         vec = pos-mob.get_center()
-        dist = get_distance(pos, mob.get_center())
-        n = int(dist/0.1)
+        # dist = get_distance(pos, mob.get_center())
+        # n = int(dist/0.1)
+        n = 2
         for i in range(n):
             path = Line(mob.get_center(),mob.get_center()+vec/n, stroke_width=start_stroke, stroke_opacity=1 ,stroke_color='#FFA500')\
                 .add_updater(lambda p,dt:p.set_stroke(width=p.get_stroke_width()-fade_width, opacity=p.get_stroke_opacity()-fade_opacity))
@@ -161,7 +162,7 @@ class ShiftAndMoveto(Scene):
                 )
         
         
-        svgmob = SVGMobject(r"C:\Users\Administrator\Desktop\HomeworkVol04\投币.svg",color=BLACK)\
+        svgmob = SVGMobject(r"coin.svg",color=BLACK)\
             .scale(2.5).set_fill(opacity=0)
         #self.add(svgmob)
         
