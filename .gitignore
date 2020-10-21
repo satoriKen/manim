@@ -30,3 +30,5 @@ manim.egg-info/
 *.tex
 primes.py
 /media_dir.txt
+*__pycache__*
+*.pyc
