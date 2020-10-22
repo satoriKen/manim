@@ -96,3 +96,6 @@ class TracedPath(VMobject):
             dist = get_norm(new_point - self.points[-nppcc])
             if dist >= self.min_distance_to_new_point:
                 self.add_line_to(new_point)
+
+    def stop_trace(self):
+        pass

@@ -10,6 +10,13 @@ from manimlib.utils.iterables import adjacent_pairs
 from manimlib.utils.simple_functions import fdiv
 
 
+def get_distance(pos, center):
+    distance = 0
+    if len(pos) == len(center):
+        distance = sum([abs(pos[i]-center[i]) for i in range(len(pos))])
+    return distance
+
+
 def get_norm(vect):
     return sum([x**2 for x in vect])**0.5
 

@@ -161,7 +161,7 @@ class ShiftAndMoveto(Scene):
                 )
         
         
-        svgmob = SVGMobject(r"C:\Users\Administrator\Desktop\HomeworkVol04\投币.svg",color=BLACK)\
+        svgmob = SVGMobject(r"coin.svg",color=BLACK)\
             .scale(2.5).set_fill(opacity=0)
         #self.add(svgmob)
         
