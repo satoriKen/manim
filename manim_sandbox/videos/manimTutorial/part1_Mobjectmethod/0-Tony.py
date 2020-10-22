@@ -158,7 +158,8 @@ class Scene_0(ThreeDScene):
         self.play(Transform(captions_mob[0], captions_mob[5]), FadeOut(VGroup(arrow1, arrow2, frame_height, frame_width)))
         self.play(ShowCreation(plane))
         self.play(ShowCreation(axes))
-        self.play(Write(plane.get_coordinate_labels(y_vals=[1, 2, 3, -1, -2], number_config={"color": BLACK})))
+        self.play(Write(plane.get_coordinate_labels(y_vals=[1, 2, 3, -1, -2]), number_config={"color": BLACK}))
+        # self.play(Write(plane.get_coordinate_labels(y_vals=[1, 2, 3, -1, -2])))
         origin = VGroup(
             Dot(color=ORANGE),
             CodeLine("ORIGIN=np.array([0, 0, 0])", size=0.4).add_background_rectangle(color=WHITE, buff=0.1)
