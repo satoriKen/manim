@@ -190,7 +190,7 @@ class Transform_by_Inversion(MovingCameraScene):
         inv_circles = get_inversed_circles(circles, DOWN * d, d)
 
         self.camera.set_frame_center(UP * 1.)
-        text = Text('反演圆', font='思源黑体 Bold', color=PINK)
+        text = Text('反演圆', font='Source Han Serif SC', color=PINK)
         center = Dot(circle.get_center(), color=PINK)
         self.play(Write(text), run_time=1.5)
         self.wait(0.5)
