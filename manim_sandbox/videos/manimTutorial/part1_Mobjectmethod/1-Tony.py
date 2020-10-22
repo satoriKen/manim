@@ -88,8 +88,9 @@ class Scene_1(Scene):
     def construct(self):
 
         # 坐标系
-        plane = NumberPlane(axis_config={"stroke_color": BLACK}, plot_depth=-5)\
+        plane = NumberPlane(axis_config={"stroke_color": BLACK}, plot_depth=-5) \
             .add_coordinates(y_vals=[1, 2, 3, -1, -2], number_config={"color": BLACK})
+            # .add_coordinates(y_vals=[1, 2, 3, -1, -2])
 
         # 字幕
         captions = [
@@ -135,8 +136,8 @@ class Scene_1(Scene):
         arrow3 = Arrow(LEFT*2+UP*2, ORIGIN, color=ORANGE, buff=0, plot_depth=-1)
 
         # 物体
-        mob1 = ImageMobject("bili_0.png").set_width(1).shift(UP*0.2)
-        mob2 = ImageMobject("bili_1.png").set_width(1).shift(UP*0.2)
+        mob1 = ImageMobject("logo.png").set_width(1).shift(UP*0.2)
+        mob2 = ImageMobject("head.png").set_width(1).shift(UP*0.2)
 
         # self.add(plane, tex_bg, method, line, codes_mob, arrow1, arrow2, arrow3_0, arrow3_1, arrow3, mob1, mob2)
 

@@ -6,7 +6,6 @@ VIDEO_DIR = ""
 VIDEO_OUTPUT_DIR = ""
 TEX_DIR = ""
 TEXT_DIR = ""
-FILE_DIR = "./manimlib/files"
 
 
 def initialize_directories(config):
@@ -15,7 +14,6 @@ def initialize_directories(config):
     global VIDEO_OUTPUT_DIR
     global TEX_DIR
     global TEXT_DIR
-    global FILE_DIR
 
     video_path_specified = config["video_dir"] or config["video_output_dir"]
 
@@ -28,7 +26,7 @@ def initialize_directories(config):
                 "Dropbox (3Blue1Brown)/3Blue1Brown Team Folder"
             )
         if not os.path.isdir(MEDIA_DIR):
-            MEDIA_DIR = "./media"
+            MEDIA_DIR = os.path.join(os.getcwd(), "media")
         print(
             f"Media will be written to {MEDIA_DIR + os.sep}. You can change "
             "this behavior with the --media_dir flag."
@@ -121,6 +119,12 @@ PRODUCTION_QUALITY_CAMERA_CONFIG = {
     "pixel_height": 1440,
     "pixel_width": 2560,
     "frame_rate": 60,
+}
+
+ULTRA_HD_CAMERA_CONFIG = {
+    "pixel_height": 2160,
+    "pixel_width": 3840,
+    "frame_rate": 120,
 }
 
 HIGH_QUALITY_CAMERA_CONFIG = {
