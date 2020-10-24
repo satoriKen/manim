@@ -98,4 +98,5 @@ class TracedPath(VMobject):
                 self.add_line_to(new_point)
 
     def stop_trace(self):
-        self.clear_points()
+        if self.has_points():
+            self.clear_points()

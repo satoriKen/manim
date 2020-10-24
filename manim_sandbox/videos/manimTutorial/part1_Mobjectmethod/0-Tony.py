@@ -303,5 +303,3 @@ class Scene_0(ThreeDScene):
         self.play(FadeOut(tar), FadeOut(right), FadeOut(up), FadeOut(captions_mob[0]))
         self.wait(3)
 
-
-

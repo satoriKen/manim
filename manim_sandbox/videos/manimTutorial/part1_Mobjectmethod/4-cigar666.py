@@ -3,8 +3,8 @@
 from manimlib.imports import *
 from manim_sandbox.videos.HomeworkVol04.test_present_style import *
 
-class Explain_Flip_2d(Scene):
 
+class Explain_Flip_2d(ThreeDScene):
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -12,7 +12,6 @@ class Explain_Flip_2d(Scene):
     }
 
     def construct(self):
-
         self.set_camera_orientation(distance=1000)
 
         captions = [
@@ -26,12 +25,12 @@ class Explain_Flip_2d(Scene):
             "比如我们使axis=RIGHT且about_point=ORIGIN",
             "则对称轴为水平过原点的直线，此时mob沿对称轴被上下翻转",
             "我们也可以同时修改这两个参数来得到沿任意轴的翻折效果，如图所示",
-            ]
+        ]
 
         t2c_02 = {'axis': PINK, 'about_point': PINK}
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 Bold', size=0.32).to_edge(DOWN * 1.2)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2)
                 for cap in captions
             ]
         )
@@ -144,8 +143,8 @@ class Explain_Flip_2d(Scene):
 
         self.wait(4)
 
-class Explain_Flip_3d(ThreeDScene):
 
+class Explain_Flip_3d(ThreeDScene):
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -154,7 +153,6 @@ class Explain_Flip_3d(ThreeDScene):
     }
 
     def construct(self):
-
         # captions = [
         #     "往场景中添加一个奇怪的物体（用mob表示）",
         #     "mob.flip()的默认效果如图，",
@@ -172,7 +170,7 @@ class Explain_Flip_3d(ThreeDScene):
             "flip变换实际上是用在三维空间中的旋转变换实现的",
             "这样在降维打击后的二维场景中就反映出对称翻折的效果",
             "让我们在三维场景下细品一下刚才的操作",
-            ]
+        ]
 
         captions_mob = VGroup(
             *[
@@ -218,7 +216,7 @@ class Explain_Flip_3d(ThreeDScene):
         self.wait(0.1)
         self.play(WiggleOutThenIn(emote), run_time=1)
         self.wait(0.5)
-        self.move_camera(phi=54*DEGREES, theta=-140*DEGREES)
+        self.move_camera(phi=54 * DEGREES, theta=-140 * DEGREES)
 
         # 默认效果
         direction = UP
@@ -281,11 +279,11 @@ class Explain_Flip_3d(ThreeDScene):
         self.wait(0.2)
         self.play(FadeOut(axis_line), FadeOut(dot), un_time=1.)
         self.wait(2.)
-        self.move_camera(phi=0*DEGREES, theta=-90*DEGREES)
+        self.move_camera(phi=0 * DEGREES, theta=-90 * DEGREES)
         self.wait(2.)
 
-class Explain_Flip(ThreeDScene):
 
+class Explain_Flip(ThreeDScene):
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -294,7 +292,6 @@ class Explain_Flip(ThreeDScene):
     }
 
     def construct(self):
-
         captions = [
             "往场景中添加一个奇怪的物体（用mob表示）",
             "mob.flip()的默认效果如图，",
@@ -306,14 +303,15 @@ class Explain_Flip(ThreeDScene):
             "比如我们使axis=RIGHT且about_point=ORIGIN，",
             "则对称轴为水平过原点的直线，此时mob沿对称轴被上下翻转",
             "我们也可以同时修改这两个参数来得到沿任意对称轴的翻折效果，如图所示",
-            ]
+        ]
         t2c_02 = {'axis': PINK, 'about_point': PINK, '对称轴': ORANGE, "翻转": BLUE_D}
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 Bold', size=0.32).to_edge(DOWN * 1.2).set_color_by_t2c(t2c_02)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) #.set_color_by_t2c(t2c_02)
                 for cap in captions
             ]
         )
+
         axes = ThreeDAxes(
             color=BLACK,
             x_min=-FRAME_X_RADIUS, x_max=FRAME_X_RADIUS,
@@ -428,11 +426,11 @@ class Explain_Flip(ThreeDScene):
             "flip变换实际上是用在三维空间中的旋转变换实现的",
             "这样在降维打击后的二维场景中就反映出对称翻折的效果",
             "让我们在三维场景下细品一下刚才的操作",
-            ]
+        ]
         t2c_02 = {'三维': RED, '二维': PINK}
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 Bold', size=0.32).to_edge(DOWN * 1.2).set_color_by_t2c(t2c_02)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) #.set_color_by_t2c(t2c_02)
                 for cap in captions
             ]
         )
@@ -465,7 +463,7 @@ class Explain_Flip(ThreeDScene):
         self.wait(0.5)
         self.play(ReplacementTransform(captions_mob[1], captions_mob[2]), run_time=1.)
         self.wait(0.5)
-        self.move_camera(phi=54*DEGREES, theta=-140*DEGREES)
+        self.move_camera(phi=54 * DEGREES, theta=-140 * DEGREES)
 
         # 默认效果
         direction = UP
@@ -528,13 +526,14 @@ class Explain_Flip(ThreeDScene):
         self.wait(0.2)
         self.play(FadeOut(axis_line), FadeOut(dot), un_time=0.8)
         self.wait(2.)
-        self.move_camera(phi=0*DEGREES, theta=-90*DEGREES)
+        self.move_camera(phi=0 * DEGREES, theta=-90 * DEGREES)
         self.wait(2.5)
 
-from my_manim_projects.my_utils.anim_effects import *
+
+from manim_projects.cigar666_utils.anim_effects import *
+
 
 class Opening_Scene(Scene):
-
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -542,7 +541,6 @@ class Opening_Scene(Scene):
     }
 
     def construct(self):
-
         t2c = {"manim-kindergarten": average_color(PINK, RED), "manim": average_color(PINK, RED),
                "物体变换方法": BLUE_D}
         text_color = DARK_GRAY
@@ -555,15 +553,18 @@ class Opening_Scene(Scene):
         text_4 = Text("常见的物体变换方法", font=font, color=text_color, size=1, t2c=t2c).to_edge(UP * 3., buff=1)
         text_34, text_12 = VGroup(text_3, text_4), VGroup(text_1, text_2)
 
-        picture = ImageMobject(r'E:\GitHub\manim\my_manim_projects\my_projects\resource\images\ciyun_01.png', plot_depth=-1)
+        picture = ImageMobject(r'logo.png', plot_depth=-1)
         picture.scale(2).to_corner(DL * 0.5, buff=1)
 
         methods = [['shift', 'move_to', 'scale', 'rotate'],
                    ['flip', 'stretch', 'to_corner', 'to_edge'],
                    ['align_to, ', 'next_to, ', 'set_width, ', 'set_height']]
-        m_group_1 = VGroup(*[Text(tex + ', ', size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[0]]).arrange(RIGHT)
-        m_group_2 = VGroup(*[Text(tex + ', ', size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[1]]).arrange(RIGHT)
-        m_group_3 = VGroup(*[Text(tex, size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
+        m_group_1 = VGroup(*[Text(tex + ', ', size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in
+                             methods[0]]).arrange(RIGHT)
+        m_group_2 = VGroup(*[Text(tex + ', ', size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in
+                             methods[1]]).arrange(RIGHT)
+        m_group_3 = VGroup(
+            *[Text(tex, size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
         m_group = VGroup(m_group_1, m_group_2, m_group_3).arrange(DOWN, aligned_edge=LEFT, buff=0.42)
         methodes_group = VGroup(*m_group_1, *m_group_2, *m_group_3).next_to(picture, RIGHT * 0.6)
 
@@ -583,8 +584,8 @@ class Opening_Scene(Scene):
                   FadeOutRandom(text_4), FadeOut(picture), run_time=1.8)
         self.wait(1)
 
-class 空降标记(Scene):
 
+class 空降标记(Scene):
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -594,42 +595,39 @@ class 空降标记(Scene):
     def construct(self):
 
         methods_dict = {
-            '序言': '0025', 
-            'shift+move_to': '0210', 
+            '序言': '0025',
+            'shift+move_to': '0210',
             'scale': '0402',
-            'rotate': '0504', 
-            'flip': '0712', 
+            'rotate': '0504',
+            'flip': '0712',
             'stretch': '0901',
-            'to_corner': '1014', 
+            'to_corner': '1014',
             'align_to': '1129',
-            'next_to': '1227', 
+            'next_to': '1227',
             'set_width+set_height': '1500',
             ' ': '1659'
         }
         total_time = '1724'
         func_time = lambda t: int(t[0:2]) * 60 + int(t[2:])
-        func_loc = lambda t: func_time(t)/func_time(total_time) * FRAME_WIDTH * RIGHT + FRAME_WIDTH * LEFT / 2
+        func_loc = lambda t: func_time(t) / func_time(total_time) * FRAME_WIDTH * RIGHT + FRAME_WIDTH * LEFT / 2
         p_list = [FRAME_WIDTH * LEFT / 2]
         for v in methods_dict.values():
             p_list.append(func_loc(v))
         p_list.append(func_loc(total_time))
 
-        colors = color_gradient([BLUE, PINK, RED, ORANGE, GREEN], len(methods_dict)+1)
+        colors = color_gradient([BLUE, PINK, RED, ORANGE, GREEN], len(methods_dict) + 1)
 
-
-
-        lines = VGroup(*[Line(p_list[i], p_list[i+1]-0.02*RIGHT, color=colors[i], stroke_width=20) for i in range(len(methods_dict)+1)])
+        lines = VGroup(*[Line(p_list[i], p_list[i + 1] - 0.02 * RIGHT, color=colors[i], stroke_width=20) for i in
+                         range(len(methods_dict) + 1)])
         lines.to_edge(DOWN * 0.22, buff=1)
         texts = VGroup(*[Text(t, color=WHITE, font='Consolas', size=0.14) for t in methods_dict.keys()], plot_depth=1)
-        texts[0].become(Text('序言', color=WHITE, font='思源黑体 CN Bold', size=0.15))
-        text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.22).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT, buff=0.125)
-        text[1].shift(RIGHT*0.03)
-        text[0].shift(LEFT*0.01)
+        texts[0].become(Text('序言', color=WHITE, font='Source Han Sans CN Bold', size=0.15))
+        text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.22).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT,
+                                                                                                        buff=0.125)
+        text[1].shift(RIGHT * 0.03)
+        text[0].shift(LEFT * 0.01)
         for i in range(len(methods_dict)):
-            texts[i].move_to(lines[i+1])
+            texts[i].move_to(lines[i + 1])
 
         self.add(lines, texts, text)
         self.wait(5)
-
-
-
