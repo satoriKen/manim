@@ -1,7 +1,6 @@
 # from @cigar666
 
-from manimlib.imports import *
-from manim_sandbox.videos.HomeworkVol04.test_present_style import *
+from .test_present_style import *
 
 
 class Explain_Flip_2d(ThreeDScene):
@@ -308,7 +307,8 @@ class Explain_Flip(ThreeDScene):
         # the following demo: set_color_by_t2c breaks the code
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) #.set_color_by_t2c(t2c_02)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2)
+                # .set_color_by_t2c(t2c_02)
                 for cap in captions
             ]
         )
@@ -431,7 +431,8 @@ class Explain_Flip(ThreeDScene):
         t2c_02 = {'三维': RED, '二维': PINK}
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) #.set_color_by_t2c(t2c_02)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2)
+                # .set_color_by_t2c(t2c_02)
                 for cap in captions
             ]
         )

@@ -1,5 +1,4 @@
-from manimlib.imports import *
-from manim_sandbox.videos.HomeworkVol04.test_present_style import *
+from .test_present_style import *
 
 
 class stretch_demo(Scene):
@@ -58,7 +57,8 @@ class stretch_demo(Scene):
         ]
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='Source Han Sans CN Bold', size=0.5, plot_depth=5, color=DARKER_GRAY).to_edge(DOWN * 1.2)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.5, plot_depth=5, color=DARKER_GRAY).to_edge(
+                    DOWN * 1.2)
                 for cap in captions
             ]
         )

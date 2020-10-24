@@ -1,10 +1,10 @@
-from manimlib.imports import *
 from manim_sandbox.utils.imports import *
-        
+
 
 class VideoCover(Scene):
     def construct(self):
-        background = Rectangle(width=18, height=3.5, fill_opacity=0.7, fill_color=BLACK, stroke_width=0).shift(DOWN*0.5)
+        background = Rectangle(width=18, height=3.5, fill_opacity=0.7, fill_color=BLACK, stroke_width=0).shift(
+            DOWN * 0.5)
         title = VGroup(
             Text("manim教程", font="庞门正道标题体", color=BLUE).scale(1),
             Text("物体的位置与变换", font="庞门正道标题体", color=ORANGE).scale(1.3)
@@ -13,8 +13,8 @@ class VideoCover(Scene):
             Text("manim教程", font="庞门正道标题体", color=BLUE_B).scale(1).set_stroke(width=12, opacity=0.4),
             Text("物体的位置与变换", font="庞门正道标题体", color=ORANGE).scale(1.3).set_stroke(width=12, opacity=0.4)
         ).arrange(DOWN, aligned_edge=RIGHT, buff=0.4)
-        title.to_edge(RIGHT, buff=1.6).shift(DOWN*0.5)
-        title_bg.to_edge(RIGHT, buff=1.6).shift(DOWN*0.5)
+        title.to_edge(RIGHT, buff=1.6).shift(DOWN * 0.5)
+        title_bg.to_edge(RIGHT, buff=1.6).shift(DOWN * 0.5)
         self.add(background, title_bg, title)
 
 
@@ -25,10 +25,13 @@ class Logo_(Scene):
             "background_color": WHITE,
         },
     }
+
     def construct(self):
-        logo = Logo(size=8/3, black_bg=False)
-        squares = VGroup(*[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR),])
-        squares.set_fill(BLUE_C, 1).set_stroke(width=0.5, color=BLUE_C).rotate(np.arctan(0.5)).set_height(logo.inner_triangles.get_height())
+        logo = Logo(size=8 / 3, black_bg=False)
+        squares = VGroup(
+            *[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR), ])
+        squares.set_fill(BLUE_C, 1).set_stroke(width=0.5, color=BLUE_C).rotate(np.arctan(0.5)).set_height(
+            logo.inner_triangles.get_height())
         squares[0].set_fill('#C59978', 1).set_stroke(width=0.5, color='#C59978')
         for s in squares:
             s.scale(0.8)
@@ -36,7 +39,7 @@ class Logo_(Scene):
         text = VGroup(
             Text("Manim", font=self.font, color=BLACK),
             Text("Kindergarten", font=self.font, color=BLACK)
-        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN*0.2)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN * 0.2)
         text[1][0].set_color(logo.color_2[2])
         text[0][0].set_color(logo.color_1[2])
         all_logo = VGroup(logo, text).center()
@@ -46,7 +49,7 @@ class Logo_(Scene):
         text.add(line)
 
         bg = Rectangle(height=10, width=10, fill_color=WHITE, fill_opacity=1, stroke_width=0)
-        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT*0.2))
+        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT * 0.2))
 
         text.save_state()
         logo.save_state()
@@ -73,6 +76,7 @@ class Staff(Scene):
             "background_color": WHITE,
         },
     }
+
     def construct(self):
         title = Text("制作人员", font="庞门正道标题体", color=RED_D, size=0.75).to_edge(UP)
         line = Line(LEFT_SIDE, RIGHT_SIDE, color=RED_D).next_to(title, DOWN)
@@ -99,8 +103,8 @@ class Staff(Scene):
         for i in range(4):
             staff_mob[i].arrange(DOWN, aligned_edge=LEFT, buff=0.5)
         staff_mob.arrange(RIGHT)
-        VGroup(staff_mob[:2]).shift(LEFT*0.5)
-        VGroup(staff_mob[2:]).shift(RIGHT*0.5)
+        VGroup(staff_mob[:2]).shift(LEFT * 0.5)
+        VGroup(staff_mob[2:]).shift(RIGHT * 0.5)
 
         self.wait()
         self.play(Write(title))
@@ -118,5 +122,3 @@ class Staff(Scene):
         self.wait(5)
         self.play(FadeOutAndShift(VGroup(*self.mobjects)))
         self.wait()
-
-
