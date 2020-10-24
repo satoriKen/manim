@@ -305,6 +305,7 @@ class Explain_Flip(ThreeDScene):
             "我们也可以同时修改这两个参数来得到沿任意对称轴的翻折效果，如图所示",
         ]
         t2c_02 = {'axis': PINK, 'about_point': PINK, '对称轴': ORANGE, "翻转": BLUE_D}
+        # the following demo: set_color_by_t2c breaks the code
         captions_mob = VGroup(
             *[
                 CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) #.set_color_by_t2c(t2c_02)
