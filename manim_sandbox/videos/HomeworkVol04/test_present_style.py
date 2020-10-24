@@ -98,18 +98,6 @@ class Emote(SVGMobject):
             for i in self.list:
                 self[i].set_opacity(0)
 
-    # def update_emote_02(self, mob):
-    #     h, w, c = self.get_height(), self.get_width(), self.get_center()
-    #
-    #     add_shake = not((h == self.attribute_list[0]) and (w == self.attribute_list[1])
-    #                     and (c[0] == self.attribute_list[2][0]) and (c[1] == self.attribute_list[2][1]))
-    #     self.attribute_list = [self.get_height(), self.get_width(), self.get_center()]
-    #
-    #     if add_shake:
-    #         self.set_opacity(1)
-    #     else:
-    #         self.set_opacity(0)
-
     def shake_on(self):
         self.set_opacity(1)
         return self
@@ -165,7 +153,7 @@ class Emote_new(VGroup):
         return self
 
 
-class 代码风格测试(Scene):
+class CodeStyleTest(Scene):
     CONFIG = {
         'camera_config': {
             'background_color': WHITE,
