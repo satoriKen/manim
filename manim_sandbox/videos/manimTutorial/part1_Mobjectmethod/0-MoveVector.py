@@ -95,7 +95,7 @@ class Scene_0(ThreeDScene):
         ]
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2)
                 for cap in captions
             ]
         )

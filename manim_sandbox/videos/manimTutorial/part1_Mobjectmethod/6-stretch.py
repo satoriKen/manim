@@ -104,7 +104,7 @@ class stretch_demo(Scene):
             .move_to(np.array([-3.5, 0, 0])) \
             .save_state() \
             .move_to(ORIGIN)
-        img2 = SVGMobject("coin.svg") \
+        img2 = SVGMobject("mur.svg") \
             .set_color(BLACK) \
             .move_to(ORIGIN)
         img_word = CodeLine("img", color=DARKER_GRAY) \

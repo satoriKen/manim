@@ -67,7 +67,7 @@ class CodeLine(Text):
 
 class Emote(SVGMobject):
     CONFIG = {
-        'file_name': r'E:\GitHub\manim\my_manim_projects\my_projects\resource\svg_files\emote_01.svg',
+        'file_name': r'deer.svg',
         'shake_color': average_color(YELLOW, ORANGE),
     }
 
@@ -76,7 +76,10 @@ class Emote(SVGMobject):
         SVGMobject.__init__(self, file_name=self.file_name, **kwargs)
         self.list = [0, 1, 2, 3, 5, 6, 9]
         for i in self.list:
-            self[i].set_fill(self.shake_color, 0)
+            try:
+                self[i].set_fill(self.shake_color, 0)
+            except:
+                continue
 
         self.attribute_list = [self.get_height(), self.get_width(), self.get_center()]
         # self.add_updater(self.update_emote)
@@ -119,7 +122,7 @@ class Emote(SVGMobject):
 
 class Emote_new(VGroup):
     CONFIG = {
-        'file_name': r'coin.svg',
+        'file_name': r'mur.svg',
         'shake_color': average_color(YELLOW, ORANGE),
         'height': 2.5,
     }

@@ -1,9 +1,7 @@
-from manimlib.imports import *
 from manim_sandbox.utils.imports import *
 
 
 class CodeLine(Text):
-    
     CONFIG = {
         't2c': {
             'x': average_color(BLUE, PINK),
@@ -76,7 +74,6 @@ class CodeLine(Text):
         Text.__init__(self, text, **kwargs)
 
 
-
 class Scene_1(Scene):
     CONFIG = {
         "camera_config": {
@@ -86,11 +83,10 @@ class Scene_1(Scene):
     }
 
     def construct(self):
-
         # 坐标系
         plane = NumberPlane(axis_config={"stroke_color": BLACK}, plot_depth=-5) \
             .add_coordinates(y_vals=[1, 2, 3, -1, -2], number_config={"color": BLACK})
-            # .add_coordinates(y_vals=[1, 2, 3, -1, -2])
+        # .add_coordinates(y_vals=[1, 2, 3, -1, -2])
 
         # 字幕
         captions = [
@@ -102,7 +98,7 @@ class Scene_1(Scene):
         ]
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2)\
+                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2) \
                     .add_background_rectangle(color=WHITE, buff=0.1, opacity=0.85)
                 for cap in captions
             ]
@@ -129,15 +125,15 @@ class Scene_1(Scene):
         codes_mob.next_to(line, DOWN, buff=0.5)
 
         # 移动向量箭头
-        arrow1 = Arrow(ORIGIN, LEFT*5, color=ORANGE, buff=0, plot_depth=-1)
-        arrow2 = Arrow(LEFT*5, LEFT*2+UP*2, color=ORANGE, buff=0, plot_depth=-1)
-        arrow3_0 = Arrow(LEFT*2+UP*2, LEFT*2, color=GREEN, buff=0, plot_depth=-1)
-        arrow3_1 = Arrow(LEFT*2, ORIGIN, color=GREEN, buff=0, plot_depth=-1)
-        arrow3 = Arrow(LEFT*2+UP*2, ORIGIN, color=ORANGE, buff=0, plot_depth=-1)
+        arrow1 = Arrow(ORIGIN, LEFT * 5, color=ORANGE, buff=0, plot_depth=-1)
+        arrow2 = Arrow(LEFT * 5, LEFT * 2 + UP * 2, color=ORANGE, buff=0, plot_depth=-1)
+        arrow3_0 = Arrow(LEFT * 2 + UP * 2, LEFT * 2, color=GREEN, buff=0, plot_depth=-1)
+        arrow3_1 = Arrow(LEFT * 2, ORIGIN, color=GREEN, buff=0, plot_depth=-1)
+        arrow3 = Arrow(LEFT * 2 + UP * 2, ORIGIN, color=ORANGE, buff=0, plot_depth=-1)
 
         # 物体
-        mob1 = ImageMobject("logo.png").set_width(1).shift(UP*0.2)
-        mob2 = ImageMobject("head.png").set_width(1).shift(UP*0.2)
+        mob1 = ImageMobject("logo.png").set_width(1).shift(UP * 0.2)
+        mob2 = ImageMobject("head.png").set_width(1).shift(UP * 0.2)
 
         # self.add(plane, tex_bg, method, line, codes_mob, arrow1, arrow2, arrow3_0, arrow3_1, arrow3, mob1, mob2)
 
@@ -161,9 +157,9 @@ class Scene_1(Scene):
         self.play(Write(arrow1))
         self.remove(mob1)
         self.add(mob2)
-        self.play(mob2.shift, LEFT*5)
+        self.play(mob2.shift, LEFT * 5)
         self.remove(mob2)
-        mob1.shift(LEFT*5)
+        mob1.shift(LEFT * 5)
         self.add(mob1)
         self.wait(2)
         self.play(FadeOut(arrow1))
@@ -175,9 +171,9 @@ class Scene_1(Scene):
         self.play(Write(arrow2))
         self.remove(mob1)
         self.add(mob2)
-        self.play(mob2.shift, UP*2+RIGHT*3)
+        self.play(mob2.shift, UP * 2 + RIGHT * 3)
         self.remove(mob2)
-        mob1.shift(UP*2+RIGHT*3)
+        mob1.shift(UP * 2 + RIGHT * 3)
         self.add(mob1)
         self.wait(2)
         self.play(FadeOut(arrow2))
@@ -192,9 +188,9 @@ class Scene_1(Scene):
         self.play(Write(arrow3), FadeOut(arrow3_0), FadeOut(arrow3_1))
         self.remove(mob1)
         self.add(mob2)
-        self.play(mob2.shift, DOWN*2+RIGHT*2)
+        self.play(mob2.shift, DOWN * 2 + RIGHT * 2)
         self.remove(mob2)
-        mob1.shift(DOWN*2, RIGHT*2)
+        mob1.shift(DOWN * 2, RIGHT * 2)
         self.add(mob1)
         self.wait(2)
         self.play(FadeOut(arrow3))
@@ -212,9 +208,8 @@ class Scene_2(Scene):
     }
 
     def construct(self):
-
         # 坐标系
-        plane = NumberPlane(axis_config={"stroke_color": BLACK}, plot_depth=-5)\
+        plane = NumberPlane(axis_config={"stroke_color": BLACK}, plot_depth=-5) \
             .add_coordinates(y_vals=[1, 2, 3, -1, -2], number_config={"color": BLACK})
 
         # 字幕
@@ -229,7 +224,7 @@ class Scene_2(Scene):
         ]
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2)\
+                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2) \
                     .add_background_rectangle(color=WHITE, buff=0.1, opacity=0.85)
                 for cap in captions
             ]
@@ -262,11 +257,11 @@ coor_mask=np.array([1, 1, 1]))""", size=0.3).next_to(tex_bg.get_top(), DOWN)
         codes_mob.next_to(line, DOWN, buff=0.5)
 
         # 移动向量箭头
-        dot1 = Dot(LEFT*5+UP*2, radius=0.12, color=ORANGE, plot_depth=-1)
-        dot2 = Dot(LEFT*3, radius=0.12, color=ORANGE, plot_depth=-1)
-        dot3 = Dot(UP*2, radius=0.12, color=ORANGE, plot_depth=-1)
-        arrow1 = Arrow(LEFT*3.75, UP*2, color=GREEN, plot_depth=-1, buff=0)
-        arrow2 = Arrow(LEFT*3.75, ORIGIN, color=GOLD, plot_depth=-1, buff=0)
+        dot1 = Dot(LEFT * 5 + UP * 2, radius=0.12, color=ORANGE, plot_depth=-1)
+        dot2 = Dot(LEFT * 3, radius=0.12, color=ORANGE, plot_depth=-1)
+        dot3 = Dot(UP * 2, radius=0.12, color=ORANGE, plot_depth=-1)
+        arrow1 = Arrow(LEFT * 3.75, UP * 2, color=GREEN, plot_depth=-1, buff=0)
+        arrow2 = Arrow(LEFT * 3.75, ORIGIN, color=GOLD, plot_depth=-1, buff=0)
 
         # 物体
         logo = Logo(size=1.5, black_bg=False)
@@ -291,7 +286,7 @@ coor_mask=np.array([1, 1, 1]))""", size=0.3).next_to(tex_bg.get_top(), DOWN)
         self.play(Write(codes_mob[1]))
 
         self.play(Write(dot1))
-        self.play(logo.move_to, LEFT*5+UP*2)
+        self.play(logo.move_to, LEFT * 5 + UP * 2)
         self.wait(2)
         self.play(FadeOut(dot1))
         self.wait(2)
@@ -302,10 +297,10 @@ coor_mask=np.array([1, 1, 1]))""", size=0.3).next_to(tex_bg.get_top(), DOWN)
         self.play(Write(codes_mob[2]))
 
         self.play(Write(dot2))
-        self.play(logo.move_to, LEFT*3, LEFT)
+        self.play(logo.move_to, LEFT * 3, LEFT)
         self.wait(2)
         self.play(Write(codes_mob[3]))
-        self.play(logo.move_to, LEFT*3, RIGHT)
+        self.play(logo.move_to, LEFT * 3, RIGHT)
         self.wait(2)
         self.play(FadeOut(dot2))
         self.wait(2)
@@ -325,6 +320,3 @@ coor_mask=np.array([1, 1, 1]))""", size=0.3).next_to(tex_bg.get_top(), DOWN)
         self.wait(2)
         self.play(FadeOut(Group(captions_mob[0], tex_bg, line, method, codes_mob, logo)))
         self.wait(2)
-
-
-
