@@ -1,8 +1,5 @@
-from manimlib.imports import *
-from manim_sandbox.utils.imports import *
 from manim_sandbox.videos.manimTutorial.utils import *
-from manim_projects.tony_useful.imports import *
-
+from manim_sandbox.videos.manimTutorial.utils import *
 
 numberline_t2c = {
     "NumberLine": BLUE_D,
@@ -68,13 +65,14 @@ pf_t2c = {
     "func2": DARK_GRAY,
 }
 
+
 class OpeningScene(Scene_):
     def construct(self):
         t2c = {"manim": average_color(PINK, RED),
                "坐标系": BLUE, "图像": GREEN}
         text_color = DARK_GRAY
 
-        font = "庞门正道标题体"
+        font = "Source Han Sans CN Bold"
         text_1 = Text("大家好!", font=font, color=text_color, size=2, t2c=t2c).to_edge(UP * 2, buff=1)
         text_2 = Text("欢迎来到manim视频教程", font=font,
                       color=text_color, size=2, t2c=t2c).to_edge(UP * 3.2, buff=1)
@@ -82,15 +80,18 @@ class OpeningScene(Scene_):
         text_4 = Text("坐标系与图像的相关知识", font=font, color=text_color, size=2, t2c=t2c).to_edge(UP * 3., buff=1)
         text_34, text_12 = VGroup(text_3, text_4), VGroup(text_1, text_2)
 
-
         methods = [["NumberLine", "ticks", "tips", "numbers", "n2p", "p2n"],
                    ["Axes", "labels", "coordinates", "c2p", "p2c"],
                    ["NumerPlane", "ComplexPlane", "nonlinear_transform"],
                    ["ParametricFunction", "FunctionGraph"]]
-        m_group_1 = VGroup(*[Text(tex + ', ', size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[0]]).arrange(RIGHT)
-        m_group_2 = VGroup(*[Text(tex + ', ', size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[1]]).arrange(RIGHT)
-        m_group_3 = VGroup(*[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
-        m_group_4 = VGroup(*[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[3]]).arrange(RIGHT)
+        m_group_1 = VGroup(*[Text(tex + ', ', size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in
+                             methods[0]]).arrange(RIGHT)
+        m_group_2 = VGroup(*[Text(tex + ', ', size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in
+                             methods[1]]).arrange(RIGHT)
+        m_group_3 = VGroup(
+            *[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
+        m_group_4 = VGroup(
+            *[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[3]]).arrange(RIGHT)
         m_group = VGroup(m_group_1, m_group_2, m_group_3, m_group_4).arrange(DOWN, aligned_edge=LEFT, buff=0.42)
         methodes_group = VGroup(*m_group_1, *m_group_2, *m_group_3, *m_group_4).next_to(text_34, DOWN, buff=0.5)
 
@@ -113,6 +114,7 @@ class NumberLineTutorial(Scene_):
     CONFIG = {
         # "fade_all": False,
     }
+
     def start(self):
         t2c = {"manim": GOLD,
                "NumberLine": GREEN}
@@ -124,6 +126,7 @@ class NumberLineTutorial(Scene_):
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(FadeOutAndShiftDown(title))
+
     def construct(self):
         self.start()
         CodeLine.CONFIG["t2c"].update(numberline_t2c)
@@ -164,16 +167,20 @@ class NumberLineTutorial(Scene_):
             "1",
         )
         codebg = CodeBackground(codes, buff=0.3)
-        VGroup(codes, codebg).to_edge(RIGHT, buff=0.6).shift(UP*0.3)
+        VGroup(codes, codebg).to_edge(RIGHT, buff=0.6).shift(UP * 0.3)
         axis = NumberLine(color=BLACK, plot_depth=-2)
-        axis2 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2).shift(LEFT*3)
-        axis3 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2, include_ticks=False).shift(LEFT*3)
-        axis4 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2, include_tip=True).shift(LEFT*3)
-        axis5 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2, include_tip=True, include_numbers=True).shift(LEFT*3)
-        axis6 = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, include_numbers=True).shift(LEFT*3)
-        axis7 = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, include_numbers=True, tick_frequency=0.5).shift(LEFT*3)
-        axis8 = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, include_numbers=True, tick_frequency=0.5, label_direction=UP).shift(LEFT*3)
-        
+        axis2 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2).shift(LEFT * 3)
+        axis3 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2, include_ticks=False).shift(LEFT * 3)
+        axis4 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2, include_tip=True).shift(LEFT * 3)
+        axis5 = NumberLine(color=BLACK, x_min=-2, x_max=2, plot_depth=-2, include_tip=True, include_numbers=True).shift(
+            LEFT * 3)
+        axis6 = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, include_numbers=True).shift(
+            LEFT * 3)
+        axis7 = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, include_numbers=True,
+                           tick_frequency=0.5).shift(LEFT * 3)
+        axis8 = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, include_numbers=True,
+                           tick_frequency=0.5, label_direction=UP).shift(LEFT * 3)
+
         self.wait()
         self.play(Write(self.caps[0]))
         self.wait()
@@ -235,7 +242,8 @@ class NumberLineTutorial(Scene_):
             codes[4][-5:], CodeLine("False,").move_to(codes[4][-5:], aligned_edge=LEFT)
         ))
         self.wait()
-        axis = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, tick_frequency=0.5, label_direction=UP).shift(LEFT*3)
+        axis = NumberLine(color=BLACK, x_min=-2, x_max=2, unit_size=1.5, include_tip=True, tick_frequency=0.5,
+                          label_direction=UP).shift(LEFT * 3)
         self.play(FadeOut(axis8), FadeIn(axis))
         self.wait(0.5)
 
@@ -264,6 +272,7 @@ class AxesTutorial(Scene_):
     CONFIG = {
         # "fade_all": False,
     }
+
     def start(self):
         t2c = {"manim": GOLD,
                "Axes": GREEN}
@@ -275,6 +284,7 @@ class AxesTutorial(Scene_):
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(FadeOutAndShiftDown(title))
+
     def construct(self):
         self.start()
         CodeLine.CONFIG["t2c"].update(numberline_t2c)
@@ -322,27 +332,27 @@ class AxesTutorial(Scene_):
             buff=0.12,
         )
         codebg = CodeBackground(codes, buff=0.25)
-        VGroup(codes, codebg).to_edge(RIGHT, buff=0.7).shift(UP*0.35)
+        VGroup(codes, codebg).to_edge(RIGHT, buff=0.7).shift(UP * 0.35)
 
         nlc = {"color": BLACK}
         axes = Axes(number_line_config=nlc, plot_depth=-5)
         axes1 = Axes(
             number_line_config=nlc,
             x_min=-2, x_max=2, y_min=-2, y_max=2,
-            center_point=LEFT*3,
+            center_point=LEFT * 3,
             plot_depth=-5,
         )
         nlc2 = {"color": BLACK, "unit_size": 1.5}
         axes2 = Axes(
             number_line_config=nlc2,
             x_min=-2, x_max=2, y_min=-2, y_max=2,
-            center_point=LEFT*3,
+            center_point=LEFT * 3,
             plot_depth=-5,
         )
         axes3 = Axes(
             number_line_config=nlc2,
             x_min=-2, x_max=2, y_min=-2, y_max=2,
-            center_point=LEFT*3,
+            center_point=LEFT * 3,
             x_axis_config={"tick_frequency": 0.5},
             plot_depth=-5,
         )
@@ -350,7 +360,7 @@ class AxesTutorial(Scene_):
         axes4 = Axes(
             number_line_config=nlc2,
             x_min=-2, x_max=2, y_min=-2, y_max=2,
-            center_point=LEFT*3,
+            center_point=LEFT * 3,
             x_axis_config={"tick_frequency": 0.5},
             plot_depth=-5,
         ).add_coordinates([-1, 2], [-2, 1], number_config={"color": BLACK})
@@ -383,7 +393,7 @@ class AxesTutorial(Scene_):
         self.wait()
         self.play(Transform(axes, axes2))
         self.wait(3)
-        
+
         self.next_caps()
         self.play(Write(VGroup(codes[7], codes[9])))
         self.wait(0.5)
@@ -398,7 +408,7 @@ class AxesTutorial(Scene_):
         # labels1 = axes.get_coordinate_labels([-1, 2], [-2, 1], number_config=nc)
         self.play(FadeOut(axes), FadeIn(axes4))
         self.wait(3)
-        
+
         self.next_caps()
         self.play(Write(codes[13]))
         self.wait()
@@ -406,7 +416,7 @@ class AxesTutorial(Scene_):
         axes = Axes(
             number_line_config=nlc2,
             x_min=-2, x_max=2, y_min=-2, y_max=2,
-            center_point=LEFT*3,
+            center_point=LEFT * 3,
             x_axis_config={"tick_frequency": 0.5},
             plot_depth=-5,
         ).add_coordinates(number_config=nc)
@@ -419,7 +429,7 @@ class AxesTutorial(Scene_):
         xy_labels = axes.get_axis_labels().set_color(BLACK)
         self.play(Write(xy_labels))
         self.wait(3)
-        
+
         self.next_caps()
         self.wait(2)
         self.next_caps()
@@ -440,6 +450,7 @@ class NumberPlaneTutorial(Scene_):
     CONFIG = {
         # "fade_all": False,
     }
+
     def start(self):
         t2c = {"manim": GOLD,
                "NumberPlane": GREEN}
@@ -451,6 +462,7 @@ class NumberPlaneTutorial(Scene_):
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(FadeOutAndShiftDown(title))
+
     def construct(self):
         self.start()
         CodeLine.CONFIG["t2c"].update(numberline_t2c)
@@ -468,7 +480,7 @@ class NumberPlaneTutorial(Scene_):
         ]
         self.caps = VGroup(
             *[
-                CodeLine(cap, font='Source Han Sans CN Bold', size=0.64).to_edge(DOWN * 1.2)\
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.64).to_edge(DOWN * 1.2) \
                     .add_background_rectangle(color=WHITE, buff=0.1, opacity=0.85)
                 for cap in captions
             ]
@@ -493,7 +505,7 @@ class NumberPlaneTutorial(Scene_):
             buff=0.13
         )
         codebg = CodeBackground(codes, buff=0.25)
-        VGroup(codes, codebg).to_edge(RIGHT, buff=0.7).shift(UP*0.3)
+        VGroup(codes, codebg).to_edge(RIGHT, buff=0.7).shift(UP * 0.3)
 
         grid = NumberPlane(axis_config={"stroke_color": BLACK}, plot_depth=-5)
 
@@ -519,23 +531,23 @@ class NumberPlaneTutorial(Scene_):
             FadeOut(labels),
             ShowCreation(lines[-1])
         )
-        
+
         self.next_caps()
         self.play(Write(VGroup(codes[4], codes[6])))
         self.wait(0.5)
         self.play(Write(codes[5]))
         self.wait(1.5)
         self.play(grid.apply_function,
-            lambda p: p + RIGHT*p[1],
-            run_time=2
-        )
+                  lambda p: p + RIGHT * p[1],
+                  run_time=2
+                  )
         self.wait(3)
         lines.add(Line(codes[4][4:].get_left(), codes[4][4:].get_right(), color=GRAY, stroke_width=2.5))
         lines.add(Line(codes[5][8:].get_left(), codes[5][8:].get_right(), color=GRAY, stroke_width=2.5))
         lines.add(Line(codes[6][4:].get_left(), codes[6][4:].get_right(), color=GRAY, stroke_width=2.5))
         self.play(
             grid.apply_function,
-            lambda p: p - RIGHT*p[1],
+            lambda p: p - RIGHT * p[1],
             ShowCreation(lines[1]),
             ShowCreation(lines[2]),
             ShowCreation(lines[3]),
@@ -559,8 +571,8 @@ class NumberPlaneTutorial(Scene_):
             run_time=3,
         )
         self.wait(3)
-        self.play(FadeOut(grid), FadeOut(codes), FadeOut(lines), codebg.shift, RIGHT*0.3)
-        
+        self.play(FadeOut(grid), FadeOut(codes), FadeOut(lines), codebg.shift, RIGHT * 0.3)
+
         codes = CodeLines(
             ">>> grid = ComplexPlane(",
             "~~~~~~~~axis_config={\"stroke_color\": BLACK}",
@@ -594,7 +606,7 @@ class NumberPlaneTutorial(Scene_):
         self.next_caps()
         self.play(Write(codes[4]))
         self.wait()
-        dot = Dot(grid.n2p(-3+2j), radius=0.1, color=BLUE_D)
+        dot = Dot(grid.n2p(-3 + 2j), radius=0.1, color=BLUE_D)
         self.play(Write(dot))
         self.wait(2)
         self.play(Write(codes[5]))
@@ -617,6 +629,7 @@ class ParametricFunctionTutorial(Scene_):
     CONFIG = {
         # "fade_all": False,
     }
+
     def start(self):
         t2c = {"manim": GOLD,
                "ParametricFunction": GREEN}
@@ -628,6 +641,7 @@ class ParametricFunctionTutorial(Scene_):
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(FadeOutAndShiftDown(title))
+
     def construct(self):
         self.start()
         CodeLine.CONFIG["t2c"].update(numberline_t2c)
@@ -663,7 +677,7 @@ class ParametricFunctionTutorial(Scene_):
             buff=0.16
         )
         codebg = CodeBackground(codes, buff=0.25)
-        VGroup(codes, codebg).to_edge(RIGHT, buff=0.5).shift(UP*0.3)
+        VGroup(codes, codebg).to_edge(RIGHT, buff=0.5).shift(UP * 0.3)
         # self.add(codebg, codes)
 
         self.wait()
@@ -683,13 +697,14 @@ class ParametricFunctionTutorial(Scene_):
         dot = Dot(color=BLACK, background_stroke_color=WHITE, background_stroke_width=2, radius=0.05)
         dot.add_updater(lambda m: m.move_to(
             np.array([
-                2*np.sin(3*t.get_value())*np.cos(t.get_value()),
-                2*np.sin(3*t.get_value())*np.sin(t.get_value()),
+                2 * np.sin(3 * t.get_value()) * np.cos(t.get_value()),
+                2 * np.sin(3 * t.get_value()) * np.sin(t.get_value()),
                 0
-            ])+LEFT*3
+            ]) + LEFT * 3
         ))
         path = TracedPath(dot.get_center, stroke_color=BLACK, stroke_width=4, plot_depth=-2)
-        progress = NumberLine(x_min=0, x_max=2, unit_size=3, tick_frequency=1, color=BLACK).move_to(LEFT*3+DOWN*2.6)
+        progress = NumberLine(x_min=0, x_max=2, unit_size=3, tick_frequency=1, color=BLACK).move_to(
+            LEFT * 3 + DOWN * 2.6)
         tick = Triangle(fill_opacity=1).scale(0.2).rotate(PI)
         tick.add_updater(lambda m: m.move_to(progress.n2p(t.get_value() / PI), aligned_edge=DOWN))
         label = VGroup(
@@ -702,48 +717,50 @@ class ParametricFunctionTutorial(Scene_):
         self.play(Write(dot))
         self.play(ShowCreation(progress), Write(tick), Write(label))
         self.wait()
-        self.play(t.set_value, 2*PI, run_time=10, rate_func=linear)
+        self.play(t.set_value, 2 * PI, run_time=10, rate_func=linear)
         self.wait(3)
         self.play(FadeOut(VGroup(dot, progress, tick, label)))
         self.next_caps()
         self.play(Write(codes[8:]))
         self.wait()
-        func2 = FunctionGraph(lambda x: x**2, color=GOLD, plot_depth=-5)
+        func2 = FunctionGraph(lambda x: x ** 2, color=GOLD, plot_depth=-5)
         self.play(ShowCreation(func2))
         self.wait(4)
-        
+
 
 class DownProgressBar(Scene_):
     CONFIG = {
         "fade_all": False,
     }
+
     def construct(self):
         methods_dict = {
-            'NumberLine': '0022', 
-            'Axes': '0216', 
+            'NumberLine': '0022',
+            'Axes': '0216',
             'NumberPlane': '0359',
-            'ParametricFunction': '0547', 
+            'ParametricFunction': '0547',
             'a': '0643'
         }
         total_time = '0655'
         func_time = lambda t: int(t[0:2]) * 60 + int(t[2:])
-        func_loc = lambda t: func_time(t)/func_time(total_time) * FRAME_WIDTH * RIGHT + FRAME_WIDTH * LEFT / 2
+        func_loc = lambda t: func_time(t) / func_time(total_time) * FRAME_WIDTH * RIGHT + FRAME_WIDTH * LEFT / 2
         p_list = [FRAME_WIDTH * LEFT / 2]
         for v in methods_dict.values():
             p_list.append(func_loc(v))
         p_list.append(func_loc(total_time))
 
-        colors = color_gradient([BLUE, PINK, RED, ORANGE, GREEN], len(methods_dict)+1)
+        colors = color_gradient([BLUE, PINK, RED, ORANGE, GREEN], len(methods_dict) + 1)
 
-        lines = VGroup(*[Line(p_list[i], p_list[i+1]-0.02*RIGHT, color=colors[i], stroke_width=20) for i in range(len(methods_dict)+1)])
+        lines = VGroup(*[Line(p_list[i], p_list[i + 1] - 0.02 * RIGHT, color=colors[i], stroke_width=20) for i in
+                         range(len(methods_dict) + 1)])
         lines.to_edge(DOWN * 0.22, buff=1)
         texts = VGroup(*[Text(t, color=WHITE, font='Consolas', size=0.33) for t in methods_dict.keys()], plot_depth=1)
         texts[-1].set_color(colors[-1])
         text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.44).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT, buff=0.53)
-        text[1].shift(RIGHT*0.03)
-        text[0].shift(LEFT*0.01)
+        text[1].shift(RIGHT * 0.03)
+        text[0].shift(LEFT * 0.01)
         for i in range(len(methods_dict)):
-            texts[i].move_to(lines[i+1])
+            texts[i].move_to(lines[i + 1])
 
         self.add(lines, texts, text)
 
@@ -759,15 +776,15 @@ class VideoCover(Scene):
             Text("第五讲", font="庞门正道标题体", color=BLUE, size=2).scale(1.1),
             Text("坐标系统与图像", font="庞门正道标题体", color=ORANGE, size=2).scale(1.5)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
-        text[2].shift(DOWN*0.4)
-        text.center().to_edge(LEFT, buff=0.8).shift(UP*0.5)
+        text[2].shift(DOWN * 0.4)
+        text.center().to_edge(LEFT, buff=0.8).shift(UP * 0.5)
         text2 = VGroup(
             Text("manim教程", font="庞门正道标题体", color=BLUE, size=2).scale(0.9).set_stroke(width=12, opacity=0.4),
             Text("第五讲", font="庞门正道标题体", color=BLUE, size=2).scale(1.1).set_stroke(width=12, opacity=0.4),
             Text("坐标系统与图像", font="庞门正道标题体", color=ORANGE, size=2).scale(1.5).set_stroke(width=13, opacity=0.4)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
-        text2[2].shift(DOWN*0.4)
-        text2.center().to_edge(LEFT, buff=0.8).shift(UP*0.5)
+        text2[2].shift(DOWN * 0.4)
+        text2.center().to_edge(LEFT, buff=0.8).shift(UP * 0.5)
         self.add(background, text2, text)
 
 
@@ -775,6 +792,7 @@ class PreView(Scene_):
     CONFIG = {
         "fade_all": False
     }
+
     def construct(self):
         grid = NumberPlane(plot_depth=-5)
         self.wait(0.5)
@@ -784,13 +802,13 @@ class PreView(Scene_):
         dot = Dot(color=BLACK, background_stroke_color=WHITE, background_stroke_width=2, radius=0.06)
         dot.add_updater(lambda m: m.move_to(
             np.array([
-                2*np.sin(3*t.get_value())*np.cos(t.get_value()),
-                2*np.sin(3*t.get_value())*np.sin(t.get_value()),
+                2 * np.sin(3 * t.get_value()) * np.cos(t.get_value()),
+                2 * np.sin(3 * t.get_value()) * np.sin(t.get_value()),
                 0
             ])
         ))
         path = TracedPath(dot.get_center, stroke_color=BLACK, stroke_width=6, plot_depth=-2)
-        progress = NumberLine(x_min=0, x_max=2, unit_size=3, tick_frequency=1, color=BLACK).move_to(DOWN*2.6)
+        progress = NumberLine(x_min=0, x_max=2, unit_size=3, tick_frequency=1, color=BLACK).move_to(DOWN * 2.6)
         tick = Triangle(fill_opacity=1).scale(0.2).rotate(PI)
         tick.add_updater(lambda m: m.move_to(progress.n2p(t.get_value() * 2 / PI), aligned_edge=DOWN))
         label = VGroup(
@@ -807,8 +825,8 @@ class PreView(Scene_):
         self.wait()
         self.play(FadeOut(VGroup(dot, progress, tick, label)))
 
-        func = FunctionGraph(lambda x: x**2-4, stroke_width=6, color=GOLD)
-        func2 = FunctionGraph(lambda x: 2*np.exp(1)**(-0.25*x**2), stroke_width=6, color=RED)
+        func = FunctionGraph(lambda x: x ** 2 - 4, stroke_width=6, color=GOLD)
+        func2 = FunctionGraph(lambda x: 2 * np.exp(1) ** (-0.25 * x ** 2), stroke_width=6, color=RED)
         self.play(ShowCreation(func), run_time=2)
         self.wait(0.5)
         self.play(ShowCreation(func2), run_time=2)
@@ -834,10 +852,11 @@ class NPBG(Scene_):
     CONFIG = {
         "fade_all": False,
     }
+
     def construct(self):
         grid = NumberPlane(axis_config={"stroke_color": BLACK})
-        func = FunctionGraph(lambda x: x**2-4, stroke_width=6, color=GOLD)
-        func2 = FunctionGraph(lambda x: 2*np.exp(1)**(-0.25*x**2), stroke_width=6, color=RED)
+        func = FunctionGraph(lambda x: x ** 2 - 4, stroke_width=6, color=GOLD)
+        func2 = FunctionGraph(lambda x: 2 * np.exp(1) ** (-0.25 * x ** 2), stroke_width=6, color=RED)
         self.add(grid, func2)
 
 
@@ -847,6 +866,7 @@ class NPBG2(Scene):
             "background_color": "#EBEBEB"
         }
     }
+
     def construct(self):
         grid = NumberPlane(axis_config={"stroke_color": BLACK})
         grid.prepare_for_nonlinear_transform()
@@ -866,6 +886,7 @@ class NPBG3(Scene):
             "background_color": "#EBEBEB"
         }
     }
+
     def construct(self):
         grid = NumberPlane(axis_config={"stroke_color": BLACK})
         grid.prepare_for_nonlinear_transform()
@@ -881,6 +902,7 @@ class NPBG4(Scene):
             "background_color": "#EBEBEB"
         }
     }
+
     def construct(self):
         rec = ScreenRectangle(color=DARK_GRAY, height=6)
         self.add(rec)
