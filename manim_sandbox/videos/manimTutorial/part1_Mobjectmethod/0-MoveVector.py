@@ -1,7 +1,6 @@
 # from @鹤翔万里
 
-from manimlib.imports import *
-from .test_present_style import *
+from manim_sandbox.videos.manimTutorial.utils import *
 
 
 class Scene_0(ThreeDScene):

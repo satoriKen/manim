@@ -1,4 +1,4 @@
-from .test_present_style import *
+from manim_sandbox.videos.manimTutorial.utils import *
 
 
 class stretch_demo(Scene):

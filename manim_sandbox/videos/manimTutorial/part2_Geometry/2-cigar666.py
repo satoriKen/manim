@@ -1,6 +1,6 @@
-from manimlib.imports import *
 from manim_sandbox.utils.mobjects.Arc_group import *
-from manim_sandbox.videos.HomeworkVol04.test_present_style import *
+from manim_sandbox.videos.manimTutorial.utils import *
+
 
 class Explain_Arc(Scene):
 

@@ -1,5 +1,4 @@
-from manim_sandbox.utils.imports import *
-from .test_present_style import *
+from manim_sandbox.videos.manimTutorial.utils import *
 
 
 class Scene_1(Scene):

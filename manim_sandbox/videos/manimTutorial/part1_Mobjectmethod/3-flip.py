@@ -1,6 +1,6 @@
 # from @cigar666
 
-from .test_present_style import *
+from manim_sandbox.videos.manimTutorial.utils import *
 from manim_projects.cigar666_utils.anim_effects import *
 
 

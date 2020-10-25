@@ -1,5 +1,5 @@
 ##@有一种悲伤叫颓废
-from manimlib.imports import *
+from manim_sandbox.videos.manimTutorial.utils import *
 
 
 class ShiftAndMoveto(Scene):
