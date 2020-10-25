@@ -139,12 +139,14 @@ class Text(SVGMobject):
         for word, color in list(t2c.items()):
             for start, end in self.find_indexes(word):
                 self[start:end].set_color(color)
+        return self
 
     def set_color_by_t2g(self, t2g=None):
         t2g = t2g if t2g else self.t2g
         for word, gradient in list(t2g.items()):
             for start, end in self.find_indexes(word):
                 self[start:end].set_color_by_gradient(*gradient)
+        return self
 
     def str2slant(self, string):
         if string == NORMAL:
