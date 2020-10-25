@@ -378,7 +378,7 @@ class OpeningScene(Scene_):
                "颜色": ORANGE}
         text_color = DARK_GRAY
 
-        font = "PangMenZhengDao"
+        font = "Source Han Sans CN"
         text_1 = Text("大家好!", font=font, color=text_color, size=1, t2c=t2c).to_edge(UP * 2, buff=1)
         text_2 = Text("欢迎来到manim视频教程", font=font,
                       color=text_color, size=1, t2c=t2c).to_edge(UP * 3.2, buff=1)

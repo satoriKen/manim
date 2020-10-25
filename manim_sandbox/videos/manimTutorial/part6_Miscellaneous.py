@@ -31,7 +31,7 @@ class OpeningScene(Scene_):
                "剩余": BLUE, "物体": GREEN}
         text_color = DARK_GRAY
 
-        font = "庞门正道标题体"
+        font = "Source Han Sans CN Bold"
         text_1 = Text("大家好!", font=font, color=text_color, size=2, t2c=t2c).to_edge(UP * 2, buff=1)
         text_2 = Text("欢迎来到manim视频教程", font=font,
                       color=text_color, size=2, t2c=t2c).to_edge(UP * 3.2, buff=1)

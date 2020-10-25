@@ -242,7 +242,7 @@ class OpeningScene(Scene_):
         }
         text_color = DARK_GRAY
 
-        font = "庞门正道标题体"
+        font = "Source Han Sans CN Bold"
         text_1 = Text("大家好!", font=font, color=text_color, size=2, t2c=t2c).to_edge(UP * 2, buff=1)
         text_2 = Text("欢迎来到manim视频教程", font=font,
                       color=text_color, size=2, t2c=t2c).to_edge(UP * 3.2, buff=1)
@@ -287,7 +287,7 @@ class AssetsDir(Scene_):
         }
         title = VGroup(
             Text("Chapter Ⅰ.", font="Monaco for Powerline", color=BLUE_D, size=1, t2c=t2c),
-            Text("素材文件夹", font="思源黑体 CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
+            Text("素材文件夹", font="Source Han Sans CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
         ).arrange(RIGHT, buff=0.5, aligned_edge=DOWN)
         self.wait()
         self.play(DrawBorderThenFill(title))
@@ -390,7 +390,7 @@ class UseSVG(Scene_):
         }
         title = VGroup(
             Text("Chapter ⅠI.", font="Monaco for Powerline", color=BLUE_D, size=1, t2c=t2c),
-            Text("manim中插入SVG", font="思源黑体 CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
+            Text("manim中插入SVG", font="Source Han Sans CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
         ).arrange(RIGHT, buff=0.5, aligned_edge=DOWN)
         self.wait()
         self.play(DrawBorderThenFill(title))
@@ -507,7 +507,7 @@ class UseImage(Scene_):
         }
         title = VGroup(
             Text("Chapter ⅠII.", font="Monaco for Powerline", color=BLUE_D, size=1, t2c=t2c),
-            Text("manim中插入图片", font="思源黑体 CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
+            Text("manim中插入图片", font="Source Han Sans CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
         ).arrange(RIGHT, buff=0.5, aligned_edge=DOWN)
         self.wait()
         self.play(DrawBorderThenFill(title))
@@ -542,8 +542,8 @@ class UseImage(Scene_):
             '~',
         ).to_edge(RIGHT, buff=0.7)
         codebg = CodeBackground(codes)
-        img = ImageMobject("Tony.png", height=2).shift(LEFT*4)
-        img2 = ImageMobject("Tony.png", height=3, invert=True).shift(LEFT*4)
+        img = ImageMobject("logo.png", height=2).shift(LEFT*4)
+        img2 = ImageMobject("logo.png", height=3, invert=True).shift(LEFT*4)
         self.play(FadeInFromDown(codebg))
         self.play(Write(VGroup(codes[0], codes[4])))
         self.wait(2)
@@ -585,7 +585,7 @@ class UseTextMobject(Scene_):
         }
         title = VGroup(
             Text("Chapter IV.", font="Monaco for Powerline", color=BLUE_D, size=1, t2c=t2c),
-            Text("manim中使用文字", font="思源黑体 CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
+            Text("manim中使用文字", font="Source Han Sans CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
         ).arrange(RIGHT, buff=0.5, aligned_edge=DOWN)
         self.wait()
         self.play(DrawBorderThenFill(title))
@@ -614,7 +614,7 @@ class UseTextMobject(Scene_):
             CodeLine(">>> text = TextMobject(", size=0.68),
             VGroup(
                 CodeLine('~~~~~~~~"Text ', size=0.68),
-                Text("文字", color=GOLD_D, size=0.6, font="思源黑体 CN Regular"),
+                Text("文字", color=GOLD_D, size=0.6, font="Source Han Sans CN Regular"),
                 CodeLine('",', size=0.68),
             ).arrange(RIGHT, buff=0.05, aligned_edge=UP),
             CodeLine("~~~~~~~~color=BLUE,", size=0.68),
@@ -624,7 +624,7 @@ class UseTextMobject(Scene_):
             CodeLine(">>> text2 = TextMobject(", size=0.68),
             VGroup(
                 CodeLine('~~~~~~~~"\\\\LaTeX\\\\\\\\', size=0.68),
-                Text("换行", color=GOLD_D, size=0.6, font="思源黑体 CN Regular"),
+                Text("换行", color=GOLD_D, size=0.6, font="Source Han Sans CN Regular"),
                 CodeLine('")', size=0.68),
             ).arrange(RIGHT, buff=0.05, aligned_edge=UP),
             CodeLine(">>> text3 = TextMobject(", size=0.68),
@@ -807,8 +807,8 @@ class UseTexMobject(Scene_):
             CodeLine(r'~~~~~~~~"\\sum^n_{i=1}i^3=?"'),
             CodeLine("~~~~).scale(2)"),
             CodeLine(">>> debugTeX(self, tex[0])"),
-            CodeLine("~~~~#↑自定义的显示子物体下标的函数", font="思源黑体 CN Regular", size=0.6),
-            CodeLine("~~~~# 在manim_sandbox中有定义", font="思源黑体 CN Regular", size=0.6),
+            CodeLine("~~~~#↑自定义的显示子物体下标的函数", font="Source Han Sans CN Regular", size=0.6),
+            CodeLine("~~~~# 在manim_sandbox中有定义", font="Source Han Sans CN Regular", size=0.6),
             CodeLine("~"),
             CodeLine("~"),
             CodeLine("~"),
@@ -895,17 +895,17 @@ class UseTexMobject(Scene_):
         equal = VGroup(
             VGroup(
                 CodeLine('TextMobject("', size=0.68),
-                Text("文字", color=GOLD_D, size=0.6, font="思源黑体 CN Regular"),
+                Text("文字", color=GOLD_D, size=0.6, font="Source Han Sans CN Regular"),
                 CodeLine('$', size=0.68),
-                Text("公式", color=GOLD_D, size=0.6, font="思源黑体 CN Regular"),
+                Text("公式", color=GOLD_D, size=0.6, font="Source Han Sans CN Regular"),
                 CodeLine('$")', size=0.68)
             ).arrange(RIGHT, aligned_edge=UP, buff=0.05),
             TexMobject("\\Longleftrightarrow", color=ORANGE, background_stroke_color=ORANGE).scale(0.7),
             VGroup(
                 CodeLine('TexMobject("\\\\text{', size=0.68),
-                Text("文字", color=GOLD_D, size=0.6, font="思源黑体 CN Regular"),
+                Text("文字", color=GOLD_D, size=0.6, font="Source Han Sans CN Regular"),
                 CodeLine('}', size=0.68, color=GOLD_D),
-                Text("公式", color=GOLD_D, size=0.6, font="思源黑体 CN Regular"),
+                Text("公式", color=GOLD_D, size=0.6, font="Source Han Sans CN Regular"),
                 CodeLine('")', size=0.68)
             ).arrange(RIGHT, aligned_edge=UP, buff=0.05),
         ).arrange(RIGHT, buff=0.3)
@@ -1011,7 +1011,7 @@ class UseText(Scene_):
         self.play(Write(text))
         self.wait(3)
         self.next_caps()
-        comment = Text("注：目前版本非显示字符在前一个显示字符的位置上,可能后续会改变", font="思源黑体 CN Bold", \
+        comment = Text("注：目前版本非显示字符在前一个显示字符的位置上,可能后续会改变", font="Source Han Sans CN Bold", \
             size=0.6, t2c={"目前版本": RED}, color=DARK_GRAY).to_edge(UP)
         self.add(comment)
         self.play(Write(codes[7]))
@@ -1054,7 +1054,7 @@ class DownProgressBar(Scene_):
 
         lines = VGroup(*[Line(p_list[i], p_list[i+1]-0.02*RIGHT, color=colors[i], stroke_width=20) for i in range(len(methods_dict)+1)])
         lines.to_edge(DOWN * 0.22, buff=1)
-        texts = VGroup(*[Text(t, color=WHITE, font='思源黑体 CN Bold', size=0.28) for t in methods_dict.keys()], plot_depth=1)
+        texts = VGroup(*[Text(t, color=WHITE, font='Source Han Sans CN Bold', size=0.28) for t in methods_dict.keys()], plot_depth=1)
         text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.44).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT, buff=0.4)
         text[1].shift(RIGHT*0.03)
         text[0].shift(LEFT*0.01)
@@ -1090,9 +1090,9 @@ class VideoCover(Scene):
 class PreView(Scene_):
     def construct(self):
         title = VGroup(
-            Text("SVG?", font="思源黑体 CN Heavy", color=BLUE, size=2.7),
-            Text("图片?", font="思源黑体 CN Heavy", color=average_color(BLUE, GREEN), size=2.7),
-            Text("文字?", font="思源黑体 CN Heavy", color=GREEN, size=2.7),
+            Text("SVG?", font="Source Han Sans CN Heavy", color=BLUE, size=2.7),
+            Text("图片?", font="Source Han Sans CN Heavy", color=average_color(BLUE, GREEN), size=2.7),
+            Text("文字?", font="Source Han Sans CN Heavy", color=GREEN, size=2.7),
         ).arrange(RIGHT, buff=0.7).to_edge(UP)
 
         content = VGroup(
