@@ -1,7 +1,5 @@
-from manim_sandbox.utils.mobjects.Arc_group import *
-from manim_sandbox.videos.manimTutorial.utils import *
 from manim_projects.cigar666_utils.anim_effects import *
-from manim_sandbox.utils.imports import *
+from manim_sandbox.videos.manimTutorial.utils import *
 
 
 class Explain_Arc(Scene):
@@ -29,7 +27,7 @@ class Explain_Arc(Scene):
 
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='Source Han Sans Bold', size=0.32).to_edge(DOWN * 1.2)  # .set_color_by_t2c(t2c_02)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2).set_color_by_t2c(t2c_02)
                 for cap in captions
             ]
         )
@@ -52,9 +50,10 @@ class Explain_Arc(Scene):
                                                start_angle=sa.get_value(), angle=theta.get_value(),
                                                stroke_width=sw.get_value())))
         p0 = ORIGIN
-        arc_start_angle = Angle(p0 + 1, p0, p0 - 1).add_updater(
-            lambda a: a.become(Angle(center.get_center() + complex_to_R3(np.exp(sa.get_value() * 1j)),
-                                     center.get_center(), center.get_center() + RIGHT,
+        arc_start_angle = Angle(Dot(p0 + 1), Dot(p0), Dot(p0 - 1)).add_updater(
+            lambda a: a.become(Angle(Dot(center.get_center() + complex_to_R3(np.exp(sa.get_value() * 1j))),
+                                     Dot(center.get_center()),
+                                     Dot(center.get_center() + RIGHT),
                                      radius=0.5, color=ORANGE)))
 
         arc_angle = Angle(p0 + 1, p0, p0 - 1).add_updater(
@@ -68,18 +67,21 @@ class Explain_Arc(Scene):
                 DashedLine(center.get_center(), center.get_center() + r.get_value() * RIGHT * 1.6, color=BLUE_D)))
         line_1 = DashedLine().add_updater(
             lambda l: l.become(DashedLine(center.get_center(),
-                                          center.get_center() + r.get_value() * complex_to_R3(np.exp(sa.get_value() * 1j)) * 1.6,
+                                          center.get_center() + r.get_value() * complex_to_R3(
+                                              np.exp(sa.get_value() * 1j)) * 1.6,
                                           color=BLUE_D)))
         line_2 = DashedLine().add_updater(
             lambda l: l.become(DashedLine(center.get_center(),
                                           center.get_center() + \
-                                          r.get_value() * complex_to_R3(np.exp((sa.get_value() + theta.get_value()) * 1j)) * 1.6,
+                                          r.get_value() * complex_to_R3(
+                                              np.exp((sa.get_value() + theta.get_value()) * 1j)) * 1.6,
                                           color=BLUE_D)))
 
         vect_r = Arrow().add_updater(
             lambda vect: vect.become(Arrow(center.get_center(),
                                            center.get_center() + \
-                                           complex_to_R3(r.get_value() * np.exp((sa.get_value() + theta.get_value()) / 2 * 1j)),
+                                           complex_to_R3(
+                                               r.get_value() * np.exp((sa.get_value() + theta.get_value()) / 2 * 1j)),
                                            color=ORANGE, buff=0)))
 
         tex_bg = Rectangle(stroke_width=1, stroke_color=GRAY, fill_color=LIGHT_GREY, fill_opacity=0.25, plot_depth=2)
@@ -113,7 +115,7 @@ class Explain_Arc(Scene):
             CodeLine('%.f*DEGREES,' % (theta.get_value() / DEGREES)).next_to(tex_angle, RIGHT * 0.08, buff=1)))
 
         tex_color = CodeLine('color=BLACK)').next_to(tex_angle, DOWN).align_to(tex_angle, LEFT).set_color_by_t2c(t2c_02)
-        tex_color_02 = CodeLine('#~默认是白色', font='Source Han Sans Bold', color=GREEN, size=0.25).next_to(tex_color,
+        tex_color_02 = CodeLine('#~默认是白色', font='Source Han Sans CN Bold', color=GREEN, size=0.25).next_to(tex_color,
                                                                                                         RIGHT,
                                                                                                         buff=0.15)
 
@@ -269,7 +271,7 @@ class Subclass_of_Arc(Scene):
 
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='Source Han Sans Bold', size=0.32).to_edge(DOWN * 1.2).set_color_by_t2c(t2c_02)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2).set_color_by_t2c(t2c_02)
                 for cap in captions
             ]
         )
@@ -431,7 +433,7 @@ class Staff(Scene):
         staff_mob = VGroup(*[VGroup() for _ in range(2)])
         for i in range(7):
             staff_mob[0].add(Text(staff[i][0], font="庞门正道标题体", size=0.36, color=DARK_GRAY))
-            staff_mob[1].add(Text(staff[i][2], font="Source Han Sans Bold", size=0.3, color=BLUE_D))
+            staff_mob[1].add(Text(staff[i][2], font="Source Han Sans CN Bold", size=0.3, color=BLUE_D))
         for i in range(2):
             staff_mob[i].arrange(DOWN, aligned_edge=LEFT, buff=0.5)
         for i in range(7):
@@ -488,7 +490,6 @@ class Opening_Scene(Scene):
         self.wait(1)
 
 
-
 class Ending(Scene):
     CONFIG = {
         "camera_config": {
@@ -499,7 +500,7 @@ class Ending(Scene):
     def construct(self):
         text_01 = Text("感 谢 观 看", font='庞门正道标题体', color=BLUE_D, size=1.25)
         text_02 = Text('代码见~https://github.com/manim-kindergarten/manim_sandbox',
-                       font='Source Han Sans Bold', color=ORANGE, size=0.36, t2c={'~': WHITE}).next_to(text_01,
+                       font='Source Han Sans CN Bold', color=ORANGE, size=0.36, t2c={'~': WHITE}).next_to(text_01,
                                                                                                        DOWN * 1.2,
                                                                                                        buff=1)
 

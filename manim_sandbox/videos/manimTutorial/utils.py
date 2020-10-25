@@ -1,4 +1,3 @@
-from manimlib.imports import *
 from manim_sandbox.utils.imports import *
 
 
@@ -453,4 +452,3 @@ class CodeStyleTest(Scene):
         self.play(Write(tex_annotation), FadeOut(caption_scale_2), run_time=4)
 
         self.wait(5)
-
