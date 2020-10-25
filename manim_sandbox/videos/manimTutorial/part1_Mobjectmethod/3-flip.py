@@ -1,6 +1,7 @@
 # from @cigar666
 
 from .test_present_style import *
+from manim_projects.cigar666_utils.anim_effects import *
 
 
 class Explain_Flip_2d(ThreeDScene):
@@ -173,7 +174,7 @@ class Explain_Flip_3d(ThreeDScene):
 
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 Bold', size=0.32).to_edge(DOWN * 1.2)
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2)
                 for cap in captions
             ]
         )
@@ -532,9 +533,6 @@ class Explain_Flip(ThreeDScene):
         self.wait(2.5)
 
 
-from manim_projects.cigar666_utils.anim_effects import *
-
-
 class Opening_Scene(Scene):
     CONFIG = {
         "camera_config": {
@@ -624,8 +622,8 @@ class 空降标记(Scene):
         lines.to_edge(DOWN * 0.22, buff=1)
         texts = VGroup(*[Text(t, color=WHITE, font='Consolas', size=0.14) for t in methods_dict.keys()], plot_depth=1)
         texts[0].become(Text('序言', color=WHITE, font='Source Han Sans CN Bold', size=0.15))
-        text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.22).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT,
-                                                                                                        buff=0.125)
+        text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.22)\
+            .to_edge(DOWN * 0.132, buff=1).to_edge(LEFT, buff=0.125)
         text[1].shift(RIGHT * 0.03)
         text[0].shift(LEFT * 0.01)
         for i in range(len(methods_dict)):

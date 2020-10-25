@@ -26,7 +26,7 @@ class Scene_1(Scene):
         ]
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2) \
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) \
                     .add_background_rectangle(color=WHITE, buff=0.1, opacity=0.85)
                 for cap in captions
             ]
@@ -152,7 +152,7 @@ class Scene_2(Scene):
         ]
         captions_mob = VGroup(
             *[
-                CodeLine(cap, font='思源黑体 CN Bold', size=0.32).to_edge(DOWN * 1.2) \
+                CodeLine(cap, font='Source Han Sans CN Bold', size=0.32).to_edge(DOWN * 1.2) \
                     .add_background_rectangle(color=WHITE, buff=0.1, opacity=0.85)
                 for cap in captions
             ]

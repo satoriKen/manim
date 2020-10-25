@@ -9,7 +9,7 @@ class Scene_0(Scene):
         }
     }
 
-    def construct(_):
+    def construct(self):
         captions = [
             "下面我们来看next_to方法",
             "顾名思义,next_to表示紧挨着一个物体",
@@ -44,24 +44,24 @@ class Scene_0(Scene):
             ]
         )
 
-        _.play(FadeInFromDown(tex_bg))
-        _.play(Write(caps[0]))
-        _.wait()
-        _.play(ReplacementTransform(caps[0], caps[1]))
-        _.wait(2)
+        self.play(FadeInFromDown(tex_bg))
+        self.play(Write(caps[0]))
+        self.wait()
+        self.play(ReplacementTransform(caps[0], caps[1]))
+        self.wait(2)
 
-        _.play(ReplacementTransform(caps[1], caps[2]))
-        _.wait()
+        self.play(ReplacementTransform(caps[1], caps[2]))
+        self.wait()
 
-        _.play(Write(coms[0]))
-        _.play(ShowCreation(c))
-        _.play(Write(coms[1].next_to(coms[0], DOWN, aligned_edge=LEFT)))
-        _.play(ShowCreation(sq))
-        _.play(Write(coms[2].next_to(coms[1], DOWN, aligned_edge=LEFT)))
-        _.play(c.next_to, sq)
+        self.play(Write(coms[0]))
+        self.play(ShowCreation(c))
+        self.play(Write(coms[1].next_to(coms[0], DOWN, aligned_edge=LEFT)))
+        self.play(ShowCreation(sq))
+        self.play(Write(coms[2].next_to(coms[1], DOWN, aligned_edge=LEFT)))
+        self.play(c.next_to, sq)
 
-        _.play(ReplacementTransform(caps[2], caps[3]))
-        _.wait()
+        self.play(ReplacementTransform(caps[2], caps[3]))
+        self.wait()
 
 
 class Scene_1(Scene):
@@ -71,7 +71,7 @@ class Scene_1(Scene):
         }
     }
 
-    def construct(_):
+    def construct(self):
         captions = [
             "除此之外,我们可以指定next_to的方向。",
             "分别是UP,DOWN,LEFT,RIGHT",
@@ -103,9 +103,9 @@ class Scene_1(Scene):
         oria = CodeLine("c = Circle(radius=0.5)", font='Consolas', size=0.28).move_to(loc)
         orib = CodeLine("sq = Square(side_length=0.5)", font='Consolas', size=0.28).move_to(loc)
         oric = CodeLine("c.next_to(sq)", font='Consolas', size=0.28).move_to(loc)
-        _.add(oria)
-        _.add(orib.next_to(oria, DOWN, aligned_edge=LEFT))
-        _.add(oric.next_to(orib, DOWN, aligned_edge=LEFT))
+        self.add(oria)
+        self.add(orib.next_to(oria, DOWN, aligned_edge=LEFT))
+        self.add(oric.next_to(orib, DOWN, aligned_edge=LEFT))
 
         coms = VGroup(
             *[
@@ -114,28 +114,28 @@ class Scene_1(Scene):
             ]
         )
 
-        _.add(tex_bg)
-        _.add(c, sq)
+        self.add(tex_bg)
+        self.add(c, sq)
         c.next_to(sq)
 
-        _.play(Write(caps[0]))
-        _.play(ReplacementTransform(caps[0], caps[1]))
+        self.play(Write(caps[0]))
+        self.play(ReplacementTransform(caps[0], caps[1]))
 
         def change(what, where):
-            _.play(ReplacementTransform(what[where - 1], what[where]))
+            self.play(ReplacementTransform(what[where - 1], what[where]))
 
-        _.play(Write(coms[0].next_to(oric, DOWN, aligned_edge=LEFT)))
-        _.play(c.shift, UP + LEFT)
+        self.play(Write(coms[0].next_to(oric, DOWN, aligned_edge=LEFT)))
+        self.play(c.shift, UP + LEFT)
         change(coms, 1)
-        _.play(c.shift, 2 * DOWN)
+        self.play(c.shift, 2 * DOWN)
         change(coms, 2)
-        _.play(c.shift, UP + LEFT)
+        self.play(c.shift, UP + LEFT)
         change(coms, 3)
-        _.play(c.shift, 2 * RIGHT)
+        self.play(c.shift, 2 * RIGHT)
         change(caps, 2)
-        _.wait(2)
+        self.wait(2)
         change(caps, 3)
-        _.wait(2)
+        self.wait(2)
 
 
 class Scene_2(Scene):
@@ -145,7 +145,7 @@ class Scene_2(Scene):
         }
     }
 
-    def construct(_):
+    def construct(self):
         captions = [
             "有时候我们还可能实现类似于上/下/左/右对齐的功能",
             "这时候可以加入aligned_edge=方向",
@@ -178,9 +178,9 @@ class Scene_2(Scene):
         oria = CodeLine("c = Circle(radius=0.5)", font='Consolas', size=0.21).move_to(loc)
         orib = CodeLine("sq = Square(side_length=0.5)", font='Consolas', size=0.21).move_to(loc)
         oric = CodeLine("c.next_to(sq)", font='Consolas', size=0.21).move_to(loc)
-        _.add(oria)
-        _.add(orib.next_to(oria, DOWN, aligned_edge=LEFT))
-        _.add(oric.next_to(orib, DOWN, aligned_edge=LEFT))
+        self.add(oria)
+        self.add(orib.next_to(oria, DOWN, aligned_edge=LEFT))
+        self.add(oric.next_to(orib, DOWN, aligned_edge=LEFT))
 
         coms = VGroup(
             *[
@@ -189,13 +189,13 @@ class Scene_2(Scene):
             ]
         )
 
-        _.add(tex_bg)
-        _.add(c, sq)
+        self.add(tex_bg)
+        self.add(c, sq)
         c.next_to(sq)
 
         def change(what, where):
-            _.play(ReplacementTransform(what[where - 1], what[where]))
-            _.wait()
+            self.play(ReplacementTransform(what[where - 1], what[where]))
+            self.wait()
 
         up = c.copy().next_to(sq, RIGHT, aligned_edge=UP)
         down = c.copy().next_to(sq, RIGHT, aligned_edge=DOWN)
@@ -203,27 +203,27 @@ class Scene_2(Scene):
         right = c.copy().next_to(sq, DOWN, aligned_edge=RIGHT)
         origin = c.copy().next_to(sq, DOWN, aligned_edge=ORIGIN)
 
-        _.play(Write(caps[0]))
-        _.wait()
+        self.play(Write(caps[0]))
+        self.wait()
         change(caps, 1)
-        _.wait()
+        self.wait()
 
         change(caps, 2)
-        _.wait()
+        self.wait()
 
-        _.play(Write(coms[0]))
-        _.play(ReplacementTransform(c, up))
+        self.play(Write(coms[0]))
+        self.play(ReplacementTransform(c, up))
         change(coms, 1)
-        _.play(ReplacementTransform(up, down))
+        self.play(ReplacementTransform(up, down))
         change(coms, 2)
-        _.play(ReplacementTransform(down, left))
+        self.play(ReplacementTransform(down, left))
         change(coms, 3)
-        _.play(ReplacementTransform(left, right))
+        self.play(ReplacementTransform(left, right))
         change(coms, 4)
-        _.play(ReplacementTransform(right, origin))
+        self.play(ReplacementTransform(right, origin))
 
         change(caps, 3)
-        _.wait()
+        self.wait()
 
 
 class Scene_3(Scene):
@@ -233,7 +233,7 @@ class Scene_3(Scene):
         }
     }
 
-    def construct(_):
+    def construct(self):
         captions = [
             "如果觉得默认的距离不够好的话",
             "可以加入一些缓冲区buff.",
@@ -265,9 +265,9 @@ class Scene_3(Scene):
         oria = CodeLine("c = Circle(radius=0.5)", font='Consolas', size=0.28).move_to(loc)
         orib = CodeLine("sq = Square(side_length=0.5)", font='Consolas', size=0.28).move_to(loc)
         oric = CodeLine("c.next_to(sq)", font='Consolas', size=0.28).move_to(loc)
-        _.add(oria)
-        _.add(orib.next_to(oria, DOWN, aligned_edge=LEFT))
-        _.add(oric.next_to(orib, DOWN, aligned_edge=LEFT))
+        self.add(oria)
+        self.add(orib.next_to(oria, DOWN, aligned_edge=LEFT))
+        self.add(oric.next_to(orib, DOWN, aligned_edge=LEFT))
         coms = VGroup(
             *[
                 CodeLine(com, font='Consolas', size=0.21).next_to(oric, DOWN, aligned_edge=LEFT)
@@ -275,15 +275,15 @@ class Scene_3(Scene):
             ]
         )
 
-        _.add(tex_bg)
-        _.add(c, sq)
+        self.add(tex_bg)
+        self.add(c, sq)
         c.next_to(sq, DOWN)
 
         def change(what, where):
-            _.play(ReplacementTransform(what[where - 1], what[where]))
-            _.wait()
+            self.play(ReplacementTransform(what[where - 1], what[where]))
+            self.wait()
 
-        _.play(Write(caps[0]))
+        self.play(Write(caps[0]))
         change(caps, 1)
         a = DoubleArrow((sq.get_center()), (c.get_center()), color=BLUE)
         tx = CodeLine("c.next_to(sq,DOWN,buff=2.5)", font='Consolas', size=0.28).next_to(oric, DOWN, aligned_edge=LEFT)
@@ -302,11 +302,11 @@ class Scene_3(Scene):
         cod = CodeLine("buff=" + str(round(sq.get_center()[1] - c.get_center()[1] - 1 + 0.25, 2)), font='Consolas',
                        size=0.25).move_to(loc)
         cod.add_updater(upr)
-        _.play(Write(cod), Write(a), Write(tx))
-        _.play(c.shift, 3 * DOWN, run_time=3)
-        _.play(c.shift, 3 * UP, run_time=3)
+        self.play(Write(cod), Write(a), Write(tx))
+        self.play(c.shift, 3 * DOWN, runselftime=3)
+        self.play(c.shift, 3 * UP, runselftime=3)
         cod.remove_updater(upr)
-        _.wait()
+        self.wait()
         change(caps, 2)
 
 
@@ -317,7 +317,7 @@ class Scene_4(Scene):
         }
     }
 
-    def construct(_):
+    def construct(self):
         captions = [
             "其实我们还可以对VGroup进行对齐操作",
             "我们先来加入两个组a和b.",
@@ -384,51 +384,51 @@ class Scene_4(Scene):
             ]
         )
 
-        _.add(tex_bg)
+        self.add(tex_bg)
 
         def change(what, where):
-            _.play(ReplacementTransform(what[where - 1], what[where]))
-            _.wait()
+            self.play(ReplacementTransform(what[where - 1], what[where]))
+            self.wait()
 
-        _.play(Write(caps[0]))
-        _.wait()
+        self.play(Write(caps[0]))
+        self.wait()
         change(caps, 1)
-        _.wait()
+        self.wait()
         change(caps, 2)
-        _.play(Write(coms[0].shift(-0.2 * UP + 1.2 * LEFT)))
-        _.play(Write(vg1))
-        _.play(Write(coms[1].next_to(coms[0], DOWN, aligned_edge=LEFT)))
-        _.play(Write(vg2))
+        self.play(Write(coms[0].shift(-0.2 * UP + 1.2 * LEFT)))
+        self.play(Write(vg1))
+        self.play(Write(coms[1].next_to(coms[0], DOWN, aligned_edge=LEFT)))
+        self.play(Write(vg2))
         change(caps, 3)
-        _.wait(1)
+        self.wait(1)
         change(caps, 4)
-        _.play(Write(coms[3].next_to(coms[1], DOWN, aligned_edge=LEFT)))
-        _.play(ReplacementTransform(vg2, eg))
-        _.wait()
+        self.play(Write(coms[3].next_to(coms[1], DOWN, aligned_edge=LEFT)))
+        self.play(ReplacementTransform(vg2, eg))
+        self.wait()
         change(caps, 5)
         change(caps, 6)
-        _.play(FocusOn(coms[3]))
-        _.play(ReplacementTransform(coms[3], coms[2].move_to(coms[3].get_center())))
+        self.play(FocusOn(coms[3]))
+        self.play(ReplacementTransform(coms[3], coms[2].move_to(coms[3].get_center())))
 
-        _.play(ReplacementTransform(eg, eg3))
-        _.wait(1)
+        self.play(ReplacementTransform(eg, eg3))
+        self.wait(1)
 
         change(caps, 7)
-        _.wait(2)
+        self.wait(2)
         change(caps, 8)
-        _.wait(2)
-        _.play(FocusOn(coms[2]))
-        _.play(FadeOut(coms[2]), FadeIn(coms[4].next_to(coms[1], DOWN, aligned_edge=LEFT)))
+        self.wait(2)
+        self.play(FocusOn(coms[2]))
+        self.play(FadeOut(coms[2]), FadeIn(coms[4].next_to(coms[1], DOWN, aligned_edge=LEFT)))
 
-        _.play(ReplacementTransform(eg3, eg2))
+        self.play(ReplacementTransform(eg3, eg2))
         change(caps, 9)
 
-        _.wait(3)
+        self.wait(3)
         change(caps, 10)
-        _.play(FocusOn(coms[4]))
-        _.play(FadeOut(coms[4]), FadeIn(coms[5].next_to(coms[1], DOWN, aligned_edge=LEFT)))
-        _.wait(3)
+        self.play(FocusOn(coms[4]))
+        self.play(FadeOut(coms[4]), FadeIn(coms[5].next_to(coms[1], DOWN, aligned_edge=LEFT)))
+        self.wait(3)
         change(caps, 11)
-        _.wait(3)
+        self.wait(3)
         change(caps, 12)
-        _.wait(3)
+        self.wait(3)
