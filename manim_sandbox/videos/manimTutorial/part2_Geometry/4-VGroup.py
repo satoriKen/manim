@@ -261,7 +261,7 @@ class VGroup_Demo(Scene):
         self.play(FadeOut(VGroup(vg_rec, vg2_rec, VG_rec, vg_lab, vg2_lab, VG_lab)))
         self.play(Transform(caps[0], caps[12]))
         self.wait()
-        img = ImageMobject("Tony.png").set_height(1.2)
+        img = ImageMobject("logo.png").set_height(1.2)
         self.play(FadeIn(img), Write(codes4[2]))
         self.wait()
         self.play(Write(codes4[3]))
