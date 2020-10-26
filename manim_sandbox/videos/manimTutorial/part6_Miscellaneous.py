@@ -1,8 +1,5 @@
-from manimlib.imports import *
-from manim_sandbox.utils.imports import *
 from manim_sandbox.videos.manimTutorial.utils import *
-from manim_projects.tony_useful.imports import *
-
+from manim_sandbox.videos.manimTutorial.utils import *
 
 tracedpath_t2c = {
     "TracedPath": BLUE_D,
@@ -21,7 +18,7 @@ tracedpath_t2c = {
 
 decimalnumber_t2c = {
     "DecimalNumber": BLUE_D,
-    
+
 }
 
 
@@ -39,15 +36,18 @@ class OpeningScene(Scene_):
         text_4 = Text("剩余的常用物体", font=font, color=text_color, size=2, t2c=t2c).to_edge(UP * 3., buff=1)
         text_34, text_12 = VGroup(text_3, text_4), VGroup(text_1, text_2)
 
-
         methods = [["TracedPath", "DecimalNumber", "Integer"],
                    ["shape_matchers: ", "SurroundingRectangle, "],
                    ["BackgroundRectangle, ", "Cross, ", "Brace, "],
                    ["BraceLabel, ", "BraceText, ", "Underline"]]
-        m_group_1 = VGroup(*[Text(tex + ', ', size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[0]]).arrange(RIGHT)
-        m_group_2 = VGroup(*[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[1]]).arrange(RIGHT)
-        m_group_3 = VGroup(*[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
-        m_group_4 = VGroup(*[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[3]]).arrange(RIGHT)
+        m_group_1 = VGroup(*[Text(tex + ', ', size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in
+                             methods[0]]).arrange(RIGHT)
+        m_group_2 = VGroup(
+            *[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[1]]).arrange(RIGHT)
+        m_group_3 = VGroup(
+            *[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
+        m_group_4 = VGroup(
+            *[Text(tex, size=0.84, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[3]]).arrange(RIGHT)
         m_group = VGroup(m_group_1, m_group_2, m_group_3, m_group_4).arrange(DOWN, aligned_edge=LEFT, buff=0.42)
         methodes_group = VGroup(*m_group_1, *m_group_2, *m_group_3, *m_group_4).next_to(text_34, DOWN, buff=0.5)
 
@@ -71,6 +71,7 @@ class TracedPathTutorial(Scene_):
         # "fade_all": False,
         "en": True,
     }
+
     def start(self):
         t2c = {"manim": GOLD,
                "TracedPath": GREEN}
@@ -88,6 +89,7 @@ class TracedPathTutorial(Scene_):
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(FadeOutAndShiftDown(title))
+
     def construct(self):
         self.start()
         CodeLine.CONFIG["t2c"].update(tracedpath_t2c)
@@ -113,8 +115,8 @@ class TracedPathTutorial(Scene_):
         self.caps = VGroup(
             *[
                 CodeLine(
-                    cap, 
-                    font='Source Han Sans CN Bold', 
+                    cap,
+                    font='Source Han Sans CN Bold',
                     size=0.64 if not self.en else 0.58
                 ).to_edge(DOWN * 1.2)
                 for cap in captions
@@ -135,8 +137,8 @@ class TracedPathTutorial(Scene_):
             "~~~~~~~~about_point=LEFT*2), run_time=0.25)"
         )
         codebg = CodeBackground(codes, buff=0.25)
-        VGroup(codes, codebg).to_edge(RIGHT, buff=0.7).shift(UP*0.35)
-        dot = Dot(color=BLUE_E, background_stroke_color=WHITE, background_stroke_width=2).shift(LEFT*2)
+        VGroup(codes, codebg).to_edge(RIGHT, buff=0.7).shift(UP * 0.35)
+        dot = Dot(color=BLUE_E, background_stroke_color=WHITE, background_stroke_width=2).shift(LEFT * 2)
         path = TracedPath(dot.get_center, stroke_color=BLUE_D, stroke_width=4, plot_depth=-10)
         self.add(path)
 
@@ -162,16 +164,16 @@ class TracedPathTutorial(Scene_):
         self.add(path)
         self.play(Write(codes[6]))
         self.wait()
-        self.play(dot.shift, UP*2)
+        self.play(dot.shift, UP * 2)
         self.wait(2)
         self.play(Write(VGroup(codes[7], codes[8])))
         self.wait()
-        self.play(Rotating(dot, radians=PI, about_point=LEFT*2))
+        self.play(Rotating(dot, radians=PI, about_point=LEFT * 2))
         self.wait(3)
         self.next_caps()
         self.play(Write(VGroup(codes[9], codes[10])))
         self.wait()
-        self.play(Rotating(dot, radians=PI, about_point=LEFT*2), run_time=0.25)
+        self.play(Rotating(dot, radians=PI, about_point=LEFT * 2), run_time=0.25)
         self.wait(4)
 
 
@@ -180,6 +182,7 @@ class DecimalNumberTutorial(Scene_):
         "fade_all": False,
         "en": False,
     }
+
     def start(self):
         t2c = {"manim": GOLD,
                "DecimalNumber": GREEN}
@@ -189,7 +192,8 @@ class DecimalNumberTutorial(Scene_):
         ).arrange(RIGHT, buff=0.5, aligned_edge=DOWN)
         title_en = VGroup(
             Text("Chapter ⅠI.", font="Monaco for Powerline", color=BLUE_D, size=1, t2c=t2c),
-            Text("Use DecimalNumber to display numbers", font="Source Han Sans CN Bold", color=DARK_GRAY, size=1, t2c=t2c),
+            Text("Use DecimalNumber to display numbers", font="Source Han Sans CN Bold", color=DARK_GRAY, size=1,
+                 t2c=t2c),
         ).arrange(RIGHT, buff=0.5, aligned_edge=DOWN)
         if self.en:
             title = title_en
@@ -197,6 +201,7 @@ class DecimalNumberTutorial(Scene_):
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(FadeOutAndShiftDown(title))
+
     def construct(self):
         self.start()
         CodeLine.CONFIG["t2c"].update(decimalnumber_t2c)
@@ -212,8 +217,8 @@ class DecimalNumberTutorial(Scene_):
         self.caps = VGroup(
             *[
                 CodeLine(
-                    cap, 
-                    font='Source Han Sans CN Bold', 
+                    cap,
+                    font='Source Han Sans CN Bold',
                     size=0.64 if not self.en else 0.58
                 ).to_edge(DOWN * 1.2)
                 for cap in captions
