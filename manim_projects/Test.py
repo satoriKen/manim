@@ -1368,7 +1368,7 @@ class Test80(Scene):
     """rate_func的细节效果"""
 
     def construct(self):
-        func = 'Wiggle'
+        func = wiggle
         dot = Dot()
         self.add(dot)
         self.wait()
