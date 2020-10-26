@@ -27,8 +27,10 @@ manim.egg-info/
 *.log
 *.dvi
 *.svg
-*.tex
 primes.py
 /media_dir.txt
 *__pycache__*
 *.pyc
+manim_sandbox/docs/old/v2.1.tex
+manim_sandbox/docs/old/v2.2.tex
+manim_sandbox/docs/old/v2.3.tex
