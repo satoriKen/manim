@@ -1,5 +1,6 @@
 from manim_sandbox.videos.manimTutorial.utils import *
-from manim_sandbox.videos.manimTutorial.utils import *
+from manim_projects.cigar666_utils.anim_effects import *
+
 
 tracedpath_t2c = {
     "TracedPath": BLUE_D,

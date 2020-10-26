@@ -1,12 +1,7 @@
-from manimlib.constants import *
-from manimlib.mobject.types.vectorized_mobject import VGroup
-from manimlib.mobject.svg.tex_mobject import TexMobject
-from manimlib.mobject.svg.text_mobject import Text
 from manimlib.imports import *
 
 
 class MyText(TexMobject):
-
     CONFIG = {
         'default_font': 'Consolas',
         'tex_scale_factor': 1,
@@ -30,7 +25,7 @@ class MyText(TexMobject):
     def get_new_font_texs(self, replace_dict):
         for i in range(len(self.tex_strings)):
             tex = self.tex_strings[i]
-            color=self.get_color_by_tex(tex)
+            color = self.get_color_by_tex(tex)
             if tex in replace_dict:
                 tex = replace_dict[tex]
             tex_new = Text(tex, font=self.default_font, color=color)
@@ -50,6 +45,7 @@ class MyText(TexMobject):
                 tex_new.shift(UP * 0.15 * tex_new.get_height())
             self.new_font_texs.add(tex_new)
         return self.new_font_texs
+
 
 # class PStyle_Text(VGroup):
 #
@@ -88,7 +84,6 @@ class MyText(TexMobject):
 #         self.wait()
 
 class Text4anim(VGroup):
-
     CONFIG = {
         'rate_func': there_and_back,
         'proportion': 0.4,
@@ -104,7 +99,8 @@ class Text4anim(VGroup):
 
         self.texmob = texmob
         self.anim_controller = ValueTracker(0.)
-        VGroup.__init__(self, *[self.texmob[i][j] for i in range(len(self.texmob)) for j in range(len(self.texmob[i]))], **kwargs)
+        VGroup.__init__(self, *[self.texmob[i][j] for i in range(len(self.texmob)) for j in range(len(self.texmob[i]))],
+                        **kwargs)
         self.submob_pos = [mob.get_center() for mob in self]
         self.submob_size = [mob.get_height() for mob in self]
         if self.change_opacity:
@@ -122,31 +118,32 @@ class Text4anim(VGroup):
     def anim_updater(self, texmob, dt):
         n = len(texmob)
         for i in range(n):
-            t = i/n
-            t_i = self.rate_func((self.anim_controller.get_value() * (1.02 + self.proportion) - t)/self.proportion)
+            t = i / n
+            t_i = self.rate_func((self.anim_controller.get_value() * (1.02 + self.proportion) - t) / self.proportion)
 
             if not self.reverse_order:
-                texmob[i].move_to(self.submob_pos[i] + self.shift_vect * t_i)\
+                texmob[i].move_to(self.submob_pos[i] + self.shift_vect * t_i) \
                     .set_height(self.submob_size[i] * (1 + (self.scale_factor - 1) * t_i))
                 if self.change_opacity:
                     opacity_i = self.submob_opacity[i] + t_i
                     texmob[i].set_opacity(opacity_i if opacity_i < 1 else 1)
             else:
-                texmob[n-1-i].move_to(self.submob_pos[n-1-i] + self.shift_vect * t_i)\
-                    .set_height(self.submob_size[n-1-i] * (1 + (self.scale_factor - 1) * t_i))
+                texmob[n - 1 - i].move_to(self.submob_pos[n - 1 - i] + self.shift_vect * t_i) \
+                    .set_height(self.submob_size[n - 1 - i] * (1 + (self.scale_factor - 1) * t_i))
                 if self.change_opacity:
-                    opacity_i = self.submob_opacity[n-1-i] + t_i
-                    texmob[n-1-i].set_opacity(opacity_i if opacity_i < 1 else 1)
+                    opacity_i = self.submob_opacity[n - 1 - i] + t_i
+                    texmob[n - 1 - i].set_opacity(opacity_i if opacity_i < 1 else 1)
 
     def activate_anim(self):
         self.add_updater(self.anim_updater)
 
+
 class Test_anim(Scene):
 
     def construct(self):
-
         # tex_mob = Text('xgnb xgnb xgnb xgnb xgnb xgnb', font='庞门正道标题体').set_height(0.64)
-        tex_mob = TexMobject('\\sum i^3', '=', '1^3', '+', '2^3', '+', '3^3', '+', '4^3', '+', '\\cdots', '+', 'n^3').set_height(0.9)
+        tex_mob = TexMobject('\\sum i^3', '=', '1^3', '+', '2^3', '+', '3^3', '+', '4^3', '+', '\\cdots', '+',
+                             'n^3').set_height(0.9)
 
         tex_anim_mob = Text4anim(tex_mob, proportion=0.6)
 
@@ -185,11 +182,13 @@ class Test_anim(Scene):
 
         self.wait(2)
 
+
 class Text4animScene(Scene):
 
     def ShiftInOneByOne(self, text, shift_vect=LEFT * 1.5, run_time=2, wait_time=1, stop_updater=True):
         text.shift(-shift_vect)
-        t4a = Text4anim(text, shift_vect=shift_vect, rate_func=smooth, proportion=0.32, change_opacity=True, init_opacity=0)
+        t4a = Text4anim(text, shift_vect=shift_vect, rate_func=smooth, proportion=0.32, change_opacity=True,
+                        init_opacity=0)
         self.add(t4a)
         self.play(t4a.anim_controller.set_value, 1, run_time=run_time)
         if stop_updater:
@@ -197,9 +196,11 @@ class Text4animScene(Scene):
         self.wait(wait_time)
         return t4a
 
-    def ShiftInOneByOne_new(self, text, shift_vect=LEFT * 1.5, run_speed=0.24, wait_time=1, rate_func=smooth, stop_updater=True):
+    def ShiftInOneByOne_new(self, text, shift_vect=LEFT * 1.5, run_speed=0.24, wait_time=1, rate_func=smooth,
+                            stop_updater=True):
         text.shift(-shift_vect)
-        t4a = Text4anim(text, shift_vect=shift_vect, rate_func=smooth, proportion=0.45, change_opacity=True, init_opacity=0)
+        t4a = Text4anim(text, shift_vect=shift_vect, rate_func=smooth, proportion=0.45, change_opacity=True,
+                        init_opacity=0)
         self.add(t4a)
         self.play(t4a.anim_controller.set_value, 1, run_time=run_speed * len(t4a) + 0.05, rate_func=rate_func)
         if stop_updater:
@@ -210,7 +211,9 @@ class Text4animScene(Scene):
 
     def Countdown_anim(self, time=5):
 
-        num = VGroup(*[Text(str(i), font='思源黑体 Bold', color=GREEN).set_height(1) for i in range(time, 0, -1)]).to_corner(RIGHT * 1.2 + UP * 1.2, buff=1)
+        num = VGroup(
+            *[Text(str(i), font='思源黑体 Bold', color=GREEN).set_height(1) for i in range(time, 0, -1)]).to_corner(
+            RIGHT * 1.2 + UP * 1.2, buff=1)
         circle = Circle(radius=0.9).move_to(num).set_stroke(GREEN, 12)
         for i in range(time):
             self.add(num[i])

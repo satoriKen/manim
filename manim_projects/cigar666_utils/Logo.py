@@ -1,4 +1,3 @@
-
 """
 关于logo创意：
 
@@ -16,8 +15,8 @@
 
 from manimlib.imports import *
 
-class Logo(VGroup):
 
+class Logo(VGroup):
     CONFIG = {
         'color_1': [WHITE, BLUE_B, BLUE_D],
         'color_2': [WHITE, '#C59978', '#8D5630'],
@@ -47,7 +46,8 @@ class Logo(VGroup):
         if not self.black_bg:
             p1.set_fill(self.color_3[0], 1), p2.set_fill(self.color_3[1], 1), p3.set_fill(self.color_3[2], 1)
 
-        self.bg = Square(stroke_width=0, fill_color=BLACK if self.black_bg else WHITE, fill_opacity=1).set_height(self.size * 2.5)
+        self.bg = Square(stroke_width=0, fill_color=BLACK if self.black_bg else WHITE, fill_opacity=1).set_height(
+            self.size * 2.5)
         if self.add_bg_square:
             self.add(self.bg)
 
@@ -59,16 +59,18 @@ class Logo(VGroup):
         self.add(self.part_ur, self.part_ul, self.part_dl, self.part_dr)
         self.set_height(self.size).move_to(self.center)
         if self.black_bg:
-            self.part_ur[0].set_fill(self.color_2[0], 1), self.part_ur[1].set_fill(self.color_2[1], 1), self.part_ur[2].set_fill(self.color_2[2], 1)
+            self.part_ur[0].set_fill(self.color_2[0], 1), self.part_ur[1].set_fill(self.color_2[1], 1), self.part_ur[
+                2].set_fill(self.color_2[2], 1)
         else:
-            self.part_ur[0].set_fill(self.color_4[0], 1), self.part_ur[1].set_fill(self.color_4[1], 1), self.part_ur[2].set_fill(self.color_4[2], 1)
+            self.part_ur[0].set_fill(self.color_4[0], 1), self.part_ur[1].set_fill(self.color_4[1], 1), self.part_ur[
+                2].set_fill(self.color_4[2], 1)
 
         self.inner_triangles = VGroup(self.part_ur[0], self.part_ul[0], self.part_dl[0], self.part_dr[0])
         self.mid_triangles = VGroup(self.part_ur[1], self.part_ul[1], self.part_dl[1], self.part_dr[1])
         self.outer_triangles = VGroup(self.part_ur[2], self.part_ul[2], self.part_dl[2], self.part_dr[2])
 
-class Logo_image(Scene):
 
+class Logo_image(Scene):
     CONFIG = {
         'camera_config': {
             'background_color': GRAY,
@@ -76,7 +78,6 @@ class Logo_image(Scene):
     }
 
     def construct(self):
-
         logo_black_bg = Logo(size=4.5, add_bg_square=True).shift(LEFT * 3)
 
         logo_white_bg = Logo(size=4.5, black_bg=False, add_bg_square=True).shift(RIGHT * 3)
@@ -85,14 +86,16 @@ class Logo_image(Scene):
 
         self.wait(2)
 
+
 class Logo_01(Scene):
 
     def construct(self):
-
         logo = Logo(size=3.2)
 
-        square = VGroup(*[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR),])
-        square.set_fill(WHITE, 1).set_stroke(width=0.5, color=WHITE).rotate(np.arctan(0.5)).set_height(logo.inner_triangles.get_height())
+        square = VGroup(
+            *[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR), ])
+        square.set_fill(WHITE, 1).set_stroke(width=0.5, color=WHITE).rotate(np.arctan(0.5)).set_height(
+            logo.inner_triangles.get_height())
 
         self.add(square)
         self.wait(0.5)
@@ -103,13 +106,15 @@ class Logo_01(Scene):
                   TransformFromCopy(logo.inner_triangles, logo.outer_triangles), run_time=2)
         self.wait(0.6)
 
-        big_black_rect = Rectangle(stroke_width=0, fill_color=BLACK, fill_opacity=1).scale(100).align_to(LEFT * 1.4, RIGHT)
+        big_black_rect = Rectangle(stroke_width=0, fill_color=BLACK, fill_opacity=1).scale(100).align_to(LEFT * 1.4,
+                                                                                                         RIGHT)
         big_black_rect_02 = big_black_rect.copy()
         big_black_rect_02.add_updater(lambda b: b.align_to(logo, RIGHT).shift(RIGHT * 0.15))
         text_font = '思源黑体 Bold'
         text_manim = Text('Manim', font=text_font, size=1.15).align_to(LEFT * 1.4, LEFT).align_to(logo.part_ur, DOWN)
         text_manim.set_color_by_t2c({'M': logo.color_2[2]})
-        text_kindergarten = Text('Kindergarten', font=text_font, size=1.15).align_to(logo.part_dr, UP).align_to(text_manim, LEFT)
+        text_kindergarten = Text('Kindergarten', font=text_font, size=1.15).align_to(logo.part_dr, UP).align_to(
+            text_manim, LEFT)
         text_kindergarten.set_color_by_t2c({'K': logo.color_1[2]})
         text = VGroup(text_manim, text_kindergarten).shift(LEFT * 8).set_plot_depth(-2)
         self.add(text, big_black_rect, big_black_rect_02)
@@ -117,19 +122,19 @@ class Logo_01(Scene):
 
         self.wait(4)
 
+
 class Logo_02(Scene):
     CONFIG = {
         "font": "Orbitron",
     }
 
     def construct(self):
-
-        logo = Logo(size=8/3)
+        logo = Logo(size=8 / 3)
 
         text = VGroup(
             Text("Manim", font=self.font),
             Text("Kindergarten", font=self.font)
-        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2).next_to(logo, buff=1.2).shift(DOWN*0.2)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2).next_to(logo, buff=1.2).shift(DOWN * 0.2)
         text[1][0].set_color(logo.color_2[2])
         text[0][0].set_color(logo.color_1[2])
         all_logo = VGroup(logo, text).center()
@@ -139,26 +144,27 @@ class Logo_02(Scene):
         text.add(line)
 
         bg = Rectangle(height=10, width=10, fill_color=BLACK, fill_opacity=1, stroke_width=0)
-        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT*0.2))
+        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT * 0.2))
 
         text.save_state()
-        text.shift((text.get_right()[0]-bg.get_right()[0]+0.2)*LEFT)
+        text.shift((text.get_right()[0] - bg.get_right()[0] + 0.2) * LEFT)
         logo.save_state()
         logo.move_to(ORIGIN)
         logo.scale(1.2)
         logo.rotate(TAU, axis=IN)
-        
+
         self.add(text, bg)
         self.play(FadeIn(logo[0]))
         self.wait(0.25)
         for i in range(3):
-            self.play(MyTransform(logo[i], logo[i+1], about_point=logo.get_center()), run_time=0.2, rate_func=smooth)
+            self.play(MyTransform(logo[i], logo[i + 1], about_point=logo.get_center()), run_time=0.2, rate_func=smooth)
         self.wait(0.5)
         self.play(
             text.restore, logo.restore,
             rate_func=smooth, run_time=1
         )
         self.wait()
+
 
 class Fractal_by_logo(Scene):
 
@@ -177,23 +183,24 @@ class Fractal_by_logo(Scene):
             s = 0
             for m in to_be_replaced:
                 to_replace_m = logo.copy().move_to(m.get_center()).set_height(m.get_height() * 1.335)
-                if time_01/n < 1/self.camera.frame_rate:
+                if time_01 / n < 1 / self.camera.frame_rate:
                     self.remove(m)
                     self.add(to_replace_m)
-                    s+=1
-                    if s *  time_01/n > 1/self.camera.frame_rate:
-                        self.wait(s *  time_01 / n)
+                    s += 1
+                    if s * time_01 / n > 1 / self.camera.frame_rate:
+                        self.wait(s * time_01 / n)
                         s = 0
                 else:
-                    self.play(ReplacementTransform(m, to_replace_m), run_time=time_01/n)
+                    self.play(ReplacementTransform(m, to_replace_m), run_time=time_01 / n)
                 to_be_replaced_new.add(*to_replace_m)
             self.wait(0.8)
             to_be_replaced = to_be_replaced_new
         self.wait(4)
 
+
 class MyTransform(Animation):
     CONFIG = {
-        "radians": PI/2,
+        "radians": PI / 2,
         "axis": OUT,
         "about_point": None,
         "remover": True,
@@ -220,26 +227,28 @@ class MyTransform(Animation):
             now[i].set_color(interpolate_color(self.starting_mobject[i].get_color(), self.target[i].get_color(), alpha))
         self.mobject.become(now)
 
+
 # final
 
 class Logo_black(Scene):
-
     CONFIG = {
         "font": "Orbitron",
     }
 
     def construct(self):
 
-        logo = Logo(size=8/3)
-        squares = VGroup(*[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR),])
-        squares.set_fill(WHITE, 1).set_stroke(width=0.5, color=WHITE).rotate(np.arctan(0.5)).set_height(logo.inner_triangles.get_height())
+        logo = Logo(size=8 / 3)
+        squares = VGroup(
+            *[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR), ])
+        squares.set_fill(WHITE, 1).set_stroke(width=0.5, color=WHITE).rotate(np.arctan(0.5)).set_height(
+            logo.inner_triangles.get_height())
         for s in squares:
             s.scale(0.8)
 
         text = VGroup(
             Text("Manim", font=self.font),
             Text("Kindergarten", font=self.font)
-        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN*0.2)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN * 0.2)
         text[1][0].set_color(logo.color_2[2])
         text[0][0].set_color(logo.color_1[2])
         all_logo = VGroup(logo, text).center()
@@ -249,186 +258,10 @@ class Logo_black(Scene):
         text.add(line)
 
         bg = Rectangle(height=10, width=10, fill_color=BLACK, fill_opacity=1, stroke_width=0)
-        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT*0.2))
+        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT * 0.2))
 
         text.save_state()
-        text.shift((text.get_right()[0]-bg.get_right()[0]+0.2)*LEFT)
-        logo.save_state()
-        logo.move_to(ORIGIN)
-        logo.scale(1.5)
-
-        tris = logo.inner_triangles.copy().rotate(-PI)
-        self.add(text, bg)
-
-        self.wait(0.3)
-        self.add(tris)
-        self.wait(0.3)
-        self.remove(tris)
-
-        self.wait(0.2)
-        self.add(tris)
-        self.wait(0.15)
-        self.remove(tris)
-
-        self.wait(0.1)
-        self.add(tris)
-        self.wait(0.1)
-        self.remove(tris)
-        
-        self.wait(0.075)
-        self.add(tris)
-        self.wait(0.075)
-        self.remove(tris)
-
-        self.wait(0.05)
-        self.add(tris)
-        self.wait(0.05)
-        self.remove(tris)
-        # square = Square().set_height(tris.get_height()).set_stroke(width=0.5, color=WHITE)
-        # self.play(ReplacementTransform(square, tris), run_time=1)
-        self.wait(0.2)
-        self.play(ShowSubmobjectsOneByOne(tris), rate_func=linear, run_time=0.4)
-        for i in tris:
-            self.add(i)
-            self.wait(0.1)
-        self.play(*[ReplacementTransform(tris[i], squares[i]) for i in range(4)], 
-            rate_func=rush_from, run_time=0.6)
-        #self.play(ReplacementTransform(tris, squares), rate_func=linear, run_time=0.8)
-        self.wait(0.1)
-        self.play(*[ReplacementTransform(squares[i], logo[i]) for i in range(4)], 
-            rate_func=rush_from, run_time=0.6)
-        #self.play(ReplacementTransform(squares, logo), rate_func=linear, run_time=1.5)
-        self.wait(0.1)
-        self.play(
-            text.restore, logo.restore,
-            rate_func=rush_from, run_time=0.8
-        )
-        self.wait(1)
-        self.play(FadeOut(VGroup(*self.mobjects)))
-
-
-class Logo_white(Scene):
-    CONFIG = {
-        "font": "Orbitron",
-        "camera_config": {
-            "background_color": WHITE,
-        },
-    }
-
-    def construct(self):
-
-        logo = Logo(size=8/3, black_bg=False)
-        squares = VGroup(*[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR),])
-        squares.set_fill(BLUE_C, 1).set_stroke(width=0.5, color=BLUE_C).rotate(np.arctan(0.5)).set_height(logo.inner_triangles.get_height())
-        squares[0].set_fill('#C59978', 1).set_stroke(width=0.5, color='#C59978')
-        for s in squares:
-            s.scale(0.8)
-
-        text = VGroup(
-            Text("Manim", font=self.font, color=BLACK),
-            Text("Kindergarten", font=self.font, color=BLACK)
-        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN*0.2)
-        text[1][0].set_color(logo.color_2[2])
-        text[0][0].set_color(logo.color_1[2])
-        all_logo = VGroup(logo, text).center()
-
-        line = Line(UP, DOWN, stroke_width=8, color=BLACK).move_to(mid(logo.get_right(), text.get_left()))
-        line.set_length(1.4)
-        text.add(line)
-
-        bg = Rectangle(height=10, width=10, fill_color=WHITE, fill_opacity=1, stroke_width=0)
-        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT*0.2))
-
-        text.save_state()
-        text.shift((text.get_right()[0]-bg.get_right()[0]+0.2)*LEFT)
-        logo.save_state()
-        logo.move_to(ORIGIN)
-        logo.scale(1.5)
-
-        tris = logo.inner_triangles.copy().rotate(-PI)
-        tris.set_color(BLUE_C)
-        tris[0].set_color('#C59978')
-        self.add(text, bg)
-
-        self.wait(0.3)
-        self.add(tris)
-        self.wait(0.3)
-        self.remove(tris)
-
-        self.wait(0.2)
-        self.add(tris)
-        self.wait(0.15)
-        self.remove(tris)
-
-        self.wait(0.1)
-        self.add(tris)
-        self.wait(0.1)
-        self.remove(tris)
-        
-        self.wait(0.075)
-        self.add(tris)
-        self.wait(0.075)
-        self.remove(tris)
-
-        self.wait(0.05)
-        self.add(tris)
-        self.wait(0.05)
-        self.remove(tris)
-        # square = Square().set_height(tris.get_height()).set_stroke(width=0.5, color=WHITE)
-        # self.play(ReplacementTransform(square, tris), run_time=1)
-        self.wait(0.2)
-        self.play(ShowSubmobjectsOneByOne(tris), rate_func=linear, run_time=0.4)
-        for i in tris:
-            self.add(i)
-            self.wait(0.1)
-        self.play(*[ReplacementTransform(tris[i], squares[i]) for i in range(4)], 
-            rate_func=rush_from, run_time=0.6)
-        #self.play(ReplacementTransform(tris, squares), rate_func=linear, run_time=0.8)
-        self.wait(0.1)
-        self.play(*[ReplacementTransform(squares[i], logo[i]) for i in range(4)], 
-            rate_func=rush_from, run_time=0.6)
-        #self.play(ReplacementTransform(squares, logo), rate_func=linear, run_time=1.5)
-        self.wait(0.1)
-        self.play(
-            text.restore, logo.restore,
-            rate_func=rush_from, run_time=0.8
-        )
-        self.wait(1)
-        self.play(FadeOut(VGroup(*self.mobjects)))
-
-
-class Logo_Rotate_Out(Scene):
-
-    CONFIG = {
-        "font": "Orbitron",
-    }
-
-    def construct(self):
-
-        logo = Logo(size=8/3)
-        squares = VGroup(*[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR),])
-        squares.set_fill(WHITE, 1).set_stroke(width=0.5, color=WHITE).rotate(np.arctan(0.5)).set_height(logo.inner_triangles.get_height())
-        for s in squares:
-            s.scale(0.8)
-
-        text = VGroup(
-            VGroup(*[Text(t, font=self.font) for t in 'Manim']).arrange(direction=RIGHT * 0.5, aligned_edge=DOWN),
-            VGroup(*[Text(t, font=self.font) for t in 'Kindergarten']).arrange(direction=RIGHT * 0.5, aligned_edge=DOWN)
-        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN*0.2)
-        text[1][6].align_to(text[1][5], UP)
-        text[1][0].set_color(logo.color_2[2])
-        text[0][0].set_color(logo.color_1[2])
-        all_logo = VGroup(logo, text).center()
-
-        line = Line(UP, DOWN, stroke_width=8).move_to(mid(logo.get_right(), text.get_left()))
-        line.set_length(1.4)
-        text.add(line)
-
-        bg = Rectangle(height=10, width=10, fill_color=BLACK, fill_opacity=1, stroke_width=0)
-        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT*0.2))
-
-        text.save_state()
-        text.shift((text.get_right()[0]-bg.get_right()[0]+0.2)*LEFT)
+        text.shift((text.get_right()[0] - bg.get_right()[0] + 0.2) * LEFT)
         logo.save_state()
         logo.move_to(ORIGIN)
         logo.scale(1.5)
@@ -468,12 +301,191 @@ class Logo_Rotate_Out(Scene):
             self.add(i)
             self.wait(0.1)
         self.play(*[ReplacementTransform(tris[i], squares[i]) for i in range(4)],
-            rate_func=rush_from, run_time=0.6)
-        #self.play(ReplacementTransform(tris, squares), rate_func=linear, run_time=0.8)
+                  rate_func=rush_from, run_time=0.6)
+        # self.play(ReplacementTransform(tris, squares), rate_func=linear, run_time=0.8)
         self.wait(0.1)
         self.play(*[ReplacementTransform(squares[i], logo[i]) for i in range(4)],
-            rate_func=rush_from, run_time=0.6)
-        #self.play(ReplacementTransform(squares, logo), rate_func=linear, run_time=1.5)
+                  rate_func=rush_from, run_time=0.6)
+        # self.play(ReplacementTransform(squares, logo), rate_func=linear, run_time=1.5)
+        self.wait(0.1)
+        self.play(
+            text.restore, logo.restore,
+            rate_func=rush_from, run_time=0.8
+        )
+        self.wait(1)
+        self.play(FadeOut(VGroup(*self.mobjects)))
+
+
+class Logo_white(Scene):
+    CONFIG = {
+        "font": "Orbitron",
+        "camera_config": {
+            "background_color": WHITE,
+        },
+    }
+
+    def construct(self):
+
+        logo = Logo(size=8 / 3, black_bg=False)
+        squares = VGroup(
+            *[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR), ])
+        squares.set_fill(BLUE_C, 1).set_stroke(width=0.5, color=BLUE_C).rotate(np.arctan(0.5)).set_height(
+            logo.inner_triangles.get_height())
+        squares[0].set_fill('#C59978', 1).set_stroke(width=0.5, color='#C59978')
+        for s in squares:
+            s.scale(0.8)
+
+        text = VGroup(
+            Text("Manim", font=self.font, color=BLACK),
+            Text("Kindergarten", font=self.font, color=BLACK)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN * 0.2)
+        text[1][0].set_color(logo.color_2[2])
+        text[0][0].set_color(logo.color_1[2])
+        all_logo = VGroup(logo, text).center()
+
+        line = Line(UP, DOWN, stroke_width=8, color=BLACK).move_to(mid(logo.get_right(), text.get_left()))
+        line.set_length(1.4)
+        text.add(line)
+
+        bg = Rectangle(height=10, width=10, fill_color=WHITE, fill_opacity=1, stroke_width=0)
+        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT * 0.2))
+
+        text.save_state()
+        text.shift((text.get_right()[0] - bg.get_right()[0] + 0.2) * LEFT)
+        logo.save_state()
+        logo.move_to(ORIGIN)
+        logo.scale(1.5)
+
+        tris = logo.inner_triangles.copy().rotate(-PI)
+        tris.set_color(BLUE_C)
+        tris[0].set_color('#C59978')
+        self.add(text, bg)
+
+        self.wait(0.3)
+        self.add(tris)
+        self.wait(0.3)
+        self.remove(tris)
+
+        self.wait(0.2)
+        self.add(tris)
+        self.wait(0.15)
+        self.remove(tris)
+
+        self.wait(0.1)
+        self.add(tris)
+        self.wait(0.1)
+        self.remove(tris)
+
+        self.wait(0.075)
+        self.add(tris)
+        self.wait(0.075)
+        self.remove(tris)
+
+        self.wait(0.05)
+        self.add(tris)
+        self.wait(0.05)
+        self.remove(tris)
+        # square = Square().set_height(tris.get_height()).set_stroke(width=0.5, color=WHITE)
+        # self.play(ReplacementTransform(square, tris), run_time=1)
+        self.wait(0.2)
+        self.play(ShowSubmobjectsOneByOne(tris), rate_func=linear, run_time=0.4)
+        for i in tris:
+            self.add(i)
+            self.wait(0.1)
+        self.play(*[ReplacementTransform(tris[i], squares[i]) for i in range(4)],
+                  rate_func=rush_from, run_time=0.6)
+        # self.play(ReplacementTransform(tris, squares), rate_func=linear, run_time=0.8)
+        self.wait(0.1)
+        self.play(*[ReplacementTransform(squares[i], logo[i]) for i in range(4)],
+                  rate_func=rush_from, run_time=0.6)
+        # self.play(ReplacementTransform(squares, logo), rate_func=linear, run_time=1.5)
+        self.wait(0.1)
+        self.play(
+            text.restore, logo.restore,
+            rate_func=rush_from, run_time=0.8
+        )
+        self.wait(1)
+        self.play(FadeOut(VGroup(*self.mobjects)))
+
+
+class Logo_Rotate_Out(Scene):
+    CONFIG = {
+        "font": "Orbitron",
+    }
+
+    def construct(self):
+
+        logo = Logo(size=8 / 3)
+        squares = VGroup(
+            *[Polygon(ORIGIN, UR, UL), Polygon(ORIGIN, UL, DL), Polygon(ORIGIN, DL, DR), Polygon(ORIGIN, DR, UR), ])
+        squares.set_fill(WHITE, 1).set_stroke(width=0.5, color=WHITE).rotate(np.arctan(0.5)).set_height(
+            logo.inner_triangles.get_height())
+        for s in squares:
+            s.scale(0.8)
+
+        text = VGroup(
+            VGroup(*[Text(t, font=self.font) for t in 'Manim']).arrange(direction=RIGHT * 0.5, aligned_edge=DOWN),
+            VGroup(*[Text(t, font=self.font) for t in 'Kindergarten']).arrange(direction=RIGHT * 0.5, aligned_edge=DOWN)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3).set_height(2.1).next_to(logo, buff=1.5).shift(DOWN * 0.2)
+        text[1][6].align_to(text[1][5], UP)
+        text[1][0].set_color(logo.color_2[2])
+        text[0][0].set_color(logo.color_1[2])
+        all_logo = VGroup(logo, text).center()
+
+        line = Line(UP, DOWN, stroke_width=8).move_to(mid(logo.get_right(), text.get_left()))
+        line.set_length(1.4)
+        text.add(line)
+
+        bg = Rectangle(height=10, width=10, fill_color=BLACK, fill_opacity=1, stroke_width=0)
+        bg.add_updater(lambda m: m.move_to(logo, aligned_edge=RIGHT).shift(RIGHT * 0.2))
+
+        text.save_state()
+        text.shift((text.get_right()[0] - bg.get_right()[0] + 0.2) * LEFT)
+        logo.save_state()
+        logo.move_to(ORIGIN)
+        logo.scale(1.5)
+
+        tris = logo.inner_triangles.copy().rotate(-PI)
+        self.add(text, bg)
+
+        self.wait(0.3)
+        self.add(tris)
+        self.wait(0.3)
+        self.remove(tris)
+
+        self.wait(0.2)
+        self.add(tris)
+        self.wait(0.15)
+        self.remove(tris)
+
+        self.wait(0.1)
+        self.add(tris)
+        self.wait(0.1)
+        self.remove(tris)
+
+        self.wait(0.075)
+        self.add(tris)
+        self.wait(0.075)
+        self.remove(tris)
+
+        self.wait(0.05)
+        self.add(tris)
+        self.wait(0.05)
+        self.remove(tris)
+        # square = Square().set_height(tris.get_height()).set_stroke(width=0.5, color=WHITE)
+        # self.play(ReplacementTransform(square, tris), run_time=1)
+        self.wait(0.2)
+        self.play(ShowSubmobjectsOneByOne(tris), rate_func=linear, run_time=0.4)
+        for i in tris:
+            self.add(i)
+            self.wait(0.1)
+        self.play(*[ReplacementTransform(tris[i], squares[i]) for i in range(4)],
+                  rate_func=rush_from, run_time=0.6)
+        # self.play(ReplacementTransform(tris, squares), rate_func=linear, run_time=0.8)
+        self.wait(0.1)
+        self.play(*[ReplacementTransform(squares[i], logo[i]) for i in range(4)],
+                  rate_func=rush_from, run_time=0.6)
+        # self.play(ReplacementTransform(squares, logo), rate_func=linear, run_time=1.5)
         self.wait(0.1)
         self.play(
             text.restore, logo.restore,
@@ -483,10 +495,12 @@ class Logo_Rotate_Out(Scene):
         self.play(VGroup(*self.mobjects).shift, UP * 1.2)
         self.wait(0.5)
         s = ValueTracker(-7)
+
         def rotate_out(a, dt):
             w = 1.
             if a.get_center()[0] < s.get_value() or a.get_center()[-1] != 0:
-                a.rotate(w * (1 + 2.5 * np.random.random()) * DEGREES, axis=UR, about_point=RIGHT * s.get_value() + OUT * 0.25)
+                a.rotate(w * (1 + 2.5 * np.random.random()) * DEGREES, axis=UR,
+                         about_point=RIGHT * s.get_value() + OUT * 0.25)
                 # a.rotate(w * (1 + 2 * np.random.random()) * DEGREES, axis=UR, about_point=RIGHT * s.get_value() + OUT * (0.12+s.get_value()*0.2))
 
         for i in range(4):
@@ -505,4 +519,3 @@ class Logo_Rotate_Out(Scene):
         self.play(s.set_value, 10, rate_func=rush_into, run_time=3.6)
 
         self.wait(1)
-
