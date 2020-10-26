@@ -1,5 +1,5 @@
 from manimlib.imports import *
-import itertools
+
 
 def debugTeX(self, texm, scale=0.6):
     for i, j in enumerate(texm):

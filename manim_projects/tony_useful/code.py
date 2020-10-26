@@ -1,11 +1,12 @@
 from manimlib.imports import *
 
+
 class Code(Text):
     CONFIG = {
-        'font'         : 'Monaco for Powerline',
-        'size'         : 0.5,
-        'color'        : WHITE,
-        'stroke_color' : WHITE,
+        'font': 'Monaco for Powerline',
+        'size': 0.5,
+        'color': WHITE,
+        'stroke_color': WHITE,
         'stroke_weight': 0,
     }
 
@@ -16,14 +17,15 @@ class Code(Text):
         super(Code, self).__init__(res_text, **config)
         self.set_stroke(self.stroke_color, self.stroke_weight)
 
+
 class LinedCode(Text):
     CONFIG = {
-        'font'         : 'Consolas',
-        'size'         : 0.5,
-        'color'        : WHITE,
-        'stroke_color' : WHITE,
+        'font': 'Consolas',
+        'size': 0.5,
+        'color': WHITE,
+        'stroke_color': WHITE,
         'stroke_weight': 0,
-        'ln_color'     : GRAY,
+        'ln_color': GRAY,
     }
 
     def __init__(self, *text, **config):

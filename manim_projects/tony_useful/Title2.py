@@ -1,5 +1,6 @@
 from manimlib.imports import *
 
+
 class Title2(Text):
     CONFIG = {
         "scale_factor": 0.75,

@@ -1,11 +1,13 @@
 from manimlib.imports import *
 
+
 class TripleScene(Scene):
     CONFIG = {
         "good_file": "good",
         "coin_file": "coin",
         "favo_file": "favo",
     }
+
     def construct(self):
         self.get_svg()
         good = self.good
@@ -45,6 +47,6 @@ class TripleScene(Scene):
         self.wait()
 
     def get_svg(self):
-        self.good = SVGMobject(self.good_file).set_height(1).move_to(LEFT*2.5+DOWN*2.7)
-        self.coin = SVGMobject(self.coin_file).set_height(1).move_to(DOWN*2.7)
-        self.favo = SVGMobject(self.favo_file).set_height(1).move_to(RIGHT*2.5+DOWN*2.7)
+        self.good = SVGMobject(self.good_file).set_height(1).move_to(LEFT * 2.5 + DOWN * 2.7)
+        self.coin = SVGMobject(self.coin_file).set_height(1).move_to(DOWN * 2.7)
+        self.favo = SVGMobject(self.favo_file).set_height(1).move_to(RIGHT * 2.5 + DOWN * 2.7)

@@ -1,10 +1,10 @@
 # from @cigar666
 from manimlib.imports import *
 
-class MyText_old(TexMobject):
 
+class MyText_old(TexMobject):
     CONFIG = {
-        'default_font': '思源黑体',
+        'default_font': 'Source Han Sans CN',
     }
 
     def __init__(self, *tex_strings, **kwargs):
@@ -31,7 +31,6 @@ class MyText_old(TexMobject):
         if new_tex != None:
             tex = new_tex
         for part in parts_to_font:
-
             tex_new = Text(tex, font=font, color=color)
             tex_new.set_height(part.get_height())
             # tex_new.set_width(part.get_width())
@@ -66,8 +65,8 @@ class MyText_old(TexMobject):
         self.set_font_by_tex_to_font_map(texs_to_font_map, texs_replace_map, **kwargs)
         return self.new_font_texs
 
-class MyText(TexMobject):
 
+class MyText(TexMobject):
     CONFIG = {
         'default_font': 'SWGothe',
         'tex_scale_factor': 1,
@@ -91,7 +90,7 @@ class MyText(TexMobject):
     def get_new_font_texs(self, replace_dict):
         for i in range(len(self.tex_strings)):
             tex = self.tex_strings[i]
-            color=self.get_color_by_tex(tex)
+            color = self.get_color_by_tex(tex)
             if tex in replace_dict:
                 tex = replace_dict[tex]
             tex_new = Text(tex, font=self.default_font, color=color)
@@ -103,33 +102,32 @@ class MyText(TexMobject):
             self.new_font_texs.add(tex_new)
         return self.new_font_texs
 
+
 class Test_mytext(Scene):
 
     def construct(self):
-
         color_dict = {'R': PINK, 'd': YELLOW, 'r': ORANGE, '\\theta': BLUE, '\\over': WHITE,
-              't': BLUE, 'e': GREEN, 'i': RED, '\\sin': WHITE, '\\cos': WHITE}
+                      't': BLUE, 'e': GREEN, 'i': RED, '\\sin': WHITE, '\\cos': WHITE}
 
         font_list = ['Comic Sans MS', '庞门正道标题体', 'Consolas', 'SWGothe', 'Rough___Dusty_Chalk',
                      'SWScrps', '新蒂小丸子体']
 
         origin_formula = TexMobject('f', '(', 't', ')', '=', 'x', '(', 't', ')', '+', 'y', '(', 't', ')', 'i', '=',
-                             '(', 'R', '-', 'r', ')', 'e^{', 'i', 't}', '+', 'd', 'e^{', '-', 'i', '{R', '-',
-                             'r', '\\over', 'r}', 't}').scale(1)\
-                        .set_color_by_tex_to_color_map(color_dict).to_corner(LEFT * 2 + UP * 1.5)
+                                    '(', 'R', '-', 'r', ')', 'e^{', 'i', 't}', '+', 'd', 'e^{', '-', 'i', '{R', '-',
+                                    'r', '\\over', 'r}', 't}').scale(1) \
+            .set_color_by_tex_to_color_map(color_dict).to_corner(LEFT * 2 + UP * 1.5)
         formulas = VGroup(origin_formula)
 
         for i in range(len(font_list)):
             formula_i = MyText('f', '(', 't', ')', '=', 'x', '(', 't', ')', '+', 'y', '(', 't', ')', 'i', '=',
-                             '(', 'R', '-', 'r', ')', 'e^{', 'i', 't}', '+', 'd', 'e^{', '-', 'i', '{R', '-',
-                             'r', '\\over', 'r}', 't}', default_font=font_list[i], tex_scale_factor=0.75)
+                               '(', 'R', '-', 'r', ')', 'e^{', 'i', 't}', '+', 'd', 'e^{', '-', 'i', '{R', '-',
+                               'r', '\\over', 'r}', 't}', default_font=font_list[i], tex_scale_factor=0.75)
             formula_i.set_color_by_tex_to_color_map(color_dict)
             replace_dict = {'e^{': 'e', 't}': 't', '{R': 'R', 'r}': 'r', '\\over': '-'}
             new_formula = formula_i.get_new_font_texs(replace_dict)
-            new_formula.to_corner(LEFT * 2 + UP * 1.5).shift(DOWN * 0.8 * (i+1))
+            new_formula.to_corner(LEFT * 2 + UP * 1.5).shift(DOWN * 0.8 * (i + 1))
             formulas.add(new_formula)
 
         self.add(formulas)
 
         self.wait(5)
-
