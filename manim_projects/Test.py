@@ -2,10 +2,10 @@ from random import randint
 from manim_projects.tony_useful.imports import *
 from manim_projects.cigar666_utils.my_geometry import *
 
-'''
+"""
 这个文件中是群友问问题时我写的测试代码(2020.02.03开始)
 一些目的和效果已经通过文档字符串的形式给出
-'''
+"""
 
 
 class Test0(Scene):
@@ -30,7 +30,7 @@ class Test0(Scene):
 
 
 class Test1(Scene):
-    '''Matrix类中间元素的下标布局'''
+    """Matrix类中间元素的下标布局"""
 
     def construct(self):
         mat = Matrix([['0', '-1', '2'], ['1', '0', '12'], ['3', '2', 'x']])
@@ -39,7 +39,7 @@ class Test1(Scene):
 
 
 class Test2(Scene):
-    '''使用\tt调TextMobject打字机字体'''
+    """使用\tt调TextMobject打字机字体"""
 
     def construct(self):
         text = VGroup(
@@ -52,7 +52,7 @@ class Test2(Scene):
 
 
 class Test3(Scene):
-    '''坐标可以用ndarray，也可以用列表'''
+    """坐标可以用ndarray，也可以用列表"""
 
     def construct(self):
         l = Line([0, 0, 0], [3, 3, 0])
@@ -60,7 +60,7 @@ class Test3(Scene):
 
 
 class Test4(Scene):
-    '''aligned_edge的用法'''
+    """aligned_edge的用法"""
 
     def construct(self):
         sq1 = Square().shift(LEFT * 2)
@@ -72,7 +72,7 @@ class Test4(Scene):
 
 
 class Test5(Scene):
-    '''加号强制next_to对齐'''
+    """加号强制next_to对齐"""
 
     def construct(self):
         text = TextMobject("LOVE\\ DEATH\\ ", "$+$", "\\ ROBOTS", color=RED)
@@ -82,7 +82,7 @@ class Test5(Scene):
 
 
 class Test6(Scene):
-    '''FocusOn和Flash的动画效果'''
+    """FocusOn和Flash的动画效果"""
 
     def construct(self):
         title1 = TextMobject("FocusOn").scale(2).to_corner(UL)
@@ -100,7 +100,7 @@ class Test6(Scene):
 
 
 class Test7(Scene):
-    '''白底黑字'''
+    """白底黑字"""
 
     def construct(self):
         txt = TexMobject("0",
@@ -113,7 +113,7 @@ class Test7(Scene):
 
 
 class Test8(Scene):
-    '''使用Rectangle或者Line来强制Brace宽度'''
+    """使用Rectangle或者Line来强制Brace宽度"""
 
     def construct(self):
         rec = Rectangle(width=4)
@@ -122,7 +122,7 @@ class Test8(Scene):
 
 
 class Test9(ThreeDScene):
-    '''立方体三维旋转'''
+    """立方体三维旋转"""
 
     def construct(self):
         self.set_to_default_angled_camera_orientation()
@@ -134,7 +134,7 @@ class Test9(ThreeDScene):
 
 
 class Test10(Scene):
-    '''文字渐变色'''
+    """文字渐变色"""
 
     def construct(self):
         text = TextMobject("test").scale(2).set_color_by_gradient(BLUE, RED)
@@ -142,7 +142,7 @@ class Test10(Scene):
 
 
 class Test11(Scene):
-    '''LaTeX的cases可行'''
+    """LaTeX的cases可行"""
 
     def construct(self):
         text = TexMobject(
@@ -184,7 +184,7 @@ class Test12(Scene):
 
 
 class Test13(Scene):
-    '''Uncreate效果，注意不是UnCreate'''
+    """Uncreate效果，注意不是UnCreate"""
 
     def construct(self):
         sq = Square()
@@ -211,7 +211,7 @@ class Test14(Scene):
 
 
 class Test15(GraphScene):
-    '''GraphScene的坐标轴可以FadeOut'''
+    """GraphScene的坐标轴可以FadeOut"""
 
     def construct(self):
         self.setup_axes(animate=True)
@@ -239,7 +239,7 @@ class Test16(Scene):
 
 
 class Test17(Scene):
-    '''使用index_of_submobject_to_align来对齐，注意要get_center()'''
+    """使用index_of_submobject_to_align来对齐，注意要get_center()"""
 
     def construct(self):
         vg1 = VGroup(
@@ -259,7 +259,7 @@ class Test17(Scene):
 
 
 class Test18(Scene):
-    '''使用tex[0]来对TexMobject的每个字符进行分解'''
+    """使用tex[0]来对TexMobject的每个字符进行分解"""
 
     def construct(self):
         tex = TexMobject("a^2+b^2=c^2")
@@ -268,7 +268,7 @@ class Test18(Scene):
 
 
 class Test19(Scene):
-    '''用AnimatedBoundary实现Line的颜色变化'''
+    """用AnimatedBoundary实现Line的颜色变化"""
 
     def construct(self):
         l = Line(LEFT * 3, RIGHT * 3)
@@ -280,7 +280,7 @@ class Test19(Scene):
 
 
 class Test20(Scene):
-    '''使用set_opacity实现闪烁效果'''
+    """使用set_opacity实现闪烁效果"""
 
     def construct(self):
         text = TextMobject("颓废最不要脸")
@@ -292,7 +292,7 @@ class Test20(Scene):
 
 
 class Test21(Scene):
-    '''圆弧flip的默认轴'''
+    """圆弧flip的默认轴"""
 
     def construct(self):
         grid = NumberPlane()
@@ -308,7 +308,7 @@ class Test22(Scene):
 
 
 class Test23(Scene):
-    '''move_arc_center_to和不同run_time的动画同时播放'''
+    """move_arc_center_to和不同run_time的动画同时播放"""
 
     def construct(self):
         sq = Square(side_length=4)
@@ -319,7 +319,7 @@ class Test23(Scene):
 
 
 class Test24(Scene):
-    '''环绕每个字符'''
+    """环绕每个字符"""
 
     def construct(self):
         text = TextMobject("abcdefgh")
@@ -330,7 +330,7 @@ class Test24(Scene):
 
 
 class Test25(Scene):
-    '''使用LaTeX的表格'''
+    """使用LaTeX的表格"""
 
     def construct(self):
         tab = TextMobject(
@@ -348,7 +348,7 @@ class Test25(Scene):
 
 
 class Test26(Scene):
-    '''Succession，其实和多个play没什么区别'''
+    """Succession，其实和多个play没什么区别"""
 
     def construct(self):
         group = VGroup(
@@ -371,7 +371,7 @@ class Test26(Scene):
 
 
 class Test27(Scene):
-    '''UP和TOP在to_corner时的区别'''
+    """UP和TOP在to_corner时的区别"""
 
     def construct(self):
         text = TextMobject("to\_corner UP").to_corner(UP)
@@ -381,7 +381,7 @@ class Test27(Scene):
 
 
 class Test28(Scene):
-    '''将所有物体都FadeOut，没有add的物体也不会强制add再FadeOut'''
+    """将所有物体都FadeOut，没有add的物体也不会强制add再FadeOut"""
 
     def construct(self):
         sq = Square()
@@ -398,7 +398,7 @@ class Test28(Scene):
 
 
 class Test29(Scene):
-    '''Text不会自动换行'''
+    """Text不会自动换行"""
 
     def construct(self):
         text = Text("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", font="Consolas")
@@ -406,7 +406,7 @@ class Test29(Scene):
 
 
 class Test30(Scene):
-    '''字符上弧'''
+    """字符上弧"""
 
     def construct(self):
         text = TextMobject("\\overarc{AB}")
@@ -425,7 +425,7 @@ class Test31(Scene):
 
 
 class Test32(GraphScene):
-    '''get_graph必须在setup_axes之后'''
+    """get_graph必须在setup_axes之后"""
 
     def construct(self):
         self.setup_axes(animate=True)
@@ -442,7 +442,7 @@ class Test32(GraphScene):
 
 
 class Test33(Scene):
-    '''用颜色灰度来实现透明度的效果，防止两透明度颜色相叠加，导致亮度突变'''
+    """用颜色灰度来实现透明度的效果，防止两透明度颜色相叠加，导致亮度突变"""
 
     def construct(self):
         colors = color_gradient(["#6C6C00", YELLOW], 9)
@@ -457,7 +457,7 @@ class Test33(Scene):
 
 
 class Test34(ThreeDScene):
-    '''cube的面'''
+    """cube的面"""
 
     def construct(self):
         self.set_to_default_angled_camera_orientation()
@@ -468,7 +468,7 @@ class Test34(ThreeDScene):
 
 
 class Test35(GraphScene):
-    '''使用updater来实现graph的更新'''
+    """使用updater来实现graph的更新"""
 
     def construct(self):
         self.setup_axes()
@@ -481,7 +481,7 @@ class Test35(GraphScene):
 
 
 class Test36(ThreeDScene):
-    '''抛物面'''
+    """抛物面"""
 
     def construct(self):
         self.set_to_default_angled_camera_orientation()
@@ -493,7 +493,7 @@ class Test36(ThreeDScene):
 
 
 class Test37(Scene):
-    '''Transfrom前统一方向，使动画更顺滑'''
+    """Transfrom前统一方向，使动画更顺滑"""
 
     def construct(self):
         ci = Circle()
@@ -505,7 +505,7 @@ class Test37(Scene):
 
 
 class Test38(Scene):
-    '''根式上色'''
+    """根式上色"""
 
     def construct(self):
         text = TexMobject("\\sqrt{x^2+y^2+z^2}")
@@ -515,7 +515,7 @@ class Test38(Scene):
 
 
 class Test39(Scene):
-    '''上色'''
+    """上色"""
 
     def construct(self):
         text4 = TexMobject(
@@ -533,7 +533,7 @@ class Test39(Scene):
 
 
 class Test40(Scene):
-    '''一个self.play中无法处理两个针对同一物体的ApplyMethod，但不加ApplyMethod可以'''
+    """一个self.play中无法处理两个针对同一物体的ApplyMethod，但不加ApplyMethod可以"""
 
     def construct(self):
         dot = Dot(color=BLUE)
@@ -552,7 +552,7 @@ class Test40(Scene):
 
 
 class Test41(Scene):
-    '''replace的作用'''
+    """replace的作用"""
 
     def construct(self):
         sq = Square().scale(2)
@@ -563,7 +563,7 @@ class Test41(Scene):
 
 
 class Test42(Scene):
-    '''使用updater时不能使用循环变量i'''
+    """使用updater时不能使用循环变量i"""
 
     def construct(self):
         ups = VGroup(
@@ -608,7 +608,7 @@ class Test42(Scene):
 
 
 class Test43(Scene):
-    '''和Test40同理'''
+    """和Test40同理"""
 
     def construct(self):
         dot = Dot(color=BLUE)
@@ -678,7 +678,7 @@ class Test45(ThreeDScene):
 
 
 class Test46(Scene):
-    '''Brace'''
+    """Brace"""
 
     def construct(self):
         text = TextMobject("test")
@@ -688,7 +688,7 @@ class Test46(Scene):
 
 
 class Test47(Scene):
-    '''LaTeX的dancers小人，需要下载字体包并且更改ctex_template'''
+    """LaTeX的dancers小人，需要下载字体包并且更改ctex_template"""
 
     def construct(self):
         Test = VGroup()
@@ -705,7 +705,7 @@ class Test47(Scene):
 
 
 class Test48(Scene):
-    '''plot_depth'''
+    """plot_depth"""
     CONFIG = {
         "camera_config": {"use_plot_depth": True}
     }
@@ -720,7 +720,7 @@ class Test48(Scene):
 
 
 class Test49(Scene):
-    '''使用LaTeX的lstlisting写代码，需要改ctex_template'''
+    """使用LaTeX的lstlisting写代码，需要改ctex_template"""
 
     def construct(self):
         text = TextMobject("""
@@ -734,7 +734,7 @@ class Test49(Scene):
 
 
 class Test50(ThreeDScene):
-    '''正劈锥体，渲染贼慢'''
+    """正劈锥体，渲染贼慢"""
 
     def construct(self):
         axes = ThreeDAxes()
@@ -762,7 +762,7 @@ class Test50(ThreeDScene):
 
 
 class Test51(ThreeDScene):
-    '''棱锥到近似圆锥'''
+    """棱锥到近似圆锥"""
 
     def construct(self):
         axes = ThreeDAxes()
@@ -805,7 +805,7 @@ class Test51(ThreeDScene):
 
 
 class Test52(SpecialThreeDScene):
-    '''Boxes类的test'''
+    """Boxes类的test"""
     CONFIG = {
         "default_angled_camera_position": {
             "phi": 70 * DEGREES,
@@ -838,7 +838,7 @@ class Test52(SpecialThreeDScene):
 
 
 class Test53(ThreeDScene):
-    '''MyBoxes的序号分布'''
+    """MyBoxes的序号分布"""
 
     def construct(self):
         axes = ThreeDAxes()
@@ -850,7 +850,7 @@ class Test53(ThreeDScene):
 
 
 class Test54(ThreeDScene):
-    '''测试元素周期表'''
+    """测试元素周期表"""
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -867,7 +867,7 @@ class Test54(ThreeDScene):
 
 
 class Test55(Scene):
-    '''无法像这样获取圆上某一方向的点'''
+    """无法像这样获取圆上某一方向的点"""
 
     def construct(self):
         ci = Circle()
@@ -877,7 +877,7 @@ class Test55(Scene):
 
 
 class Test56(Scene):
-    '''带dt的updater'''
+    """带dt的updater"""
 
     def construct(self):
         dot = Dot().to_edge(UP)
@@ -887,7 +887,7 @@ class Test56(Scene):
 
 
 class Test57(Scene):
-    '''文字上下标'''
+    """文字上下标"""
 
     def construct(self):
         text = TextMobject("正文A$_{\\text{下标B}}^{\\text{上标C}}$").scale(3)
@@ -895,7 +895,7 @@ class Test57(Scene):
 
 
 class Test58(Scene):
-    '''rate_func'''
+    """rate_func"""
 
     def construct(self):
         func = ParametricFunction(
@@ -906,7 +906,7 @@ class Test58(Scene):
 
 
 class Test59(Scene):
-    '''save_image'''
+    """save_image"""
 
     def construct(self):
         sq = Square()
@@ -915,7 +915,7 @@ class Test59(Scene):
 
 
 class Test60(Scene):
-    '''根据等号对齐'''
+    """根据等号对齐"""
 
     def construct(self):
         tex1 = TexMobject("A=\\frac{\\displaystyle\\sum^n_{i=0}}{x}")
@@ -950,7 +950,7 @@ class Test61(Scene):
 
 
 class Test62(Scene):
-    '''三角形绕边翻转'''
+    """三角形绕边翻转"""
 
     def construct(self):
         tri = Triangle()
@@ -964,7 +964,7 @@ class Test62(Scene):
 
 
 class Test63(Scene):
-    '''文字渐变色的区别'''
+    """文字渐变色的区别"""
 
     def construct(self):
         vg = VGroup(
@@ -978,7 +978,7 @@ class Test63(Scene):
 
 
 class Test64(Scene):
-    '''CubicBezier的points只有四个点，即锚点和控制点，但ParametricFunction是好多贝塞尔曲线，好多点'''
+    """CubicBezier的points只有四个点，即锚点和控制点，但ParametricFunction是好多贝塞尔曲线，好多点"""
 
     def construct(self):
         # line = CubicBezier([np.array([  -3, -1.5, 0]), np.array([-3.6,  1.5, 0]), np.array([   0,  1.5, 0]), np.array([   3, -1.5, 0])])
@@ -992,7 +992,7 @@ class Test64(Scene):
 
 
 class Test65(Scene):
-    '''渐变色的方向，用sheen_direction来设定'''
+    """渐变色的方向，用sheen_direction来设定"""
 
     def construct(self):
         sq = Square()
@@ -1007,7 +1007,7 @@ class Test65(Scene):
 
 
 class Test66(Scene):
-    '''digest_config的很愚蠢的用法'''
+    """digest_config的很愚蠢的用法"""
     CONFIG = {
         "stroke_width": 15,
     }
@@ -1019,7 +1019,7 @@ class Test66(Scene):
 
 
 class Test67(Scene):
-    '''arc的points，用好多贝塞尔曲线来拟合的'''
+    """arc的points，用好多贝塞尔曲线来拟合的"""
 
     def construct(self):
         arc = Arc().scale(3)
@@ -1036,7 +1036,7 @@ class Test68(Scene):
 
 
 class Test69(ThreeDScene):
-    '''无法将三维物体Transform到fixed_in_frame_mobjects的二维物体，但可以通过z_to_vector等变换得到类似的效果'''
+    """无法将三维物体Transform到fixed_in_frame_mobjects的二维物体，但可以通过z_to_vector等变换得到类似的效果"""
 
     def construct(self):
         self.set_camera_orientation(phi=60 * DEGREES, theta=45 * DEGREES)
@@ -1056,7 +1056,7 @@ class Test69(ThreeDScene):
 
 
 class Test70(Scene):
-    '''无法通过get_points获取TexMobject的点'''
+    """无法通过get_points获取TexMobject的点"""
 
     def construct(self):
         tex = TexMobject("S").scale(2)
@@ -1077,7 +1077,7 @@ class Test71(Scene):
 
 
 class Test72(Scene):
-    '''光源'''
+    """光源"""
 
     def construct(self):
         light = AmbientLight()
@@ -1085,7 +1085,7 @@ class Test72(Scene):
 
 
 class Test73(Scene):
-    '''running_start的写法是六次贝塞尔曲线'''
+    """running_start的写法是六次贝塞尔曲线"""
 
     def construct(self):
         grid = NumberPlane().scale(3)
@@ -1109,7 +1109,7 @@ class Test73(Scene):
 
 
 class Test74(Scene):
-    '''幼儿园小练习1'''
+    """幼儿园小练习1"""
     CONFIG = {
         "camera_config": {
             "use_plot_depth": True,
@@ -1236,7 +1236,7 @@ class Test74(Scene):
 
 
 class Test75(Scene):
-    '''对坐标轴的非线性变换'''
+    """对坐标轴的非线性变换"""
 
     def construct(self):
         grid = ComplexPlane().prepare_for_nonlinear_transform(50)
@@ -1251,7 +1251,7 @@ class Test75(Scene):
 
 
 class Test76(Scene):
-    '''交换点的顺序实现五角星'''
+    """交换点的顺序实现五角星"""
 
     def construct(self):
         poly = RegularPolygon(5)
@@ -1262,7 +1262,7 @@ class Test76(Scene):
 
 
 class Test77(Scene):
-    '''对Imageset_color，所有rgb均替换为指定颜色，但保留alpha'''
+    """对Imageset_color，所有rgb均替换为指定颜色，但保留alpha"""
 
     def construct(self):
         image = ImageMobject("GZTime.png").set_color(RED)
@@ -1270,7 +1270,7 @@ class Test77(Scene):
 
 
 class MyTransform(Animation):
-    '''继承Animation类，自定义动画，用于下一个场景'''
+    """继承Animation类，自定义动画，用于下一个场景"""
     CONFIG = {
         "radians": PI / 2,
         "axis": OUT,
@@ -1301,7 +1301,7 @@ class MyTransform(Animation):
 
 
 class Test78(Scene):
-    '''logo的一种动画方案'''
+    """logo的一种动画方案"""
 
     def construct(self):
         logo1 = VGroup(
@@ -1345,7 +1345,7 @@ class Test78(Scene):
 
 
 class Test79(Scene):
-    '''逐字上颜色'''
+    """逐字上颜色"""
 
     def construct(self):
         tex = TextMobject("text or object")
@@ -1365,9 +1365,10 @@ class Test79(Scene):
 
 
 class Test80(Scene):
-    '''rate_func的细节效果'''
+    """rate_func的细节效果"""
 
     def construct(self):
+        func = 'Wiggle'
         dot = Dot()
         self.add(dot)
         self.wait()
@@ -1376,7 +1377,7 @@ class Test80(Scene):
 
 
 class Test81(Scene):
-    '''白底logo的配色方案'''
+    """白底logo的配色方案"""
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -1409,7 +1410,7 @@ class Test82(Scene):
 
 
 class Test83(LogoGenerationTemplate):
-    '''3B1B的logo动效，并不是想要的效果'''
+    """3B1B的logo动效，并不是想要的效果"""
     CONFIG = {
         "random_seed": 2,
     }
@@ -1446,7 +1447,7 @@ class Test83(LogoGenerationTemplate):
 
 
 class Test84(Scene):
-    '''坐标系非线性复变换'''
+    """坐标系非线性复变换"""
 
     def construct(self):
         grid = ComplexPlane().prepare_for_nonlinear_transform(50)
@@ -1457,7 +1458,7 @@ class Test84(Scene):
 
 
 class Test85(Scene):
-    '''由Line+VGroup拼成的多边形无法上色'''
+    """由Line+VGroup拼成的多边形无法上色"""
 
     def construct(self):
         vg = VGroup(
@@ -1469,7 +1470,7 @@ class Test85(Scene):
 
 
 class Test86(Scene):
-    '''PointCouldDot的细节，有一个个像素点构成的点'''
+    """PointCouldDot的细节，有一个个像素点构成的点"""
 
     def construct(self):
         test = PointCloudDot().scale(30)
@@ -1477,7 +1478,7 @@ class Test86(Scene):
 
 
 class Test87(Scene):
-    '''无法用Polygon表示折线，因为Polygon强制首尾相接'''
+    """无法用Polygon表示折线，因为Polygon强制首尾相接"""
 
     def construct(self):
         lines = Polygon(ORIGIN, UP, RIGHT)
@@ -1485,7 +1486,7 @@ class Test87(Scene):
 
 
 class Lines(VMobject):
-    '''利用set_points_as_corner实现的折线类'''
+    """利用set_points_as_corner实现的折线类"""
 
     def __init__(self, *points, **kwargs):
         VMobject.__init__(self, **kwargs)
@@ -1493,7 +1494,7 @@ class Lines(VMobject):
 
 
 class Test88(Scene):
-    '''上面的折线类和VGroup+Line构造的折线的ShowCreation效果相同'''
+    """上面的折线类和VGroup+Line构造的折线的ShowCreation效果相同"""
 
     def construct(self):
         # lines = Lines(ORIGIN, UP, RIGHT)
@@ -1505,7 +1506,7 @@ class Test88(Scene):
 
 
 class Test89(Scene):
-    '''测试PMobject，用于画点，stroke_width表示点大小'''
+    """测试PMobject，用于画点，stroke_width表示点大小"""
 
     def construct(self):
         points = PMobject(stroke_width=1080)
@@ -1514,7 +1515,7 @@ class Test89(Scene):
 
 
 class Test90(Scene):
-    '''mk的一次作业，测试包络线'''
+    """mk的一次作业，测试包络线"""
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -1579,7 +1580,7 @@ class Test90(Scene):
 
 
 class Test91(Scene):
-    '''tex上色后会拆开'''
+    """tex上色后会拆开"""
 
     def construct(self):
         tex = TexMobject("abcdefghijk")
@@ -1594,7 +1595,7 @@ class Test91(Scene):
 
 
 class Test92(Scene):
-    '''测试shift多参数'''
+    """测试shift多参数"""
 
     def construct(self):
         plane = NumberPlane()
@@ -1603,7 +1604,7 @@ class Test92(Scene):
 
 
 class Test93(Scene):
-    '''测试切线，适用于所有带路径的，包括文字'''
+    """测试切线，适用于所有带路径的，包括文字"""
 
     def construct(self):
         circle = Circle()
@@ -1622,7 +1623,7 @@ class Test93(Scene):
 
 
 class Test94(ThreeDScene):
-    '''3D移动相机中心，但是好像没有动画效果'''
+    """3D移动相机中心，但是好像没有动画效果"""
 
     def construct(self):
         self.set_to_default_angled_camera_orientation()
@@ -1635,7 +1636,7 @@ class Test94(ThreeDScene):
 
 
 class Test95(Scene):
-    '''修Text的bug时用的，现在应该不好使了'''
+    """修Text的bug时用的，现在应该不好使了"""
 
     def construct(self):
         text = Text("abcdefghijklmnopqrstuvwkyz", font="庞门正道标题体", fill_opacity=0, debug=True).scale(1).set_stroke(
@@ -1651,7 +1652,7 @@ class Test95(Scene):
 
 
 class Test96(Scene):
-    '''修Text的bug时用的，现在应该不好使了'''
+    """修Text的bug时用的，现在应该不好使了"""
 
     def construct(self):
         text = Text("a  b", font="庞门正道标题体", debug=True).scale(3).shift(UP * 2)
@@ -1669,7 +1670,7 @@ class Test96(Scene):
 
 
 class Test97(Scene):
-    '''修Text的bug时用的，现在应该不好使了'''
+    """修Text的bug时用的，现在应该不好使了"""
 
     def construct(self):
         text = VGroup(
@@ -1683,7 +1684,7 @@ class Test97(Scene):
 
 
 class Test98(Scene):
-    '''修Text的bug时用的，现在应该不好使了'''
+    """修Text的bug时用的，现在应该不好使了"""
 
     def construct(self):
         text = VGroup(
@@ -1700,7 +1701,7 @@ class Test98(Scene):
 
 
 class Test99(Scene):
-    '''修Text的bug时用的，现在应该不好使了'''
+    """修Text的bug时用的，现在应该不好使了"""
 
     def construct(self):
         title = Text("default size compare", font="Consolas", color=BLUE).scale(1.5).shift(UP * 2)
@@ -1718,7 +1719,7 @@ class Test99(Scene):
 
 
 class Test100(Scene):
-    '''测试ImageMobject导入gif，只保留第一帧，无动图'''
+    """测试ImageMobject导入gif，只保留第一帧，无动图"""
 
     def construct(self):
         img = ImageMobject("Test96.gif")
@@ -1727,7 +1728,7 @@ class Test100(Scene):
 
 
 class Test101(Scene):
-    '''试验黑背景遮罩'''
+    """试验黑背景遮罩"""
     CONFIG = {
         "reverse_order": False,
     }
@@ -1760,7 +1761,7 @@ class Test101(Scene):
 
 
 class Test102(Scene):
-    '''同大小Image的Transform'''
+    """同大小Image的Transform"""
 
     def construct(self):
         img1 = ImageMobject("latexlive.png", height=8)
@@ -1774,7 +1775,7 @@ class Test102(Scene):
 
 
 class Test103(Scene):
-    '''测试Code'''
+    """测试Code"""
 
     def construct(self):
         helloworldcpp = Code(
@@ -1790,7 +1791,7 @@ class Test103(Scene):
 
 
 class Test104(Scene):
-    '''修Text的bug时用的'''
+    """修Text的bug时用的"""
 
     def construct(self):
         text1 = Text("  ab\ncd", font="Consolas", size=2)
@@ -1802,7 +1803,7 @@ class Test104(Scene):
 
 
 class Test105(Scene):
-    '''修Text的bug时用的'''
+    """修Text的bug时用的"""
 
     def construct(self):
         text = Text("  ab\ncd\nef", font="Consolas", size=2)
@@ -1816,7 +1817,7 @@ class Test105(Scene):
 
 
 class Test106(Scene):
-    '''https://github.com/3b1b/manim/pull/1072'''
+    """https://github.com/3b1b/manim/pull/1072"""
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -1830,7 +1831,7 @@ class Test106(Scene):
 
 
 class Test107(Scene):
-    '''临时做的一张图'''
+    """临时做的一张图"""
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
@@ -1846,7 +1847,7 @@ class Test107(Scene):
 
 
 class Test108(Scene):
-    '''https://github.com/3b1b/manim/issues/1095'''
+    """https://github.com/3b1b/manim/issues/1095"""
     CONFIG = {
         "v_coord_strings": ["-1", "2"],
     }
@@ -1863,7 +1864,7 @@ class Test108(Scene):
 
 
 class Test109(Scene):
-    '''生成README中的头图'''
+    """生成README中的头图"""
     CONFIG = {
         "camera_config": {
             "background_color": WHITE,
