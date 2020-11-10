@@ -396,7 +396,7 @@ class ShowSeveralQuaternionRotations(SpecialThreeDScene):
         left_q_label = QuaternionLabel([1, 0, 0, 0])
         right_q_label = QuaternionLabel([1, 0, 0, 0])
         for label in left_q_label, right_q_label:
-            lp, rp = TexMobject("()")
+            lp, rp = TexMobject("(", ")")
             lp.next_to(label, LEFT, SMALL_BUFF)
             rp.next_to(label, RIGHT, SMALL_BUFF)
             label.add(lp, rp)

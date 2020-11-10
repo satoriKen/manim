@@ -20,6 +20,7 @@ if os.path.exists(pi_creature_dir_maybe):
     PI_CREATURE_DIR = pi_creature_dir_maybe
 else:
     PI_CREATURE_DIR = os.path.join("assets")
+FILE_DIR = PI_CREATURE_DIR
 
 PI_CREATURE_SCALE_FACTOR = 0.5
 
