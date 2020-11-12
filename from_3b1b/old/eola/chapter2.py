@@ -1,6 +1,7 @@
 from manimlib.imports import *
 from from_3b1b.old.eola.chapter1 import plane_wave_homotopy
 
+
 class OpeningQuote(Scene):
     def construct(self):
         words = TextMobject("""
@@ -68,10 +69,10 @@ class CoordinatesAsScalars(VectorScene):
             self.vector_coords[1]*j_hat.get_end(), 
             color = Y_COLOR
         )
-        VMobject(i_hat, new_i_hat).shift(3*LEFT)
-        VMobject(j_hat, new_j_hat).shift(3*RIGHT)
+        VGroup(i_hat, new_i_hat).shift(3*LEFT)
+        VGroup(j_hat, new_j_hat).shift(3*RIGHT)
 
-        new_array = Matrix([new_x.copy(), new_y.copy()])
+        new_array = Matrix([new_x.tex_strings, new_y.tex_strings])
         new_array.scale(0.5)
         new_array.shift(
             -new_array.get_boundary_point(-vector.get_end()) + \
@@ -101,7 +102,7 @@ class CoordinatesAsScalars(VectorScene):
             FadeOut(i_hat),
             FadeOut(j_hat),
             Write(new_array.get_brackets()),
-            FadeIn(VMobject(*starting_mobjects)),
+            FadeIn(VGroup(*starting_mobjects)),
             FadeOut(title)
         )
         self.remove(x, y)
@@ -132,7 +133,7 @@ class CoordinatesAsScalars(VectorScene):
             faded_v = v.copy().fade(0.7)
             scaled_v = Vector(factor*v.get_end(), color = v.get_color())
 
-            scaled_label = VMobject(coord.copy(), label.copy())
+            scaled_label = VGroup(coord.copy(), label.copy())
             scaled_label.arrange(RIGHT, buff = 0.1)
             scaled_label.move_to(label, DOWN+RIGHT)
             scaled_label.shift((scaled_v.get_end()-v.get_end())/2)
@@ -140,23 +141,22 @@ class CoordinatesAsScalars(VectorScene):
             self.play(
                 Transform(v.copy(), faded_v),
                 Transform(v, scaled_v),
-                Transform(VMobject(coord_copy, label), scaled_label),
+                Transform(VGroup(coord_copy, label), scaled_label),
             )
             self.wait()
             if shift_right:
-                group = VMobject(v, coord_copy, label)
+                group = VGroup(v, coord_copy, label)
                 self.play(ApplyMethod(
                     group.shift, self.vector_coords[0]*RIGHT
                 ))
         self.wait()
 
-
     def show_symbolic_sum(self, new_array, vector):
-        new_mob = TexMobject([
-            "(%d)\\hat{\\imath}"%self.vector_coords[0], 
-            "+", 
-            "(%d)\\hat{\\jmath}"%self.vector_coords[1]
-        ])
+        new_mob = TexMobject(
+            "(%d)\\hat{\\imath}"%self.vector_coords[0],
+            "+",
+            "(%d)\\hat{\\jmath}"%self.vector_coords[1],
+        )
         new_mob.move_to(new_array)
         new_mob.shift_onto_screen()
         i_hat, plus, j_hat = new_mob.split()
@@ -187,11 +187,12 @@ class CoordinatesAsScalarsExample2(CoordinatesAsScalars):
         """)
         text.set_width(FRAME_X_RADIUS-1)
         text.to_corner(UP+RIGHT)
-        VMobject(*text.split()[:2]).set_color(X_COLOR)
-        VMobject(*text.split()[5:7]).set_color(Y_COLOR)
+        VGroup(*text.split()[:2]).set_color(X_COLOR)
+        VGroup(*text.split()[5:7]).set_color(Y_COLOR)
         self.play(Write(text))
         self.wait(2)
-        self.remove(*basis_vectors + labels)
+        self.remove(*basis_vectors)
+        self.remove(labels)
         CoordinatesAsScalars.construct(self)
 
 
@@ -231,11 +232,11 @@ class ShowVaryingLinearCombinations(VectorScene):
         v2 = self.add_vector(self.vector2, color = self.vector2_color)
         v1_label = self.label_vector(
             v1, self.vector1_label, color = self.vector1_color, 
-            buff_factor = 3
+            # buff_factor = 3
         )
         v2_label = self.label_vector(
             v2, self.vector2_label, color = self.vector2_color, 
-            buff_factor = 3
+            # buff_factor = 3
         )
         label_anims = [
             MaintainPositionRelativeTo(label, v)
@@ -583,14 +584,14 @@ class DefineSpan(Scene):
         definition.set_width(FRAME_WIDTH-1)
         definition.to_edge(UP)
         def_mobs = np.array(definition.split())
-        VMobject(*def_mobs[4:4+4]).set_color(PINK)
-        VMobject(*def_mobs[11:11+2]).set_color(v_color)
-        VMobject(*def_mobs[16:16+2]).set_color(w_color)
-        VMobject(*def_mobs[-19:-1]).set_color(YELLOW)
+        VGroup(*def_mobs[4:4+4]).set_color(PINK)
+        VGroup(*def_mobs[11:11+2]).set_color(v_color)
+        VGroup(*def_mobs[16:16+2]).set_color(w_color)
+        VGroup(*def_mobs[-19:-1]).set_color(YELLOW)
 
-        equation = TexMobject([
+        equation = TexMobject(
             "a", "\\vec{\\textbf{v}}", "+", "b", "\\vec{\\textbf{w}}"
-        ])
+        )
         equation.arrange(buff = 0.1, aligned_edge = DOWN)
         equation.split()[1].set_color(v_color)
         equation.split()[4].set_color(w_color)
@@ -613,7 +614,7 @@ class DefineSpan(Scene):
         self.wait()
         self.play(
             FadeIn(vary_words),
-            ShowCreation(VMobject(*arrows))
+            ShowCreation(VGroup(*arrows))
         )
         self.wait()
 
@@ -639,9 +640,9 @@ class VectorsToDotsScene(VectorScene):
         )
         for vect, color in zip(vectors, colors):
             vect.set_color(color)
-        prototype_vector = vectors[3*len(vectors)/4]
+        prototype_vector = vectors[round(3*len(vectors)/4)]
 
-        vector_group = VMobject(*vectors)
+        vector_group = VGroup(*vectors)
         self.play(
             ShowCreation(
                 vector_group, 
@@ -726,7 +727,7 @@ class VectorsInThePlane(VectorsToDotsScene):
             color = BLUE_E
         )
         line_pairs = [
-            VMobject(h_line.copy().shift(y), v_line.copy().shift(x))
+            VGroup(h_line.copy().shift(y), v_line.copy().shift(x))
             for v in vectors
             for x, y, z in [v.get_center()]
         ]
@@ -752,13 +753,13 @@ class HowToThinkVectorsVsPoint(Scene):
             text.to_edge(UP)
 
         single_vector = Vector([2, 1])
-        vector_group = VMobject(*[
+        vector_group = VGroup(*[
             Vector([x, 1])
             for x in np.linspace(-2, 2, 5)
         ])
         bubble.position_mobject_inside(single_vector)
         bubble.position_mobject_inside(vector_group)
-        dots = VMobject(*[
+        dots = VGroup(*[
             Dot(v.get_end())
             for v in vector_group.split()
         ])
@@ -782,7 +783,7 @@ class HowToThinkVectorsVsPoint(Scene):
         self.wait()
 
 
-class IntroduceThreeDSpan(Scene):
+class IntroduceThreeDSpan_NotImplemented(Scene):
     pass
 
 class AskAboutThreeDSpan(Scene):
@@ -790,14 +791,14 @@ class AskAboutThreeDSpan(Scene):
         self.play(Write("What does the span of two 3d vectors look like?"))
         self.wait(2)
 
-class ThreeDVectorSpan(Scene):
+class ThreeDVectorSpan_NotImplemented(Scene):
     pass
 
 
-class LinearCombinationOfThreeVectors(Scene):
+class LinearCombinationOfThreeVectors_NotImplemented(Scene):
     pass
 
-class VaryingLinearCombinationOfThreeVectors(Scene):
+class VaryingLinearCombinationOfThreeVectors_NotImplemented(Scene):
     pass
 
 class LinearCombinationOfThreeVectorsText(Scene):
@@ -808,23 +809,32 @@ class LinearCombinationOfThreeVectorsText(Scene):
             $\\vec{\\textbf{w}}$, and
             $\\vec{\\textbf{u}}$:
         """)
-        VMobject(*text.split()[-12:-10]).set_color(MAROON_C)
-        VMobject(*text.split()[-9:-7]).set_color(BLUE)
-        VMobject(*text.split()[-3:-1]).set_color(RED_C)
-        VMobject(*text.split()[:17]).set_color(GREEN)        
+        VGroup(*text.split()[-12:-10]).set_color(MAROON_C)
+        VGroup(*text.split()[-9:-7]).set_color(BLUE)
+        VGroup(*text.split()[-3:-1]).set_color(RED_C)
+        VGroup(*text.split()[:17]).set_color(GREEN)
         text.set_width(FRAME_WIDTH - 1)
         text.to_edge(UP)
 
-        equation = TextMobject("""$
-            a\\vec{\\textbf{v}} + 
-            b\\vec{\\textbf{w}} + 
-            c\\vec{\\textbf{u}}
-        $""")
-        VMobject(*equation.split()[-10:-8]).set_color(MAROON_C)
-        VMobject(*equation.split()[-6:-4]).set_color(BLUE)
-        VMobject(*equation.split()[-2:]).set_color(RED_C)
+        # equation = TextMobject("""$
+        #     a\\vec{\\textbf{v}} +
+        #     b\\vec{\\textbf{w}} +
+        #     c\\vec{\\textbf{u}}
+        # $""")
+        # VGroup(*equation.split()[-10:-8]).set_color(MAROON_C)
+        # VGroup(*equation.split()[-6:-4]).set_color(BLUE)
+        # VGroup(*equation.split()[-2:]).set_color(RED_C)
+        # a, b, c = np.array(*equation.split())[[0, 4, 8]]
 
-        a, b, c = np.array(equation.split())[[0, 4, 8]]
+        equation = TexMobject(
+            "a\\vec{\\textbf{v}} +",
+            "b\\vec{\\textbf{w}} +",
+            "c\\vec{\\textbf{u}}",
+        )
+        a, b, c = equation.split()
+        a.set_color(MAROON_C)
+        b.set_color(BLUE)
+        c.set_color(RED_C)
 
         equation.scale(1.5)
         equation.next_to(text, DOWN, buff = 1)
@@ -832,8 +842,8 @@ class LinearCombinationOfThreeVectorsText(Scene):
         span_comment = TextMobject("For span, let these constants vary")
         span_comment.scale(1.5)
         span_comment.next_to(equation, DOWN, buff = 2)
-        VMobject(*span_comment.split()[3:7]).set_color(YELLOW)
-        arrows = VMobject(*[
+        VGroup(*span_comment.split()[3:7]).set_color(YELLOW)
+        arrows = VGroup(*[
             Arrow(span_comment, var)
             for var in (a, b, c)
         ])
@@ -927,12 +937,12 @@ class LinearDependentEquations(Scene):
         title.to_edge(UP)
         self.add(title)
 
-        equation1 = TexMobject([
+        equation1 = TexMobject(
             "\\vec{\\textbf{w}}",
             "=",
             "a",
             "\\vec{\\textbf{v}}",
-        ])
+        )
         w, eq, a, v = equation1.split()
         w.set_color(BLUE)
         v.set_color(MAROON_C)
@@ -945,7 +955,7 @@ class LinearDependentEquations(Scene):
         arrow = Arrow(low_words1, a)
         arrow_copy = arrow.copy()
 
-        equation2 = TexMobject([
+        equation2 = TexMobject(
             "\\vec{\\textbf{u}}",
             "=",
             "a",
@@ -953,7 +963,7 @@ class LinearDependentEquations(Scene):
             "+",
             "b",
             "\\vec{\\textbf{w}}",
-        ])
+        )
         u, eq, a, v, plus, b, w = equation2.split()
         u.set_color(RED)
         w.set_color(BLUE)
@@ -964,7 +974,7 @@ class LinearDependentEquations(Scene):
         low_words2 = TextMobject("For some values of a and b")
         low_words2.scale(2)
         low_words2.to_edge(DOWN)
-        arrows = VMobject(*[
+        arrows = VGroup(*[
             Arrow(low_words2, var)
             for var in (a, b)
         ])
@@ -992,8 +1002,8 @@ class LinearDependentEquations(Scene):
             neq.replace(eq_copy.submobjects[1])
             eq_copy.submobjects[1] = neq
 
-        new_low_words1 = TextMobject(["For", "all", "values of a"])
-        new_low_words2 = TextMobject(["For", "all", "values of a and b"])
+        new_low_words1 = TextMobject("For", "all", "values of a")
+        new_low_words2 = TextMobject("For", "all", "values of a and b")
         for low_words in new_low_words1, new_low_words2:
             low_words.split()[1].set_color(GREEN)
             low_words.scale(2)
