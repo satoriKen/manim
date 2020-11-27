@@ -545,7 +545,7 @@ class Opening_Scene(Scene):
                "物体变换方法": BLUE_D}
         text_color = DARK_GRAY
 
-        font = "庞门正道标题体"
+        font = "Source Han Sans CN"
         text_1 = Text("大家好!", font=font, color=text_color, size=1, t2c=t2c).to_edge(UP * 2, buff=1)
         text_2 = Text("欢迎来到manim视频教程", font=font,
                       color=text_color, size=1, t2c=t2c).to_edge(UP * 3.2, buff=1)

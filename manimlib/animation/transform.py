@@ -25,7 +25,10 @@ class Transform(Animation):
 
     def __init__(self, mobject, target_mobject=None, **kwargs):
         super().__init__(mobject, **kwargs)
+        self.starting_mobject = mobject
         self.target_mobject = target_mobject
+        if target_mobject:
+            self.target_copy = target_mobject.copy()
         self.init_path_func()
 
     def init_path_func(self):

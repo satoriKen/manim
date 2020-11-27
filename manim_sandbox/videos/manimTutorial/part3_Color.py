@@ -395,7 +395,7 @@ class OpeningScene(Scene_):
         m_group_2 = VGroup(*[Text(tex + ', ', size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[1]]).arrange(RIGHT)
         m_group_3 = VGroup(*[Text(tex, size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[2]]).arrange(RIGHT)
         m_group_4 = VGroup(*[Text(tex, size=0.42, font='Consolas', stroke_width=2, color=BLUE_D) for tex in methods[3]]).arrange(RIGHT)
-        m_group = VGroup(m_group_1, m_group_2, m_group_3, m_group_4).arrange(DOWN, aligned_edge=LEFT, buff=0.42)
+        # m_group = VGroup(m_group_1, m_group_2, m_group_3, m_group_4).arrange(DOWN, aligned_edge=LEFT, buff=0.42)
         methodes_group = VGroup(*m_group_1, *m_group_2, *m_group_3, *m_group_4).next_to(text_34, DOWN, buff=0.5)
 
         # self.add(picture)
@@ -406,6 +406,10 @@ class OpeningScene(Scene_):
         self.wait(1.8)
         self.play(ReplacementTransform(text_12, text_34), run_time=1.2)
         self.wait(1.2)
+        # self.play(FadeInRandom(m_group), run_time=2.4)
+        # self.wait(2.6)
+        # self.play(FadeOutRandom(m_group), run_time=1.8)
+        # self.wait(1)
         self.play(FadeInRandom(methodes_group), run_time=2.4)
         self.wait(2.6)
         self.play(FadeOutRandom(methodes_group), FadeOutRandom(text_3),
@@ -1420,7 +1424,7 @@ class DownProgressBar(Scene_):
             '给物体设置颜色': '0443', 
             '子物体的梯度上色': '0600', 
             '光泽和渐变色': '0701',
-            ' ': '0810'
+            '结束': '0810'
         }
         total_time = '0822'
         func_time = lambda t: int(t[0:2]) * 60 + int(t[2:])
@@ -1434,8 +1438,8 @@ class DownProgressBar(Scene_):
 
         lines = VGroup(*[Line(p_list[i], p_list[i+1]-0.02*RIGHT, color=colors[i], stroke_width=20) for i in range(len(methods_dict)+1)])
         lines.to_edge(DOWN * 0.22, buff=1)
-        texts = VGroup(*[Text(t, color=WHITE, font='思源黑体 CN Bold', size=0.14) for t in methods_dict.keys()], plot_depth=1)
-        text = Text('空降', color=WHITE, font='庞门正道标题体', size=0.22).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT, buff=0.4)
+        texts = VGroup(*[Text(t, color=WHITE, font='Source Han Serif CN Bold', size=0.14) for t in methods_dict.keys()], plot_depth=1)
+        text = Text('空降', color=WHITE, font='Source Han Serif CN', size=0.22).to_edge(DOWN * 0.132, buff=1).to_edge(LEFT, buff=0.4)
         text[1].shift(RIGHT*0.03)
         text[0].shift(LEFT*0.01)
         for i in range(len(methods_dict)):
@@ -1444,46 +1448,48 @@ class DownProgressBar(Scene_):
         self.add(lines, texts, text)
 
 
-class VideoCover(Scene):
+class VideoCover(Scene_):
     def construct(self):
         background = Polygon(
             LEFT_SIDE * 2 + BOTTOM, BOTTOM, LEFT_SIDE / 2 + TOP, LEFT_SIDE * 2 + TOP,
             fill_opacity=0.7, fill_color=BLACK, stroke_width=0
         ).shift(RIGHT)
+        font = "Source Han Sans CN"
         text = VGroup(
-            Text("manim教程", font="庞门正道标题体", color=BLUE).scale(0.9),
-            Text("第三讲", font="庞门正道标题体", color=BLUE).scale(1.1),
-            Text("颜色的表示和设置", font="庞门正道标题体", color=ORANGE).scale(1.5)
+            Text("manim教程", font=font, color=BLUE).scale(0.9),
+            Text("第三讲", font=font, color=BLUE).scale(1.1),
+            Text("颜色的表示和设置", font=font, color=ORANGE).scale(1.5)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
         text[2].shift(DOWN*0.4)
         text.center().to_edge(LEFT, buff=0.8).shift(UP*0.5)
         text2 = VGroup(
-            Text("manim教程", font="庞门正道标题体", color=BLUE).scale(0.9).set_stroke(width=12, opacity=0.4),
-            Text("第三讲", font="庞门正道标题体", color=BLUE).scale(1.1).set_stroke(width=12, opacity=0.4),
-            Text("颜色的表示和设置", font="庞门正道标题体", color=ORANGE).scale(1.5).set_stroke(width=13, opacity=0.4)
+            Text("manim教程", font=font, color=BLUE).scale(0.9).set_stroke(width=12, opacity=0.4),
+            Text("第三讲", font=font, color=BLUE).scale(1.1).set_stroke(width=12, opacity=0.4),
+            Text("颜色的表示和设置", font=font, color=ORANGE).scale(1.5).set_stroke(width=13, opacity=0.4)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
         text2[2].shift(DOWN*0.4)
         text2.center().to_edge(LEFT, buff=0.8).shift(UP*0.5)
         self.add(background, text2, text)
 
 
-class VideoCover1(Scene):
+class VideoCover1(Scene_):
     def construct(self):
         background = Polygon(
             LEFT_SIDE * 2 + BOTTOM, BOTTOM, LEFT_SIDE / 2 + TOP, LEFT_SIDE * 2 + TOP,
             fill_opacity=0.7, fill_color=BLACK, stroke_width=0
         ).shift(RIGHT)
+        font = "Source Han Sans CN"
         text = VGroup(
-            Text("manim教程", font="庞门正道标题体", color=BLUE).scale(0.9),
-            Text("第一讲", font="庞门正道标题体", color=BLUE).scale(1.1),
-            Text("物体的位置与变换", font="庞门正道标题体", color=ORANGE).scale(1.5)
+            Text("manim教程", font=font, color=BLUE).scale(0.9),
+            Text("第一讲", font=font, color=BLUE).scale(1.1),
+            Text("物体的位置与变换", font=font, color=ORANGE).scale(1.5)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
         text[2].shift(DOWN*0.4)
         text.center().to_edge(LEFT, buff=0.8).shift(UP*0.5)
         text2 = VGroup(
-            Text("manim教程", font="庞门正道标题体", color=BLUE).scale(0.9).set_stroke(width=12, opacity=0.4),
-            Text("第一讲", font="庞门正道标题体", color=BLUE).scale(1.1).set_stroke(width=12, opacity=0.4),
-            Text("物体的位置与变换", font="庞门正道标题体", color=ORANGE).scale(1.5).set_stroke(width=13, opacity=0.4)
+            Text("manim教程", font=font, color=BLUE).scale(0.9).set_stroke(width=12, opacity=0.4),
+            Text("第一讲", font=font, color=BLUE).scale(1.1).set_stroke(width=12, opacity=0.4),
+            Text("物体的位置与变换", font=font, color=ORANGE).scale(1.5).set_stroke(width=13, opacity=0.4)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
         text2[2].shift(DOWN*0.4)
         text2.center().to_edge(LEFT, buff=0.8).shift(UP*0.5)

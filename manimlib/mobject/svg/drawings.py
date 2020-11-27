@@ -26,6 +26,8 @@ from manimlib.utils.space_ops import angle_of_vector
 from manimlib.utils.space_ops import complex_to_R3
 from manimlib.utils.space_ops import rotate_vector
 
+FILE_DIR = 'assets/svg_images'
+
 
 class Lightbulb(SVGMobject):
     CONFIG = {

@@ -15,7 +15,7 @@ from manimlib.utils.config_ops import digest_config
 from manimlib.utils.space_ops import get_norm
 from manimlib.utils.space_ops import normalize
 
-pi_creature_dir_maybe = os.path.join(MEDIA_DIR, "assets", "PiCreature")
+pi_creature_dir_maybe = os.path.join(MEDIA_DIR, "assets", "svg_images")
 if os.path.exists(pi_creature_dir_maybe):
     PI_CREATURE_DIR = pi_creature_dir_maybe
 else:
