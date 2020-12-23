@@ -506,7 +506,7 @@ class GraphOfTwoToT(GraphScene):
         self.wait()
 
         #Vary value
-        threes = VGroup(height_label[1], slope_label[2][1])
+        threes = VGroup(height_label.submobjects[0].submobjects[1], slope_label.submobjects[2][1])
         ts = VGroup(*[
             TexMobject("t").set_color(YELLOW).scale(0.75).move_to(three)
             for three in threes
@@ -517,10 +517,12 @@ class GraphOfTwoToT(GraphScene):
         def update_label_group(group, alpha):
             t = interpolate(example_t, alt_example_t, alpha)
             new_group = self.get_label_group(t)
-            Transform(group, new_group).update(1)
+            # Transform(group, new_group).update(1)
+            group.become(new_group)
             for t, three in zip(ts, threes):
                 t.move_to(three)
-            Transform(threes, ts).update(1)
+            # Transform(threes, ts).update(1)
+            threes.become(ts)
             return group
 
         self.play(UpdateFromAlphaFunc(
