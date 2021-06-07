@@ -19,12 +19,6 @@ class Angle(Arc):
         "not_right": False,
     }
     def __init__(self, p1, p2, p3, **kwargs):
-        if not isinstance(p1, Dot):
-            p1 = Dot(p1)
-        if not isinstance(p2, Dot):
-            p2 = Dot(p2)
-        if not isinstance(p3, Dot):
-            p3 = Dot(p3)
         self.p1 = p1
         self.p2 = p2
         self.p3 = p3

@@ -1072,12 +1072,18 @@ class CompareTwoConstantToEightConstant(PiCreatureScene):
 class AskAboutConstantOne(TeacherStudentsScene):
     def construct(self):
         note = TexMobject(
-            "{ d(a^", "t", ")", "\\over \\,", "dt}", 
-            "=", "a^", "t", "(\\text{Some constant})"
+            r"{ d(a^t", ")", r"\over \,", r"dt}",
+            "=", "a^", "t", r"(\text{Some constant})"
+        ).set_color_by_tex_to_color_map(
+            {
+                "t": YELLOW,
+                "dt": GREEN,
+                "constant": BLUE
+            }
         )
-        note.set_color_by_tex("t", YELLOW)
-        note.set_color_by_tex("dt", GREEN)
-        note.set_color_by_tex("constant", BLUE)
+        # note.set_color_by_tex("t", YELLOW)
+        # note.set_color_by_tex("dt", GREEN)
+        # note.set_color_by_tex("constant", BLUE)
         note.to_corner(UP+LEFT)
         self.add(note)
 

@@ -4,6 +4,7 @@
 
 from manimlib.mobject.mobject import Mobject
 from manimlib.mobject.types.image_mobject import ImageMobject
+from manimlib.scene.scene import Scene
 from manimlib.constants import *
 from manimlib.utils.config_ops import digest_config
 from manimlib.utils.file_ops import seek_full_path_from_defaults
@@ -84,22 +85,22 @@ class VideoMobject(Mobject):
 
           
 # A video named zhang.mp4 is placed in assets/videos folder
-#class VideoTest(Scene):
-#    def construct(self):
-#        video = VideoMobject("zhang", scene=self)
-#        video.start()
-#
-#        self.add(video)
-#        self.wait(video.duration/2)
-#        video.stop()
-#        
-#        text = Text("现在停顿1秒",
-#            font='Microsoft YaHei')
-#        text.scale(0.8)
-#        text.move_to(UP*2)
-#
-#        self.play(Write(text))
-#        self.wait()
-#        
-#        video.start()
-#        self.wait(video.duration/2)
+class VideoTest(Scene):
+    def construct(self):
+        video = VideoMobject("zhang", scene=self)
+        video.start()
+
+        self.add(video)
+        self.wait(video.duration/2)
+        video.stop()
+        
+        text = Text("现在停顿1秒",
+            font='Microsoft YaHei')
+        text.scale(0.8)
+        text.move_to(UP*2)
+
+        self.play(Write(text))
+        self.wait()
+        
+        video.start()
+        self.wait(video.duration/2)

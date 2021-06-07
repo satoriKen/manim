@@ -1,4 +1,4 @@
-from big_ol_pile_of_manim_imports import *
+from manimlib.imports import *
 
 #There seems to be no change between Scene and ThreeDScene
 class CameraPosition1(ThreeDScene):
